@@ -129,3 +129,297 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="habitacionesContainer">
+                    <!-- Las habitaciones se generan mediante JS aquí -->
+                </div>
+            </div>
+
+            <!-- Total Bar -->
+            <div class="mt-8 border-t border-dashed border-teal-600 pt-6">
+                <div class="flex justify-between items-end bg-[#0a2327] p-5 rounded-2xl border border-teal-800">
+                    <div>
+                        <p class="text-sm text-teal-300 font-medium" id="mensajeTotal">Elige al menos una habitación</p>
+                        <p class="text-lg font-bold text-white mt-1">Total estimado</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-3xl font-bold text-orange-500" id="montoTotal">$0.00</span>
+                    </div>
+                </div>
+                <a id="btnReservar" href="#" target="_blank" class="block w-full py-4 mt-4 bg-orange-500 hover:bg-orange-600 text-white text-center font-bold rounded-xl shadow-lg transition-colors hidden">
+                    Solicitar Reserva por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Información Adicional (Acordeones) -->
+        <div class="space-y-3">
+            
+            <!-- ACORDEÓN 1: Año Nuevo (Solo visible en modo festivo) -->
+            <details id="acordeonAnoNuevo" class="card-bg rounded-xl group overflow-hidden hidden">
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">🎉 Celebración de fin de año | 31 de diciembre</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-3 border-t border-teal-800">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Cena especial de Fin de Año desde <strong class="text-orange-400">$15</strong> por persona.</li>
+                        <li>Show de fuegos artificiales para recibir el 2027.</li>
+                        <li>Música y ambiente festivo hasta las 3:00 a. m.</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-teal-900/50 rounded-lg border border-teal-700/50 text-center">
+                        <p class="font-bold text-white mb-1">¡LA FIESTA CONTINÚA EL 1 DE ENERO!</p>
+                        <p class="text-xs text-teal-200">Desde las 10:00 a. m., seguimos celebrando la llegada del nuevo año con más música, piscina, playa y las mejores vibras tropicales.</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACORDEÓN 2: Huéspedes Adicionales (Solo visible en Tarifas Regulares) -->
+            <details id="acordeonHuespedes" class="card-bg rounded-xl group overflow-hidden" open>
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">👨‍👩‍👧 Huéspedes Adicionales</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-2 border-t border-teal-800">
+                    <p class="text-xs text-teal-300 mb-3 border-b border-teal-800 pb-2">El precio base cubre 1 o 2 huéspedes. Costos extra por noche:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Adulto:</strong> $30/noche (máx. 1 por habitación).</li>
+                        <li><strong>Niño (2 a 12 años):</strong> $20/noche (máx. 2 por habitación).</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Horarios (Siempre visible) -->
+            <details class="card-bg rounded-xl group overflow-hidden">
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">🕒 Horarios</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-2 border-t border-teal-800">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Check-in:</strong> 3:00 p. m.</li>
+                        <li><strong>Check-out:</strong> 1:00 p. m.</li>
+                        <li>Entrada o salida extendida: $10/hora, según disponibilidad.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Beneficios (Siempre visible) -->
+            <details class="card-bg rounded-xl group overflow-hidden">
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">🌴 Beneficios de tu estadía</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-2 border-t border-teal-800">
+                    <ul class="space-y-2">
+                        <li>✅ Áreas comunes desde las 12:00 p. m. del día de llegada.</li>
+                        <li>✅ Disfruta las instalaciones hasta las 4:00 p. m. del día de salida.</li>
+                        <li>✅ Piscina y acceso directo a la playa.</li>
+                        <li>✅ Restaurante, bar y Wi-Fi.</li>
+                        <li>✅ Pet friendly 🐾</li>
+                        <li>✅ 25% de descuento en ranchos frente al mar, según disponibilidad.</li>
+                        <li>✅ Descorche por cooler: tarifa según tamaño y contenido.</li>
+                    </ul>
+                </div>
+            </details>
+
+        </div>
+
+    </div>
+
+    <!-- Lógica de la Calculadora -->
+    <script>
+        // Datos de la propiedad
+        const habitaciones = [
+            { id: 1, tipo: 'Sencilla', camas: '1 queen' },
+            { id: 2, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
+            { id: 3, tipo: 'Mezcal', camas: '1 queen, 2 twin' },
+            { id: 4, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
+            { id: 5, tipo: 'Sencilla', camas: '1 queen' },
+            { id: 6, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
+            { id: 7, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
+            { id: 8, tipo: 'Mezcal', camas: '1 queen, 1 twin' },
+            { id: 9, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
+            { id: 10, tipo: 'Sencilla', camas: '1 queen' }
+        ];
+
+        // Diccionario de precios
+        const precios = {
+            Sencilla: { semana: 55, finde: 75, festivo: 145 },
+            Mezcal: { semana: 65, finde: 90, festivo: 175 }
+        };
+
+        // Estado Actual
+        let modoActual = 'regular'; // 'regular' o 'festivo'
+        let diasActuales = 'semana'; // 'semana' o 'finde'
+        const numeroWhatsApp = "507XXXXXXXX"; // <-- REEMPLAZA CON TU NÚMERO
+
+        // Elementos del DOM
+        const container = document.getElementById('habitacionesContainer');
+        const radiosNoches = document.getElementsByName('noches');
+        const displayMonto = document.getElementById('montoTotal');
+        const mensajeTotal = document.getElementById('mensajeTotal');
+        const btnReservar = document.getElementById('btnReservar');
+        
+        // Pestañas
+        const btnModoRegular = document.getElementById('btnModoRegular');
+        const btnModoFestivo = document.getElementById('btnModoFestivo');
+        const contenedorDias = document.getElementById('contenedorDias');
+        const btnDiaSemana = document.getElementById('btnDiaSemana');
+        const btnDiaFinde = document.getElementById('btnDiaFinde');
+
+        // Acordeones
+        const acordeonAnoNuevo = document.getElementById('acordeonAnoNuevo');
+        const acordeonHuespedes = document.getElementById('acordeonHuespedes');
+
+        // Obtener el precio basado en el estado
+        function obtenerPrecio(tipoHabitacion) {
+            if (modoActual === 'festivo') {
+                return precios[tipoHabitacion].festivo;
+            }
+            return precios[tipoHabitacion][diasActuales];
+        }
+
+        // Renderizar las tarjetas de habitaciones
+        function renderHabitaciones() {
+            // Guardar selecciones actuales para no perderlas al redibujar
+            const seleccionadas = Array.from(document.querySelectorAll('.room-checkbox:checked')).map(cb => cb.value);
+            
+            container.innerHTML = ''; // Limpiar
+            
+            habitaciones.forEach(hab => {
+                const precio = obtenerPrecio(hab.tipo);
+                const isChecked = seleccionadas.includes(hab.id.toString()) ? 'checked' : '';
+                const badgeClass = hab.tipo === 'Mezcal' ? 'mezcal bg-amber-500/20 text-amber-500' : 'bg-teal-800/50 text-teal-200';
+                
+                const html = `
+                    <label class="relative cursor-pointer block">
+                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${precio}" ${isChecked}>
+                        <div class="room-card rounded-xl p-4 h-full flex flex-col justify-between hover:bg-[#164349]">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center font-bold text-white shadow-inner">
+                                    ${hab.id}
+                                </div>
+                                <span class="room-badge text-xs px-3 py-1 rounded-full font-semibold transition-colors ${badgeClass}">
+                                    ${hab.tipo}
+                                </span>
+                            </div>
+                            <div class="space-y-1 mb-3">
+                                <p class="text-xs text-teal-400/80">${hab.camas}</p>
+                            </div>
+                            <div class="mt-auto">
+                                <span class="text-xl font-bold text-orange-500">$${precio}</span>
+                                <span class="text-xs text-teal-500">/noche</span>
+                            </div>
+                        </div>
+                    </label>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            // Reasignar eventos a los nuevos checkboxes
+            document.querySelectorAll('.room-checkbox').forEach(cb => {
+                cb.addEventListener('change', calcularTotal);
+            });
+
+            calcularTotal();
+        }
+
+        // Calcular Total
+        function calcularTotal() {
+            let nochesSeleccionadas = 1;
+            for (const radio of radiosNoches) {
+                if (radio.checked) nochesSeleccionadas = parseInt(radio.value);
+            }
+
+            const checkboxes = document.querySelectorAll('.room-checkbox:checked');
+            let sumaPrecios = 0;
+            let listaHabitaciones = [];
+
+            checkboxes.forEach(cb => {
+                sumaPrecios += parseFloat(cb.dataset.precio);
+                listaHabitaciones.push(cb.value);
+            });
+
+            const totalFinal = sumaPrecios * nochesSeleccionadas;
+
+            if (checkboxes.length > 0) {
+                displayMonto.textContent = `$${totalFinal.toFixed(2)}`;
+                mensajeTotal.textContent = `${checkboxes.length} hab. por ${nochesSeleccionadas} noche(s)`;
+                btnReservar.classList.remove('hidden');
+                
+                const textoModo = modoActual === 'festivo' ? 'Año Nuevo/Festivos' : `Tarifa Regular (${diasActuales === 'semana' ? 'Dom a Jue' : 'Vie y Sab'})`;
+                const mensajeWA = `Hola Casa Mezcal, deseo solicitar una reserva.%0A%0A*Tipo:* ${textoModo}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Noches:* ${nochesSeleccionadas}%0A*Total base:* $${totalFinal.toFixed(2)} (sin huéspedes adicionales)%0A%0A¿Me confirman disponibilidad?`;
+                
+                btnReservar.href = `https://wa.me/${numeroWhatsApp}?text=${mensajeWA}`;
+            } else {
+                displayMonto.textContent = `$0.00`;
+                mensajeTotal.textContent = `Elige al menos una habitación`;
+                btnReservar.classList.add('hidden');
+            }
+        }
+
+        // --- MANEJO DE EVENTOS ---
+        
+        // Cambio de Noches
+        radiosNoches.forEach(radio => {
+            radio.addEventListener('change', calcularTotal);
+        });
+
+        // Cambio a Modo Festivo
+        btnModoFestivo.addEventListener('click', () => {
+            modoActual = 'festivo';
+            
+            // Estilos de botones principales
+            btnModoFestivo.className = "flex-1 py-2.5 rounded-lg tab-active transition-all text-sm sm:text-base";
+            btnModoRegular.className = "flex-1 py-2.5 rounded-lg tab-inactive transition-all text-sm sm:text-base";
+            
+            // Ocultar selector de días regulares
+            contenedorDias.classList.add('hidden');
+            
+            // Mostrar info de Año nuevo, ocultar info de huéspedes extra
+            acordeonAnoNuevo.classList.remove('hidden');
+            acordeonAnoNuevo.open = true;
+            acordeonHuespedes.classList.add('hidden');
+
+            renderHabitaciones();
+        });
+
+        // Cambio a Modo Regular
+        btnModoRegular.addEventListener('click', () => {
+            modoActual = 'regular';
+            
+            // Estilos de botones principales
+            btnModoRegular.className = "flex-1 py-2.5 rounded-lg tab-active transition-all text-sm sm:text-base";
+            btnModoFestivo.className = "flex-1 py-2.5 rounded-lg tab-inactive transition-all text-sm sm:text-base";
+            
+            // Mostrar selector de días regulares
+            contenedorDias.classList.remove('hidden');
+            
+            // Ocultar info de Año nuevo, mostrar info de huéspedes extra
+            acordeonAnoNuevo.classList.add('hidden');
+            acordeonHuespedes.classList.remove('hidden');
+            acordeonHuespedes.open = true;
+
+            renderHabitaciones();
+        });
+
+        // Selector interno: Semana vs Finde
+        btnDiaSemana.addEventListener('click', () => {
+            diasActuales = 'semana';
+            btnDiaSemana.className = "px-5 py-2 rounded-full border-2 subtab-active transition-colors text-sm font-medium";
+            btnDiaFinde.className = "px-5 py-2 rounded-full border-2 subtab-inactive transition-colors text-sm font-medium";
+            renderHabitaciones();
+        });
+
+        btnDiaFinde.addEventListener('click', () => {
+            diasActuales = 'finde';
+            btnDiaFinde.className = "px-5 py-2 rounded-full border-2 subtab-active transition-colors text-sm font-medium";
+            btnDiaSemana.className = "px-5 py-2 rounded-full border-2 subtab-inactive transition-colors text-sm font-medium";
+            renderHabitaciones();
+        });
+
+        // Inicio
+        renderHabitaciones();
+
+    </script>
+</body>
+</html>

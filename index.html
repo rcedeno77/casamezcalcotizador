@@ -16,6 +16,7 @@
         :root {
             --brand-teal: #14b8a6;
             --brand-orange: #f97316;
+            --glass-bg: rgba(6, 20, 24, 0.6);
         }
 
         body {
@@ -23,6 +24,7 @@
             color: #f8fafc;
             min-height: 100vh;
             overflow-x: hidden;
+            /* Fondo base principal de la página */
             background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -177,6 +179,7 @@
 
     <div class="w-full max-w-5xl relative z-10 space-y-8 lg:space-y-12">
         
+        <!-- HEADER -->
         <header class="text-center space-y-6 pt-6">
             <div class="relative inline-block group">
                 <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 to-teal-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
@@ -193,6 +196,7 @@
             </div>
         </header>
 
+        <!-- PANEL PRINCIPAL -->
         <main class="ultra-glass rounded-[2.5rem] p-6 sm:p-8 md:p-12 relative overflow-hidden">
             
             <div class="absolute -top-32 -right-32 w-64 h-64 bg-teal-500/20 blur-[100px] rounded-full pointer-events-none"></div>
@@ -218,7 +222,6 @@
                 </div>
 
                 <div class="lg:col-span-3 bg-white/5 rounded-2xl p-2 border border-white/5 flex gap-2">
-                    <!-- Selector de Noches Corregido con Tailwind Utilities Directas -->
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="1" class="peer sr-only">
                         <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-[0_8px_20px_rgba(249,115,22,0.4)] peer-checked:scale-105 transition-all font-medium">
@@ -246,6 +249,7 @@
                 </div>
             </div>
 
+            <!-- HABITACIONES -->
             <div class="relative z-10">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-white/10 pb-6">
                     <div>
@@ -259,6 +263,7 @@
                 </div>
             </div>
 
+            <!-- FOOTER TOTALES -->
             <div class="mt-12 bg-black/40 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/10 border-top border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-teal-900/20 via-transparent to-orange-900/20"></div>
                 
@@ -277,8 +282,10 @@
             </div>
         </main>
 
+        <!-- ACORDEONES ILUSTRADOS (10k Vibe) -->
         <section class="grid grid-cols-1 gap-5">
             
+            <!-- ACORDEÓN AÑO NUEVO -->
             <details id="acordeonAnoNuevo" class="ultra-glass rounded-3xl group hidden">
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
@@ -315,17 +322,23 @@
                             </li>
                         </ul>
                         
-                        <div class="h-full p-6 md:p-8 bg-gradient-to-br from-orange-900/40 to-black/40 rounded-2xl border border-orange-500/20 text-center flex flex-col justify-center relative overflow-hidden">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 blur-2xl rounded-full"></div>
-                            <p class="font-elegant text-2xl md:text-3xl text-orange-300 mb-3 drop-shadow-md">La fiesta continúa</p>
-                            <p class="text-xs md:text-sm text-white/80 leading-relaxed">
-                                El 1 de enero, desde las 10:00 a. m., seguimos celebrando con más música, piscina, playa y las mejores vibras tropicales.
-                            </p>
+                        <!-- TARJETA CON FONDO PLAYERO (LA FIESTA CONTINÚA) -->
+                        <div class="h-full p-6 md:p-8 rounded-2xl border border-orange-500/40 text-center flex flex-col justify-center relative overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=2070&auto=format&fit=crop');">
+                            <!-- Overlay oscuro para contraste -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-orange-900/40 backdrop-blur-[1px]"></div>
+                            <!-- Contenido -->
+                            <div class="relative z-10">
+                                <p class="font-elegant text-2xl md:text-3xl text-orange-300 mb-3 drop-shadow-lg">La fiesta continúa</p>
+                                <p class="text-xs md:text-sm text-white/90 leading-relaxed drop-shadow-md max-w-sm mx-auto">
+                                    El 1 de enero, desde las 10:00 a. m., seguimos celebrando con más música, piscina, playa y las mejores vibras tropicales.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </details>
 
+            <!-- ACORDEÓN DETALLES -->
             <details id="acordeonDetalles" class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
@@ -342,7 +355,7 @@
                     <div class="space-y-8">
                         <div>
                             <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Horarios</p>
-                            <div class="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/10 space-y-4">
+                            <div class="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/10 space-y-4 shadow-inner">
                                 <div class="flex justify-between items-center border-b border-white/5 pb-3">
                                     <span class="text-white/80 tracking-wide">Check-in</span>
                                     <span class="text-white font-semibold bg-black/40 px-3 py-1.5 rounded-lg border border-white/5 shadow-inner">3:00 p.m.</span>
@@ -361,33 +374,39 @@
 
                     <div>
                         <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Privilegios Incluidos</p>
-                        <div class="bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10 border-top border-white/20 shadow-inner h-full">
-                            <ul class="space-y-4 text-sm text-white/80 font-light">
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>Acceso a áreas comunes desde las 12:00 p.m. del día de llegada.</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>Disfrute de instalaciones hasta las 4:00 p.m. el día de salida.</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>Piscina y acceso directo a la playa. Restaurante, bar y Wi-Fi.</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>25% de descuento en ranchos frente al mar (sujeto a disp).</span>
-                                </li>
-                                <li class="flex items-start gap-3">
-                                    <span class="text-teal-400 mt-0.5 text-lg">✦</span> 
-                                    <span>Descorche por cooler (tarifa según tamaño y contenido).</span>
-                                </li>
-                            </ul>
+                        <!-- TARJETA CON FONDO DE RESORT DE LUJO (PRIVILEGIOS) -->
+                        <div class="p-6 md:p-8 rounded-2xl border border-white/20 shadow-2xl h-full relative overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop');">
+                            <!-- Overlay oscuro tipo cristal ahumado -->
+                            <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
+                            
+                            <div class="relative z-10">
+                                <ul class="space-y-4 text-sm text-white/90 font-light drop-shadow-md">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Acceso a áreas comunes desde las 12:00 p.m. del día de llegada.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Disfrute de instalaciones hasta las 4:00 p.m. el día de salida.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Piscina y acceso directo a la playa. Restaurante, bar y Wi-Fi.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>25% de descuento en ranchos frente al mar (sujeto a disp).</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Descorche por cooler (tarifa según tamaño y contenido).</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,6 +420,7 @@
         </footer>
     </div>
 
+    <!-- SCRIPT DE LÓGICA -->
     <script>
         const habitaciones = [
             { id: 1, tipo: 'Sencilla', max: 2, camas: '1 queen' },
@@ -600,9 +620,4 @@
         renderHabitaciones();
     </script>
 </body>
-<ElicitationsGroup>
-</ElicitationsGroup>
-<FollowUp>
-¿Qué te parece ahora? ¿Está funcionando perfecto el botón de noches y el resto del diseño como lo querías?
-</FollowUp>
 </html>

@@ -30,7 +30,6 @@
             background-attachment: fixed;
         }
 
-        /* Capa de oscurecimiento con viñeta para centrar la atención */
         .bg-overlay {
             position: fixed;
             inset: 0;
@@ -45,7 +44,6 @@
             background: linear-gradient(135deg, rgba(16, 35, 40, 0.6), rgba(6, 15, 18, 0.8));
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            /* Los "bordecitos bonitos" que simulan el corte del cristal */
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top: 1px solid rgba(255, 255, 255, 0.25);
             border-left: 1px solid rgba(255, 255, 255, 0.15);
@@ -71,7 +69,6 @@
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
         }
 
-        /* Habitación Sencilla (Teal) */
         .room-checkbox:checked + .room-sencilla {
             background: linear-gradient(145deg, rgba(20, 184, 166, 0.15) 0%, rgba(20, 184, 166, 0.02) 100%);
             border-color: rgba(20, 184, 166, 0.5);
@@ -79,7 +76,6 @@
             box-shadow: 0 0 25px rgba(20, 184, 166, 0.2), inset 0 0 15px rgba(20, 184, 166, 0.1);
         }
 
-        /* Habitación Mezcal (Premium Orange/Gold) */
         .room-mezcal::before {
             content: '';
             position: absolute;
@@ -95,11 +91,10 @@
         
         .room-checkbox:checked + .room-mezcal {
             background: linear-gradient(145deg, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.02) 100%);
-            border-color: transparent; /* Controlado por el ::before y box-shadow */
+            border-color: transparent; 
             box-shadow: 0 0 30px rgba(249, 115, 22, 0.3), inset 0 0 20px rgba(249, 115, 22, 0.15);
         }
 
-        /* Etiquetas (Badges) */
         .badge-base {
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -122,7 +117,7 @@
             position: relative;
             overflow: hidden;
         }
-        /* Animación de destello en la etiqueta VIP */
+        
         .badge-mezcal::after {
             content: '';
             position: absolute;
@@ -169,7 +164,6 @@
             transform: scale(1.05);
         }
 
-        /* --- ACORDEONES --- */
         details > summary { list-style: none; outline: none; }
         details > summary::-webkit-details-marker { display: none; }
         details[open] summary ~ * { animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -179,7 +173,6 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Efecto de texto gradiente */
         .text-gradient-gold {
             background: linear-gradient(to right, #fcd34d, #f97316);
             -webkit-background-clip: text;
@@ -193,7 +186,6 @@
 
     <div class="w-full max-w-5xl relative z-10 space-y-8 lg:space-y-12">
         
-        <!-- HEADER LUXURY -->
         <header class="text-center space-y-6 pt-6">
             <div class="relative inline-block group">
                 <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 to-teal-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
@@ -210,16 +202,12 @@
             </div>
         </header>
 
-        <!-- PANEL PRINCIPAL (ULTRA GLASS) -->
         <main class="ultra-glass rounded-[2.5rem] p-6 sm:p-8 md:p-12 relative overflow-hidden">
             
-            <!-- Adorno de luz en la esquina -->
             <div class="absolute -top-32 -right-32 w-64 h-64 bg-teal-500/20 blur-[100px] rounded-full pointer-events-none"></div>
 
-            <!-- CONTROLES SUPERIORES -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
                 
-                <!-- Tipo de Tarifa -->
                 <div class="lg:col-span-5 bg-black/30 rounded-2xl p-2 border border-white/5 shadow-inner flex flex-col sm:flex-row gap-2">
                     <button id="btnModoRegular" class="segmented-btn flex-1 py-3.5 px-4 rounded-xl text-sm font-semibold tracking-wide segmented-active">
                         Tarifas Regulares
@@ -229,7 +217,6 @@
                     </button>
                 </div>
 
-                <!-- Días (Regular) -->
                 <div id="contenedorDias" class="lg:col-span-4 bg-white/5 rounded-2xl p-2 border border-white/5 flex flex-col sm:flex-row gap-2">
                     <button id="btnDiaSemana" class="segmented-btn flex-1 py-3.5 rounded-xl text-sm font-semibold transition-all bg-teal-600/80 text-white shadow-lg border border-teal-400/40 border-top border-white/30">
                         Dom a Jue
@@ -239,7 +226,6 @@
                     </button>
                 </div>
 
-                <!-- Noches -->
                 <div class="lg:col-span-3 bg-white/5 rounded-2xl p-2 border border-white/5 flex gap-2">
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="1" class="peer sr-only">
@@ -262,7 +248,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN HABITACIONES -->
             <div class="relative z-10">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-white/10 pb-6">
                     <div>
@@ -274,13 +259,11 @@
                     </span>
                 </div>
                 
-                <!-- GRID -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
                     <!-- Inyección vía JS -->
                 </div>
             </div>
 
-            <!-- FOOTER FLOTANTE TOTALES -->
             <div class="mt-12 bg-black/40 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/10 border-top border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-teal-900/20 via-transparent to-orange-900/20"></div>
                 
@@ -299,10 +282,8 @@
             </div>
         </main>
 
-        <!-- ACORDEONES DE INFORMACIÓN -->
         <section class="grid grid-cols-1 gap-5">
             
-            <!-- Año Nuevo -->
             <details id="acordeonAnoNuevo" class="ultra-glass rounded-3xl group hidden">
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
@@ -350,7 +331,6 @@
                 </div>
             </details>
 
-            <!-- Políticas -->
             <details class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
@@ -394,7 +374,7 @@
                                 </div>
                                 <div class="pt-3 mt-1 text-[11px] text-teal-200/40 font-light flex items-start gap-2">
                                     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Entrada anticipada o salida extendida: $10/hora (Sujeto a disponibilidad).
+                                    Entrada anticipada o salida extendida: $10/hora (Sujeto a disp).
                                 </div>
                             </div>
                         </div>
@@ -442,19 +422,20 @@
         </footer>
     </div>
 
-    <!-- SCRIPT (LÓGICA INTACTA, CLASES CSS ACTUALIZADAS) -->
+    <!-- SCRIPT JS -->
     <script>
+        // Actualizado con capacidades máximas (todas incluyen A/C y Baño Privado)
         const habitaciones = [
-            { id: 1, tipo: 'Sencilla', camas: '1 queen' },
-            { id: 2, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
-            { id: 3, tipo: 'Mezcal', camas: '1 queen, 2 twin' },
-            { id: 4, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
-            { id: 5, tipo: 'Sencilla', camas: '1 queen' },
-            { id: 6, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
-            { id: 7, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
-            { id: 8, tipo: 'Mezcal', camas: '1 queen, 1 twin' },
-            { id: 9, tipo: 'Sencilla', camas: '1 queen, sofá cama' },
-            { id: 10, tipo: 'Sencilla', camas: '1 queen' }
+            { id: 1, tipo: 'Sencilla', max: 2, camas: '1 queen' },
+            { id: 2, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 3, tipo: 'Mezcal', max: 4, camas: '1 queen, 2 twin' },
+            { id: 4, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 5, tipo: 'Sencilla', max: 2, camas: '1 queen' },
+            { id: 6, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 7, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 8, tipo: 'Mezcal', max: 3, camas: '1 queen, 1 twin' },
+            { id: 9, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 10, tipo: 'Sencilla', max: 2, camas: '1 queen' }
         ];
 
         const precios = {
@@ -497,7 +478,6 @@
                 const isMezcal = hab.tipo === 'Mezcal';
                 const classWrapper = isMezcal ? 'room-mezcal' : 'room-sencilla';
                 const classBadge = isMezcal ? 'badge-mezcal' : 'badge-base text-teal-100 badge-sencilla';
-                
                 const vipIcon = isMezcal ? `<span class="ml-1 text-xs">★</span>` : '';
 
                 const html = `
@@ -505,7 +485,7 @@
                         <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${precio}" data-tipo="${hab.tipo}" ${isChecked}>
                         <div class="room-card ${classWrapper} p-6 h-full flex flex-col justify-between">
                             
-                            <div class="flex justify-between items-start mb-6 relative z-10">
+                            <div class="flex justify-between items-start mb-5 relative z-10">
                                 <div class="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center font-elegant text-xl text-white shadow-inner border border-white/10 border-top border-white/20">
                                     ${hab.id}
                                 </div>
@@ -516,11 +496,28 @@
                                 </div>
                             </div>
 
-                            <div class="space-y-1.5 mb-6 relative z-10">
-                                <p class="text-sm text-white/80 font-light flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <!-- INFO CAPACIDAD, CAMAS Y AMENIDADES -->
+                            <div class="space-y-2 mb-6 relative z-10">
+                                <p class="text-[13px] text-white/90 font-medium flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                    Máx ${hab.max} huéspedes
+                                </p>
+                                <p class="text-xs text-white/70 font-light flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h18m-9-4v4m-8 4h16v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4z"></path></svg>
                                     ${hab.camas}
                                 </p>
+                                
+                                <div class="flex items-center gap-3 mt-3 pt-3 border-t border-white/5 text-[10px] text-teal-100/60 uppercase tracking-widest font-medium">
+                                    <span class="flex items-center gap-1.5" title="Aire Acondicionado">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 12l-3-3m3 3l3-3M3 12h18m-18 0l3-3m-3 3l3 3m12-3l-3-3m3 3l-3 3"></path></svg>
+                                        A/C
+                                    </span>
+                                    <span class="w-1 h-1 rounded-full bg-white/20"></span>
+                                    <span class="flex items-center gap-1.5" title="Baño Privado">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21.5c-3 0-6-2.5-6-6.5 0-3.5 3-7 6-12 3 5 6 8.5 6 12 0 4-3 6.5-6 6.5z"></path></svg>
+                                        Baño Priv.
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="mt-auto flex items-end justify-between relative z-10 border-t border-white/5 pt-4">
@@ -632,4 +629,9 @@
         renderHabitaciones();
     </script>
 </body>
+<ElicitationsGroup>
+</ElicitationsGroup>
+<FollowUp>
+¿Deseas que añada algún campo adicional en el mensaje que se envía por WhatsApp para que te llegue información específica del cliente (como su nombre o fecha estimada)?
+</FollowUp>
 </html>

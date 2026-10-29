@@ -16,7 +16,6 @@
         :root {
             --brand-teal: #14b8a6;
             --brand-orange: #f97316;
-            --glass-bg: rgba(6, 20, 24, 0.6);
         }
 
         body {
@@ -156,14 +155,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .radio-btn-checked {
-            background: linear-gradient(135deg, #f97316, #ea580c) !important;
-            border: 1px solid #fdba74 !important;
-            color: white !important;
-            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4), inset 0 2px 4px rgba(255,255,255,0.3);
-            transform: scale(1.05);
-        }
-
         details > summary { list-style: none; outline: none; }
         details > summary::-webkit-details-marker { display: none; }
         details[open] summary ~ * { animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
@@ -196,7 +187,6 @@
                 <h1 class="font-elegant text-5xl md:text-7xl text-white tracking-tight drop-shadow-xl">
                     Casa Mezcal <span class="text-gradient-gold italic pr-2">Malibú</span>
                 </h1>
-                <!-- Título actualizado -->
                 <p class="text-sm md:text-base text-teal-100/70 font-light tracking-[0.2em] uppercase">
                     Cotiza tu estadía
                 </p>
@@ -228,28 +218,28 @@
                 </div>
 
                 <div class="lg:col-span-3 bg-white/5 rounded-2xl p-2 border border-white/5 flex gap-2">
-                    <!-- Opciones de noches actualizadas -->
+                    <!-- Selector de Noches Corregido con Tailwind Utilities Directas -->
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="1" class="peer sr-only">
-                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
+                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-[0_8px_20px_rgba(249,115,22,0.4)] peer-checked:scale-105 transition-all font-medium">
                             1
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="2" class="peer sr-only" checked>
-                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
+                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-[0_8px_20px_rgba(249,115,22,0.4)] peer-checked:scale-105 transition-all font-medium">
                             2
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="3" class="peer sr-only">
-                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
+                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-[0_8px_20px_rgba(249,115,22,0.4)] peer-checked:scale-105 transition-all font-medium">
                             3
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="4" class="peer sr-only">
-                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
+                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-[0_8px_20px_rgba(249,115,22,0.4)] peer-checked:scale-105 transition-all font-medium">
                             4
                         </div>
                     </label>
@@ -610,4 +600,9 @@
         renderHabitaciones();
     </script>
 </body>
+<ElicitationsGroup>
+</ElicitationsGroup>
+<FollowUp>
+¿Qué te parece ahora? ¿Está funcionando perfecto el botón de noches y el resto del diseño como lo querías?
+</FollowUp>
 </html>

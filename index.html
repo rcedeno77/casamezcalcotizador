@@ -3,181 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador - Hotel Casa Mezcal</title>
+    <title>Cotizador Año Nuevo - Casa Mezcal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            /* Degradado tropical: de azul océano a naranja atardecer */
-            background: linear-gradient(135deg, #0ea5e9 0%, #2dd4bf 50%, #fb923c 100%);
-            background-attachment: fixed;
+            /* Fondo inspirado en el diseño de referencia: verde azulado oscuro / océano */
+            background: linear-gradient(180deg, #103b40 0%, #06191c 100%);
+            color: #e0f2fe;
+            min-height: 100vh;
         }
-        /* Ocultar input number arrows */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
+        .card-bg {
+            background-color: #0f2e33;
+            border: 1px solid #1e4b52;
+        }
+        .room-card {
+            background-color: #12373d;
+            border: 2px solid #1e4b52;
+            transition: all 0.2s ease-in-out;
+        }
+        .room-checkbox:checked + .room-card {
+            border-color: #f97316; /* Naranja */
+            background-color: #18464d;
+        }
+        .room-badge {
+            background-color: #1e4b52;
+        }
+        .room-checkbox:checked + .room-card .room-badge.mezcal {
+            background-color: #f59e0b; /* Amarillo/Naranja para Mezcal */
+            color: #fff;
+        }
+        
+        /* Estilos personalizados para los acordeones */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; margin-top: -10px}
+            100%  {opacity: 1; margin-top: 0px}
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="py-10 px-4">
 
-    <!-- Tarjeta Principal Glassmorphism -->
-    <div class="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-white/40">
+    <div class="max-w-2xl mx-auto space-y-8">
         
-        <!-- Header / Logo -->
-        <div class="relative h-48 bg-gray-200">
-            <!-- Asegúrate de que la imagen esté en la misma carpeta en GitHub -->
-            <img src="WhatsApp Image 2026-10-12 at 6.55.07 PM.jpeg" alt="Logo Casa Mezcal" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <h1 class="text-3xl font-bold text-white tracking-wide">Cotizador</h1>
+        <!-- Header & Logo -->
+        <div class="text-center space-y-4">
+            <div class="inline-block rounded-full p-1 border-2 border-orange-500 bg-black/20 shadow-lg shadow-orange-500/20">
+                <img src="WhatsApp Image 2026-10-12 at 6.55.07 PM.jpeg" alt="Logo Casa Mezcal" class="w-24 h-24 rounded-full object-cover">
             </div>
+            <h1 class="text-3xl font-bold text-white tracking-tight">Cotiza tu estadía para Año Nuevo</h1>
+            <p class="text-sm text-teal-100 max-w-md mx-auto">
+                Elige tus habitaciones y mira un total estimado, al instante. <br>
+                <span class="text-xs opacity-75">Sujeto a verificación del departamento de reservas.</span>
+            </p>
         </div>
 
-        <div class="p-6 space-y-6">
+        <!-- Calculadora Principal -->
+        <div class="card-bg rounded-3xl p-5 sm:p-8 shadow-2xl">
             
-            <!-- Resumen de Tarifas (Diseño Limpio) -->
-            <div class="bg-teal-50/50 rounded-xl p-4 border border-teal-100">
-                <h2 class="text-sm font-semibold text-teal-800 mb-3 text-center uppercase tracking-wider">Tarifas Base (1-2 Huéspedes)</h2>
-                <div class="grid grid-cols-3 gap-2 text-xs text-center">
-                    <div class="flex flex-col justify-between">
-                        <span class="font-semibold text-gray-600">Dom-Jue</span>
-                        <span class="text-gray-500 mt-1">Sencilla: $55<br>Mezcal: $65</span>
-                    </div>
-                    <div class="flex flex-col justify-between border-l border-r border-teal-200 px-1">
-                        <span class="font-semibold text-gray-600">Vie-Sáb</span>
-                        <span class="text-gray-500 mt-1">Sencilla: $75<br>Mezcal: $90</span>
-                    </div>
-                    <div class="flex flex-col justify-between">
-                        <span class="font-semibold text-orange-600">Festivos</span>
-                        <span class="text-gray-500 mt-1">Sencilla: $145<br>Mezcal: $175</span>
-                    </div>
+            <!-- Selector de Noches -->
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold text-white mb-4 text-center">¿Cuántas noches?</h2>
+                <div class="flex justify-center gap-3">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="noches" value="1" class="peer sr-only">
+                        <div class="px-5 py-2 rounded-full border border-teal-600 text-teal-100 font-medium peer-checked:bg-teal-500 peer-checked:text-white peer-checked:border-teal-500 transition-colors">
+                            1 noche
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="noches" value="2" class="peer sr-only" checked>
+                        <div class="px-5 py-2 rounded-full border border-teal-600 text-teal-100 font-medium peer-checked:bg-teal-500 peer-checked:text-white peer-checked:border-teal-500 transition-colors">
+                            2 noches
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="noches" value="3" class="peer sr-only">
+                        <div class="px-5 py-2 rounded-full border border-teal-600 text-teal-100 font-medium peer-checked:bg-teal-500 peer-checked:text-white peer-checked:border-teal-500 transition-colors">
+                            3 noches
+                        </div>
+                    </label>
                 </div>
             </div>
 
-            <!-- Formulario de Cotización -->
-            <form id="cotizadorForm" class="space-y-5">
+            <!-- Listado de Habitaciones -->
+            <div>
+                <h2 class="text-lg font-semibold text-white mb-1">Habitaciones</h2>
+                <p class="text-xs text-teal-200 mb-4">Toca las que quieras. Verás sus camas y capacidad.</p>
                 
-                <!-- Tipo de Habitación -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">1. Habitación</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="habitacion" value="sencilla" class="peer sr-only" checked>
-                            <div class="text-center p-3 rounded-xl border-2 border-gray-200 peer-checked:border-teal-500 peer-checked:bg-teal-50 hover:bg-gray-50 transition-all">
-                                <span class="block font-semibold text-gray-800">Sencilla</span>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="habitacion" value="mezcal" class="peer sr-only">
-                            <div class="text-center p-3 rounded-xl border-2 border-gray-200 peer-checked:border-teal-500 peer-checked:bg-teal-50 hover:bg-gray-50 transition-all">
-                                <span class="block font-semibold text-gray-800">Mezcal</span>
-                            </div>
-                        </label>
-                    </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="habitacionesContainer">
+                    <!-- Las habitaciones se generan mediante JS aquí -->
                 </div>
-
-                <!-- Temporada / Días -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">2. Fechas de Estadía</label>
-                    <select id="temporada" class="w-full p-3 rounded-xl border-2 border-gray-200 focus:border-teal-500 focus:ring-0 outline-none bg-white text-gray-700 transition-all cursor-pointer">
-                        <option value="semana">Domingo a Jueves</option>
-                        <option value="finde">Viernes y Sábados</option>
-                        <option value="festivo">Fechas Festivas (Ej. Año Nuevo)</option>
-                    </select>
-                </div>
-
-                <!-- Cantidad de Noches -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">3. Número de Noches</label>
-                    <div class="flex items-center justify-between bg-gray-50 border-2 border-gray-200 rounded-xl p-2">
-                        <button type="button" id="btnRestar" class="w-10 h-10 rounded-lg bg-white shadow-sm text-gray-600 text-xl font-bold hover:bg-gray-100 focus:outline-none transition-all">-</button>
-                        <input type="number" id="noches" value="1" min="0" max="3" readonly class="w-16 text-center bg-transparent text-xl font-bold text-gray-800 outline-none">
-                        <button type="button" id="btnSumar" class="w-10 h-10 rounded-lg bg-teal-500 shadow-sm text-white text-xl font-bold hover:bg-teal-600 focus:outline-none transition-all">+</button>
-                    </div>
-                </div>
-
-            </form>
-
-            <!-- Resultado Total -->
-            <div class="mt-8 p-6 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl shadow-lg text-center text-white">
-                <p class="text-sm font-medium opacity-90 mb-1">Total Estimado</p>
-                <div class="flex justify-center items-baseline gap-1">
-                    <span class="text-2xl font-semibold">$</span>
-                    <span id="precioTotal" class="text-5xl font-bold tracking-tight">55</span>
-                </div>
-                <p class="text-xs opacity-75 mt-2">*Precio base para 1-2 huéspedes</p>
             </div>
 
-            <!-- Botón de Acción -->
-            <a href="https://wa.me/XXXXXXXXXXX" target="_blank" class="block w-full py-4 bg-orange-500 hover:bg-orange-600 text-white text-center font-bold rounded-xl shadow-md transition-colors mt-4">
-                Reservar por WhatsApp
-            </a>
+            <!-- Total Bar -->
+            <div class="mt-8 border-t border-dashed border-teal-600 pt-6">
+                <div class="flex justify-between items-end bg-[#0a2327] p-5 rounded-2xl border border-teal-800">
+                    <div>
+                        <p class="text-sm text-teal-300 font-medium" id="mensajeTotal">Elige al menos una habitación</p>
+                        <p class="text-lg font-bold text-white mt-1">Total estimado</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-3xl font-bold text-orange-500" id="montoTotal">$0.00</span>
+                    </div>
+                </div>
+                <a id="btnReservar" href="#" target="_blank" class="block w-full py-4 mt-4 bg-orange-500 hover:bg-orange-600 text-white text-center font-bold rounded-xl shadow-lg transition-colors hidden">
+                    Solicitar Reserva por WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <!-- Información Adicional (Acordeones) -->
+        <div class="space-y-3">
+            
+            <!-- Celebración -->
+            <details class="card-bg rounded-xl group overflow-hidden" open>
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">🎉 Celebración de fin de año, 31 de diciembre</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-3 border-t border-teal-800">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Cena especial de Fin de Año desde <strong class="text-orange-400">$15</strong> por persona.</li>
+                        <li>Show de fuegos artificiales para recibir el 2027.</li>
+                        <li>Música y ambiente festivo hasta las 3:00 a. m.</li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-teal-900/50 rounded-lg border border-teal-700/50 text-center">
+                        <p class="font-bold text-white mb-1">¡LA FIESTA CONTINÚA EL 1 DE ENERO!</p>
+                        <p class="text-xs text-teal-200">Desde las 10:00 a. m., seguimos celebrando la llegada del nuevo año con más música, piscina, playa y las mejores vibras tropicales.</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Horarios -->
+            <details class="card-bg rounded-xl group overflow-hidden">
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">⏱️ Horarios de alojamiento</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-2 border-t border-teal-800">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Check-in:</strong> 3:00 p. m.</li>
+                        <li><strong>Check-out:</strong> 1:00 p. m.</li>
+                        <li>Entrada anticipada o salida extendida: $10 por hora, sujeto a disponibilidad.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Beneficios -->
+            <details class="card-bg rounded-xl group overflow-hidden">
+                <summary class="flex justify-between items-center font-semibold cursor-pointer p-4 text-white bg-[#153f45] hover:bg-[#1a4a52] transition-colors">
+                    <span class="flex items-center gap-2">🌴 Beneficios de tu estadía</span>
+                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-300">▼</span>
+                </summary>
+                <div class="p-5 text-sm text-teal-100 space-y-2 border-t border-teal-800">
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Acceso a áreas comunes desde las 12:00 p. m. del día de llegada.</li>
+                        <li>Disfruta de las instalaciones hasta las 4:00 p. m. del día de salida.</li>
+                        <li>Piscina y acceso directo a la playa.</li>
+                        <li>Restaurante, bar y Wi-Fi.</li>
+                        <li>Ambiente <strong>Pet Friendly</strong>.</li>
+                        <li>25% de descuento en ranchos frente al mar, sujeto a disponibilidad.</li>
+                        <li>Opción de descorche por cooler, con tarifa según tamaño y contenido.</li>
+                    </ul>
+                </div>
+            </details>
 
         </div>
+
+        <p class="text-center text-xs text-teal-600/80 mt-8 pb-8">
+            Tarifa por habitación y por noche. Sujeta a disponibilidad.
+        </p>
+
     </div>
 
-    <!-- Lógica del Cotizador -->
+    <!-- Lógica de la Calculadora -->
     <script>
-        // Precios basados en la información proporcionada
-        const tarifas = {
-            sencilla: { semana: 55, finde: 75, festivo: 145 },
-            mezcal: { semana: 65, finde: 90, festivo: 175 }
-        };
+        // Datos de las 10 habitaciones para Año Nuevo
+        const habitaciones = [
+            { id: 1, tipo: 'Sencilla', huespedes: 2, camas: '1 queen', precio: 145 },
+            { id: 2, tipo: 'Sencilla', huespedes: 3, camas: '1 queen, sofá cama', precio: 145 },
+            { id: 3, tipo: 'Mezcal', huespedes: 4, camas: '1 queen, 2 twin', precio: 175 },
+            { id: 4, tipo: 'Sencilla', huespedes: 3, camas: '1 queen, sofá cama', precio: 145 },
+            { id: 5, tipo: 'Sencilla', huespedes: 2, camas: '1 queen', precio: 145 },
+            { id: 6, tipo: 'Sencilla', huespedes: 3, camas: '1 queen, sofá cama', precio: 145 },
+            { id: 7, tipo: 'Sencilla', huespedes: 3, camas: '1 queen, sofá cama', precio: 145 },
+            { id: 8, tipo: 'Mezcal', huespedes: 3, camas: '1 queen, 1 twin', precio: 175 },
+            { id: 9, tipo: 'Sencilla', huespedes: 3, camas: '1 queen, sofá cama', precio: 145 },
+            { id: 10, tipo: 'Sencilla', huespedes: 2, camas: '1 queen', precio: 145 }
+        ];
 
-        // Elementos del DOM
-        const form = document.getElementById('cotizadorForm');
-        const selectTemporada = document.getElementById('temporada');
-        const inputNoches = document.getElementById('noches');
-        const displayTotal = document.getElementById('precioTotal');
-        const btnRestar = document.getElementById('btnRestar');
-        const btnSumar = document.getElementById('btnSumar');
-        const radiosHabitacion = document.getElementsByName('habitacion');
+        const container = document.getElementById('habitacionesContainer');
+        const radiosNoches = document.getElementsByName('noches');
+        const displayMonto = document.getElementById('montoTotal');
+        const mensajeTotal = document.getElementById('mensajeTotal');
+        const btnReservar = document.getElementById('btnReservar');
+        // REEMPLAZAR AQUÍ TU NÚMERO DE WHATSAPP (código de país + número, ej. 507XXXXXXXX)
+        const numeroWhatsApp = "507XXXXXXXX"; 
 
-        // Función para calcular y actualizar el total
-        function calcularTotal() {
-            // Obtener habitación seleccionada
-            let habitacionSeleccionada = 'sencilla';
-            for (const radio of radiosHabitacion) {
-                if (radio.checked) habitacionSeleccionada = radio.value;
-            }
-
-            // Obtener temporada y noches
-            const temporadaSeleccionada = selectTemporada.value;
-            const cantidadNoches = parseInt(inputNoches.value);
-
-            // Calcular
-            const precioPorNoche = tarifas[habitacionSeleccionada][temporadaSeleccionada];
-            const total = precioPorNoche * cantidadNoches;
-
-            // Animar el número (opcional pero le da un toque premium)
-            displayTotal.textContent = total;
+        // Renderizar las tarjetas de habitaciones
+        function renderHabitaciones() {
+            habitaciones.forEach(hab => {
+                const tipoColor = hab.tipo === 'Mezcal' ? 'text-amber-500' : 'text-teal-300';
+                const badgeClass = hab.tipo === 'Mezcal' ? 'mezcal bg-amber-500/20 text-amber-500' : 'bg-teal-800/50 text-teal-200';
+                
+                const html = `
+                    <label class="relative cursor-pointer block">
+                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${hab.precio}" data-num="${hab.id}">
+                        <div class="room-card rounded-xl p-4 h-full flex flex-col justify-between hover:bg-[#164349]">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-8 h-8 rounded-full bg-teal-900 flex items-center justify-center font-bold text-white shadow-inner">
+                                    ${hab.id}
+                                </div>
+                                <span class="room-badge text-xs px-3 py-1 rounded-full font-semibold transition-colors ${badgeClass}">
+                                    ${hab.tipo}
+                                </span>
+                            </div>
+                            <div class="space-y-1 mb-3">
+                                <p class="text-sm text-teal-100">Hasta ${hab.huespedes} huéspedes</p>
+                                <p class="text-xs text-teal-400/80">${hab.camas}</p>
+                            </div>
+                            <div class="mt-auto">
+                                <span class="text-xl font-bold text-orange-500">$${hab.precio}</span>
+                                <span class="text-xs text-teal-500">/noche</span>
+                            </div>
+                        </div>
+                    </label>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
         }
 
-        // Listeners para los botones de sumar/restar noches
-        btnRestar.addEventListener('click', () => {
-            let actual = parseInt(inputNoches.value);
-            if (actual > 0) {
-                inputNoches.value = actual - 1;
-                calcularTotal();
+        // Calcular Total
+        function calcularTotal() {
+            // Obtener noches seleccionadas
+            let nochesSeleccionadas = 1;
+            for (const radio of radiosNoches) {
+                if (radio.checked) nochesSeleccionadas = parseInt(radio.value);
             }
+
+            // Obtener habitaciones seleccionadas
+            const checkboxes = document.querySelectorAll('.room-checkbox:checked');
+            let sumaPrecios = 0;
+            let habitacionesSeleccionadas = [];
+
+            checkboxes.forEach(cb => {
+                sumaPrecios += parseFloat(cb.dataset.precio);
+                habitacionesSeleccionadas.push(cb.dataset.num);
+            });
+
+            const totalFinal = sumaPrecios * nochesSeleccionadas;
+
+            // Actualizar UI
+            if (checkboxes.length > 0) {
+                displayMonto.textContent = `$${totalFinal.toFixed(2)}`;
+                mensajeTotal.textContent = `${checkboxes.length} hab. por ${nochesSeleccionadas} noche(s)`;
+                btnReservar.classList.remove('hidden');
+                
+                // Construir mensaje de WhatsApp
+                const mensajeWA = `Hola Casa Mezcal, me gustaría solicitar una reserva para Fin de Año.%0A%0A*Habitaciones seleccionadas:* ${habitacionesSeleccionadas.join(', ')}%0A*Noches:* ${nochesSeleccionadas}%0A*Total estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
+                btnReservar.href = `https://wa.me/${numeroWhatsApp}?text=${mensajeWA}`;
+            } else {
+                displayMonto.textContent = `$0.00`;
+                mensajeTotal.textContent = `Elige al menos una habitación`;
+                btnReservar.classList.add('hidden');
+            }
+        }
+
+        // Inicializar
+        renderHabitaciones();
+
+        // Listeners
+        document.querySelectorAll('.room-checkbox').forEach(cb => {
+            cb.addEventListener('change', calcularTotal);
+        });
+        radiosNoches.forEach(radio => {
+            radio.addEventListener('change', calcularTotal);
         });
 
-        btnSumar.addEventListener('click', () => {
-            let actual = parseInt(inputNoches.value);
-            if (actual < 3) { // Límite de 3 noches solicitado
-                inputNoches.value = actual + 1;
-                calcularTotal();
-            }
-        });
-
-        // Listeners para radio buttons y select
-        radiosHabitacion.forEach(radio => radio.addEventListener('change', calcularTotal));
-        selectTemporada.addEventListener('change', calcularTotal);
-
-        // Inicializar cálculo al cargar la página
-        calcularTotal();
     </script>
 </body>
 </html>

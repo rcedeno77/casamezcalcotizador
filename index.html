@@ -196,8 +196,9 @@
                 <h1 class="font-elegant text-5xl md:text-7xl text-white tracking-tight drop-shadow-xl">
                     Casa Mezcal <span class="text-gradient-gold italic pr-2">Malibú</span>
                 </h1>
+                <!-- Título actualizado -->
                 <p class="text-sm md:text-base text-teal-100/70 font-light tracking-[0.2em] uppercase">
-                    Cotizador de Estadías Premium
+                    Cotiza tu estadía
                 </p>
             </div>
         </header>
@@ -227,22 +228,29 @@
                 </div>
 
                 <div class="lg:col-span-3 bg-white/5 rounded-2xl p-2 border border-white/5 flex gap-2">
+                    <!-- Opciones de noches actualizadas -->
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="1" class="peer sr-only">
                         <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
-                            1 N
+                            1
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="2" class="peer sr-only" checked>
                         <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
-                            2 N
+                            2
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="noches" value="3" class="peer sr-only">
                         <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
-                            3+ N
+                            3
+                        </div>
+                    </label>
+                    <label class="cursor-pointer flex-1">
+                        <input type="radio" name="noches" value="4" class="peer sr-only">
+                        <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-black/20 peer-checked:radio-btn-checked transition-all font-medium">
+                            4
                         </div>
                     </label>
                 </div>
@@ -254,9 +262,6 @@
                         <h2 class="font-elegant text-3xl md:text-4xl text-white">Colección de Habitaciones</h2>
                         <p class="text-sm text-teal-100/50 mt-2 font-light tracking-wide">Selecciona tus espacios. Los precios se actualizarán instantáneamente.</p>
                     </div>
-                    <span class="text-xs text-orange-200 bg-orange-900/30 px-4 py-2 rounded-full border border-orange-500/30 backdrop-blur-md whitespace-nowrap shadow-lg">
-                        Base 1-2 huéspedes
-                    </span>
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
@@ -331,7 +336,7 @@
                 </div>
             </details>
 
-            <details class="ultra-glass rounded-3xl group" open>
+            <details id="acordeonDetalles" class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
                         <span class="text-3xl drop-shadow-lg">🌴</span>
@@ -345,22 +350,6 @@
                 <div class="px-6 md:px-8 pb-8 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-10 text-sm">
                     
                     <div class="space-y-8">
-                        <div id="seccionHuespedes">
-                            <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Huéspedes Extra / Noche</p>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-black/30 p-4 md:p-5 rounded-2xl border border-white/10 border-top border-white/20 shadow-inner">
-                                    <p class="text-white/60 text-xs mb-1 uppercase tracking-wider">Adulto</p>
-                                    <p class="text-3xl font-elegant text-orange-400 drop-shadow-md">$30</p>
-                                    <p class="text-[10px] text-white/40 mt-1">Máx 1 adicional</p>
-                                </div>
-                                <div class="bg-black/30 p-4 md:p-5 rounded-2xl border border-white/10 border-top border-white/20 shadow-inner">
-                                    <p class="text-white/60 text-xs mb-1 uppercase tracking-wider">Niño (2-12)</p>
-                                    <p class="text-3xl font-elegant text-orange-400 drop-shadow-md">$20</p>
-                                    <p class="text-[10px] text-white/40 mt-1">Máx 2 adicionales</p>
-                                </div>
-                            </div>
-                        </div>
-
                         <div>
                             <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Horarios</p>
                             <div class="bg-white/5 p-5 md:p-6 rounded-2xl border border-white/10 space-y-4">
@@ -422,9 +411,7 @@
         </footer>
     </div>
 
-    <!-- SCRIPT JS -->
     <script>
-        // Actualizado con capacidades máximas (todas incluyen A/C y Baño Privado)
         const habitaciones = [
             { id: 1, tipo: 'Sencilla', max: 2, camas: '1 queen' },
             { id: 2, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
@@ -460,7 +447,6 @@
         const btnDiaFinde = document.getElementById('btnDiaFinde');
 
         const acordeonAnoNuevo = document.getElementById('acordeonAnoNuevo');
-        const seccionHuespedes = document.getElementById('seccionHuespedes');
 
         function obtenerPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') return precios[tipoHabitacion].festivo;
@@ -496,7 +482,6 @@
                                 </div>
                             </div>
 
-                            <!-- INFO CAPACIDAD, CAMAS Y AMENIDADES -->
                             <div class="space-y-2 mb-6 relative z-10">
                                 <p class="text-[13px] text-white/90 font-medium flex items-center gap-2">
                                     <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
@@ -563,9 +548,8 @@
                 btnReservar.classList.remove('hidden');
                 
                 const textoModo = modoActual === 'festivo' ? 'Año Nuevo / Festivos' : `Tarifas Regulares (${diasActuales === 'semana' ? 'Dom a Jue' : 'Vie y Sáb'})`;
-                const msjNoches = nochesSeleccionadas === 3 ? '3 o más' : nochesSeleccionadas;
                 
-                const mensajeWA = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para una reserva:%0A%0A*Tipo de Estadía:* ${textoModo}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Noches:* ${msjNoches}%0A*Total Estimado:* $${totalFinal.toFixed(2)} (base 1-2 huéspedes)%0A%0A¿Me confirman disponibilidad?`;
+                const mensajeWA = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para una reserva:%0A%0A*Tipo de Estadía:* ${textoModo}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Noches:* ${nochesSeleccionadas}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
                 
                 btnReservar.href = `https://wa.me/${numeroWhatsApp}?text=${mensajeWA}`;
             } else {
@@ -575,7 +559,6 @@
             }
         }
 
-        // --- Eventos UI ---
         radiosNoches.forEach(radio => radio.addEventListener('change', calcularTotal));
 
         btnModoFestivo.addEventListener('click', () => {
@@ -586,7 +569,6 @@
             contenedorDias.classList.add('hidden');
             acordeonAnoNuevo.classList.remove('hidden');
             acordeonAnoNuevo.open = true;
-            seccionHuespedes.classList.add('hidden');
             renderHabitaciones();
         });
 
@@ -597,7 +579,6 @@
             
             contenedorDias.classList.remove('hidden');
             acordeonAnoNuevo.classList.add('hidden');
-            seccionHuespedes.classList.remove('hidden');
             renderHabitaciones();
         });
 
@@ -629,9 +610,4 @@
         renderHabitaciones();
     </script>
 </body>
-<ElicitationsGroup>
-</ElicitationsGroup>
-<FollowUp>
-¿Deseas que añada algún campo adicional en el mensaje que se envía por WhatsApp para que te llegue información específica del cliente (como su nombre o fecha estimada)?
-</FollowUp>
 </html>

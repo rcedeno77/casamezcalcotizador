@@ -202,7 +202,7 @@
                 <!-- PESTAÑAS PRINCIPALES -->
                 <div class="bg-black/30 rounded-2xl p-2 border border-white/5 shadow-inner flex flex-col md:flex-row gap-2">
                     <button id="btnModoPasadia" class="segmented-btn flex-1 py-3.5 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wide segmented-inactive">
-                        Pasadía (9am - 8pm)
+                        Pasadía (10am - 7pm)
                     </button>
                     <button id="btnModoRegular" class="segmented-btn flex-1 py-3.5 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wide segmented-active">
                         Tarifas Regulares
@@ -212,7 +212,7 @@
                     </button>
                 </div>
 
-                <!-- SELECTORES DE ALOJAMIENTO (DÍAS Y NOCHES) -->
+                <!-- SELECTORES SECUNDARIOS ALOJAMIENTO -->
                 <div id="controlesEstadia" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300">
                     <div id="contenedorDias" class="bg-white/5 rounded-2xl p-2 border border-white/5 flex flex-col sm:flex-row gap-2">
                         <button id="btnDiaSemana" class="segmented-btn flex-1 py-3.5 rounded-xl text-sm font-semibold transition-all bg-teal-600/80 text-white shadow-lg border border-teal-400/40 border-top border-white/30">
@@ -244,17 +244,16 @@
                 </div>
             </div>
 
-            <!-- ================= SECCIÓN PASADÍA ================= -->
+            <!-- SECCIÓN PASADÍA -->
             <div id="pasadiaContainer" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
-                <!-- Título Pasadía -->
                 <div class="mb-8 border-b border-white/10 pb-6 text-center sm:text-left">
                     <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-md">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
-                    <p class="text-sm text-teal-100/70 mt-3 font-light tracking-widest uppercase">Horario: De 9:00 a. m. a 8:00 p. m.</p>
+                    <p class="text-sm text-teal-100/70 mt-3 font-light tracking-widest uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
                 </div>
                 
-                <!-- Calculadora de Pasadía -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <!-- Contadores -->
                     <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-lg flex justify-between items-center">
                         <div>
                             <p class="text-xl font-elegant text-white mb-1">Adultos</p>
@@ -281,7 +280,6 @@
                     </div>
                 </div>
 
-                <!-- Información Detallada del Pasadía -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm">
                     <!-- Qué incluye -->
                     <div class="bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10 shadow-inner h-full">
@@ -292,7 +290,7 @@
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños y duchas.</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Estacionamiento, Wi-Fi, Restaurante y bar.</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> Sin costo adicional por mascotas.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
                         </ul>
                     </div>
 
@@ -301,7 +299,7 @@
                         <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-6 rounded-2xl border border-teal-500/20 shadow-inner">
                             <h3 class="text-white font-semibold uppercase tracking-[0.1em] mb-3">🏝️ Ranchos Frente al Mar</h3>
                             <p class="text-white/70 font-light leading-relaxed">
-                                Disfruta de mayor comodidad y privacidad con nuestros ranchos disponibles para alquiler durante tu visita.
+                                Disfruta de mayor comodidad y privacidad con nuestros ranchos disponibles para alquiler por <strong class="text-orange-300">$15 en días de semana y $30 en fines de semana</strong> (sujeto a disponibilidad).
                             </p>
                         </div>
                         <div class="bg-orange-900/20 p-6 rounded-2xl border border-orange-500/30">
@@ -315,7 +313,6 @@
                     </div>
                 </div>
             </div>
-            <!-- ================= FIN SECCIÓN PASADÍA ================= -->
 
             <!-- SECCIÓN HABITACIONES -->
             <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
@@ -342,7 +339,7 @@
                         <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-2" id="montoTotal">$0.00</span>
                     </div>
                     
-                    <a id="btnReservar" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1">
+                    <a id="btnReservar" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1 hidden">
                         <span>Solicitar Reserva</span>
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -508,15 +505,15 @@
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾 ($5 por mascota en Alojamiento).</span>
+                                        <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾 ($5 por mascota).</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>25% de descuento en ranchos frente al mar (sujeto a disp).</span>
+                                        <span>Alquiler de ranchos frente al mar: $15 días de semana, $30 fines de semana (sujeto a disponibilidad).</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Descorche por cooler (tarifa según tamaño y contenido).</span>
+                                        <span>Entrada de coolers permitida con cargo adicional desde $20 (según tamaño y contenido).</span>
                                     </li>
                                 </ul>
                             </div>
@@ -553,12 +550,11 @@
             Mezcal: { semana: 65, finde: 90, festivo: 175 }
         };
 
-        // Estado Global
         let modoActual = 'regular'; 
         let diasActuales = 'semana'; 
         let pasadiaAdultos = 1;
         let pasadiaNinos = 0;
-        const numeroWhatsApp = "507XXXXXXXX"; // <-- REEMPLAZA CON EL TUYO
+        const numeroWhatsApp = "50768064250"; // ACTUALIZADO CORRECTAMENTE
 
         const container = document.getElementById('habitacionesContainer');
         const radiosNoches = document.getElementsByName('noches');
@@ -581,7 +577,6 @@
         const acordeonAnoNuevo = document.getElementById('acordeonAnoNuevo');
         const acordeonAlojamientoDetalles = document.getElementById('acordeonAlojamientoDetalles');
         
-        // Elementos de contadores
         const displayAdultos = document.getElementById('contadorAdultos');
         const displayNinos = document.getElementById('contadorNinos');
 
@@ -662,15 +657,14 @@
             calcularTotal();
         }
 
-        // Lógica Exclusiva para Contadores de Pasadía
         function actualizarPasadia(tipo, cantidad) {
             if(tipo === 'adultos') {
                 pasadiaAdultos += cantidad;
-                if(pasadiaAdultos < 1) pasadiaAdultos = 1; // Mínimo 1 adulto
+                if(pasadiaAdultos < 1) pasadiaAdultos = 1; 
                 displayAdultos.textContent = pasadiaAdultos;
             } else if(tipo === 'ninos') {
                 pasadiaNinos += cantidad;
-                if(pasadiaNinos < 0) pasadiaNinos = 0; // Mínimo 0 niños
+                if(pasadiaNinos < 0) pasadiaNinos = 0; 
                 displayNinos.textContent = pasadiaNinos;
             }
             calcularTotal();
@@ -681,7 +675,6 @@
             let mensajeWA = "";
 
             if (modoActual === 'pasadia') {
-                // Cálculo para Pasadía
                 totalFinal = (pasadiaAdultos * 10) + (pasadiaNinos * 5);
                 
                 displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
@@ -691,7 +684,6 @@
                 mensajeWA = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para un *PASADÍA*:%0A%0A*Adultos:* ${pasadiaAdultos}%0A*Niños (6-12):* ${pasadiaNinos}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad para asistir?`;
 
             } else {
-                // Cálculo para Alojamiento
                 let nochesSeleccionadas = 1;
                 for (const radio of radiosNoches) {
                     if (radio.checked) nochesSeleccionadas = parseInt(radio.value); 
@@ -722,7 +714,6 @@
                 }
             }
 
-            // Actualizar Link de WhatsApp
             if(mensajeWA !== "") {
                 btnReservar.href = `https://wa.me/${numeroWhatsApp}?text=${mensajeWA}`;
             }
@@ -739,7 +730,6 @@
             btnModoFestivo.className = activa === 'festivo' ? classActive : classInactive;
         }
 
-        // CONTROL DE PESTAÑAS
         btnModoPasadia.addEventListener('click', () => {
             modoActual = 'pasadia';
             actualizarPestanas('pasadia');
@@ -749,7 +739,7 @@
             pasadiaContainer.classList.remove('hidden'); 
             
             acordeonAnoNuevo.classList.add('hidden');
-            acordeonAlojamientoDetalles.classList.add('hidden'); // Ocultar acordeón de check-in/out
+            acordeonAlojamientoDetalles.classList.add('hidden'); 
             
             calcularTotal();
         });
@@ -814,7 +804,6 @@
             renderHabitaciones();
         });
 
-        // INIT
         renderHabitaciones();
     </script>
 </body>

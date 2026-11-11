@@ -23,6 +23,7 @@
         :root {
             --brand-teal: #14b8a6;
             --brand-orange: #f97316;
+            --glass-bg: rgba(6, 20, 24, 0.6);
         }
 
         body {
@@ -300,7 +301,7 @@
                         <input type="text" id="fechaAlojamiento" placeholder="Selecciona: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
                     </div>
 
-                    <!-- NOCHES FESTIVAS (Con palabra completa Noches) -->
+                    <!-- NOCHES FESTIVAS -->
                     <div id="contenedorNochesFestivas" class="hidden bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
@@ -391,11 +392,23 @@
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Piscina y acceso directo a la playa.</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Mobiliario de playa (sujeto a disponibilidad).</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños y duchas.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Estacionamiento, Wi-Fi, Restaurante y bar.</li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-teal-400 text-lg mt-0.5">✅</span> 
+                                <span>Estacionamiento, Wi-Fi, Restaurante y bar.</span>
+                            </li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">❌</span> Comidas y bebidas no incluidas.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🧊</span> Ingreso de cooler permitido desde $20 (según tamaño y contenido).</li>
+                            
+                            <!-- Nota de comidas y bebidas corregida sin 'X' roja -->
+                            <li class="flex items-start gap-3 mt-1 pl-1">
+                                <span class="text-white/40 text-lg mt-0.5">ℹ️</span> 
+                                <span class="text-white/70 italic text-xs pt-1">Comidas y bebidas no incluidas.</span>
+                            </li>
+                            
+                            <li class="flex items-start gap-3 pt-2">
+                                <span class="text-teal-400 text-lg mt-0.5">🧊</span> 
+                                <span>Ingreso de cooler permitido desde $20 (según tamaño y contenido).</span>
+                            </li>
                         </ul>
                     </div>
 
@@ -610,19 +623,24 @@
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Piscina, mobiliario de playa (sujeto a disponibilidad) y acceso directo al mar. Restaurante, bar y Wi-Fi.</span>
+                                        <span>Piscina, mobiliario de playa (sujeto a disponibilidad) y acceso directo al mar.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
+                                        <span>Restaurante, bar y Wi-Fi.</span>
+                                    </li>
+                                    <!-- Nota de comidas y bebidas en alojamiento -->
+                                    <li class="flex items-start gap-3 mt-1 pl-1">
+                                        <span class="text-white/40 text-lg mt-0.5 drop-shadow-md">ℹ️</span> 
+                                        <span class="text-white/70 italic text-xs pt-1">Comidas y bebidas no incluidas.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3 pt-2">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
                                         <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾 ($5 por mascota).</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
                                         <span>Alquiler de ranchos frente al mar: $15 días de semana, $30 fines de semana (sujeto a disp).</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">❌</span> 
-                                        <span>Comidas y bebidas no incluidas.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">🧊</span> 
@@ -658,14 +676,12 @@
             { id: 10, tipo: 'Sencilla', max: 2, camas: '1 queen' }
         ];
 
-        // PRECIOS ACTUALIZADOS (Sencilla 55/75, Mezcal 65/90)
+        // PRECIOS ACTUALIZADOS
         const precios = {
             Sencilla: { semana: 55, finde: 75, festivo: 145 },
             Mezcal: { semana: 65, finde: 90, festivo: 175 }
         };
 
-        // Fechas Festivas (Bloqueo y Redirección automática)
-        // 24-25 Dic, 31 Dic - 1 Ene, 6-9 Feb
         const fechasFestivas = ["12-24", "12-25", "12-31", "01-01", "02-06", "02-07", "02-08", "02-09"];
 
         function checkEsFestivo(datesArr) {
@@ -732,34 +748,15 @@
             onChange: function(selectedDates, dateStr, instance) {
                 fechasAlojamientoStr = dateStr;
                 
-                // Si elige fecha festiva, alertar y mandar a modulo festivos
                 if(checkEsFestivo(selectedDates)) {
                     instance.clear();
-                    // Alerta nativa limpia y directa para que entienda que lo enviamos al otro modulo
-                    alert("Has seleccionado fechas de días festivos o Carnaval. \nSerás redirigido al cotizador de Tarifas de Festivos.");
+                    alert("Has seleccionado fechas festivas o de carnaval. Te redirigiremos al módulo de Tarifas Festivas.");
                     btnModoFestivo.click();
                     return;
                 }
-
-                if(selectedDates.length === 2) {
-                    
-                    // Desbloquea las tarjetas de habitacion
-                    document.querySelectorAll('.room-checkbox').forEach(cb => cb.disabled = false);
-                    document.querySelectorAll('.room-card').forEach(card => {
-                        card.classList.remove('opacity-80', 'cursor-not-allowed');
-                    });
-                    
-                    renderHabitaciones(); 
-                } else if(selectedDates.length === 1) {
-                    
-                    // Bloquea las tarjetas de habitacion hasta que haya completado el rango
-                    document.querySelectorAll('.room-checkbox').forEach(cb => cb.disabled = true);
-                    document.querySelectorAll('.room-card').forEach(card => {
-                        card.classList.add('opacity-80', 'cursor-not-allowed');
-                    });
-                    
-                    renderHabitaciones();
-                }
+                
+                // Renderizar tanto si hay 1 o 2 fechas para actualizar los totales visuales
+                renderHabitaciones(); 
             }
         });
 
@@ -777,7 +774,7 @@
         
         fechaPasadiaStr = fpPasadia.input.value;
 
-        // Función central para obtener el precio total y la etiqueta de la tarjeta
+        // Función central para obtener el precio total
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nochesFestivas = 1;
@@ -786,20 +783,16 @@
                 }
                 return {
                     total: precios[tipoHabitacion].festivo * nochesFestivas,
-                    etiquetaBase: '',
                     etiquetaTotal: `Total por ${nochesFestivas} noche(s)`
                 };
             } 
             else if (modoActual === 'regular') {
                 let dates = fpAlojamiento.selectedDates;
-                let etiquetaClara = `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`;
                 
                 if(dates.length < 2) {
-                    // Si no ha completado el rango, no calcular total de estadía
-                    return { total: 0, etiquetaBase: etiquetaClara, etiquetaTotal: '' };
+                    return { total: 0, etiquetaTotal: '' }; // Sin total real si no hay rango completo
                 }
                 
-                // Cálculo exacto del rango en modo regular
                 let start = dates[0];
                 let end = dates[1];
                 let current = new Date(start);
@@ -816,11 +809,10 @@
                 
                 return {
                     total: totalSuma,
-                    etiquetaBase: etiquetaClara,
                     etiquetaTotal: `Total por ${countNoches} noche(s)`
                 };
             }
-            return { total: 0, etiquetaBase: '', etiquetaTotal: '' };
+            return { total: 0, etiquetaTotal: '' };
         }
 
         function renderHabitaciones() {
@@ -840,7 +832,7 @@
                 
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
                 
-                // --- BLOQUE DE PRECIOS BASE PERMANENTE (SIEMPRE VISIBLE EN REGULARES) ---
+                // --- BLOQUE DE PRECIOS BASE PERMANENTE ---
                 let bloquePreciosBase = '';
                 if (modoActual === 'regular') {
                     bloquePreciosBase = `
@@ -868,7 +860,7 @@
                 if(isRangoIncompleto) {
                     markupPrecio = `
                         <div class="flex flex-col items-center justify-center w-full border-t border-white/5 pt-4 mt-4">
-                            <span class="text-xs font-light text-white/40 text-center">Selecciona check-out para ver el total</span>
+                            <span class="text-[11px] font-light text-white/50 text-center tracking-wide">Selecciona check-out para calcular total</span>
                         </div>
                     `;
                 } else {
@@ -887,11 +879,12 @@
                     `;
                 }
 
+                // CORRECCIÓN PRINCIPAL: Eliminado el 'disabled' del checkbox para que siempre sea seleccionable.
                 const html = `
                     <label class="relative block group">
-                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked} ${isRangoIncompleto ? 'disabled' : ''}>
+                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked}>
                         
-                        <div class="room-card ${classWrapper} p-5 sm:p-6 h-full flex flex-col justify-between ${isRangoIncompleto ? 'opacity-80 cursor-not-allowed' : ''}">
+                        <div class="room-card ${classWrapper} p-5 sm:p-6 h-full flex flex-col justify-between">
                             
                             <!-- GANCHITO VERDE DE LUJO -->
                             <div class="check-indicator">
@@ -980,14 +973,26 @@
             } else {
                 const checkboxes = document.querySelectorAll('.room-checkbox:checked');
                 let listaHabitaciones = [];
+                
+                // Verificamos si en modo regular falta la segunda fecha
+                const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
 
-                // Solo sumamos los data-precio porque ya tienen el cálculo exacto del rango
                 checkboxes.forEach(cb => {
-                    totalFinal += parseFloat(cb.dataset.precio);
+                    // Si el rango está incompleto, sumamos 0. Así el total de la barra inferior no se rompe
+                    let montoHabitacion = isRangoIncompleto ? 0 : parseFloat(cb.dataset.precio);
+                    totalFinal += montoHabitacion;
                     listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);
                 });
 
                 if (checkboxes.length > 0) {
+                    
+                    if(isRangoIncompleto) {
+                         displayMonto.textContent = "$0.00";
+                         mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s). <span class="text-orange-400">Falta indicar fecha de salida.</span>`;
+                         btnAbrirModal.classList.add('hidden'); // Ocultar boton WA si no hay total
+                         return; // Detener cálculo
+                    }
+                    
                     displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
                     
                     let textoModo = '';
@@ -1093,9 +1098,6 @@
             contenedorFechasRegular.classList.add('hidden');
             contenedorNochesFestivas.classList.remove('hidden');
             
-            controlesEstadia.classList.remove('md:grid-cols-2');
-            controlesEstadia.classList.add('md:grid-cols-1');
-            
             acordeonAnoNuevo.classList.remove('hidden');
             acordeonAnoNuevo.open = true;
             acordeonAlojamientoDetalles.classList.remove('hidden');
@@ -1114,16 +1116,9 @@
             contenedorFechasRegular.classList.remove('hidden');
             contenedorNochesFestivas.classList.add('hidden');
             
-            controlesEstadia.classList.remove('md:grid-cols-1');
-            controlesEstadia.classList.add('md:grid-cols-2'); 
-            
             acordeonAnoNuevo.classList.add('hidden');
             acordeonAlojamientoDetalles.classList.remove('hidden');
             
-            if(fpAlojamiento.selectedDates.length === 0) {
-                // Ya no seteamos fechas por default, dejamos que el usuario elija
-                // fpAlojamiento.setDate([new Date(), new Date(new Date().getTime() + 24 * 60 * 60 * 1000)]);
-            }
             renderHabitaciones();
         });
 

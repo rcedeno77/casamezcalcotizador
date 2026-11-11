@@ -23,7 +23,6 @@
         :root {
             --brand-teal: #14b8a6;
             --brand-orange: #f97316;
-            --glass-bg: rgba(6, 20, 24, 0.6);
         }
 
         body {
@@ -301,7 +300,7 @@
                         <input type="text" id="fechaAlojamiento" placeholder="Selecciona: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
                     </div>
 
-                    <!-- NOCHES FESTIVAS -->
+                    <!-- NOCHES FESTIVAS (Con palabra completa Noches) -->
                     <div id="contenedorNochesFestivas" class="hidden bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
@@ -399,7 +398,7 @@
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
                             <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
                             
-                            <!-- Nota de comidas y bebidas corregida sin 'X' roja -->
+                            <!-- Nota de comidas y bebidas (Ícono discreto) -->
                             <li class="flex items-start gap-3 mt-1 pl-1">
                                 <span class="text-white/40 text-lg mt-0.5">ℹ️</span> 
                                 <span class="text-white/70 italic text-xs pt-1">Comidas y bebidas no incluidas.</span>
@@ -643,7 +642,7 @@
                                         <span>Alquiler de ranchos frente al mar: $15 días de semana, $30 fines de semana (sujeto a disp).</span>
                                     </li>
                                     <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">🧊</span> 
+                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
                                         <span>Entrada de coolers permitida con cargo adicional desde $20 (según tamaño y contenido).</span>
                                     </li>
                                 </ul>
@@ -755,7 +754,7 @@
                     return;
                 }
                 
-                // Renderizar tanto si hay 1 o 2 fechas para actualizar los totales visuales
+                // Renderizar siempre para actualizar los totales visuales y desbloquear si corresponde
                 renderHabitaciones(); 
             }
         });
@@ -774,7 +773,7 @@
         
         fechaPasadiaStr = fpPasadia.input.value;
 
-        // Función central para obtener el precio total
+        // Función central para obtener el precio total y la etiqueta de la tarjeta
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nochesFestivas = 1;
@@ -832,7 +831,7 @@
                 
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
                 
-                // --- BLOQUE DE PRECIOS BASE PERMANENTE ---
+                // --- BLOQUE DE PRECIOS BASE PERMANENTE (SIEMPRE VISIBLE EN REGULARES) ---
                 let bloquePreciosBase = '';
                 if (modoActual === 'regular') {
                     bloquePreciosBase = `
@@ -848,12 +847,8 @@
                         </div>
                     `;
                 } else if (modoActual === 'festivo') {
-                    bloquePreciosBase = `
-                        <div class="mt-4 bg-black/30 rounded-xl p-2.5 text-center text-[12px] border border-white/5 shadow-inner">
-                            <span class="text-orange-200/50 uppercase tracking-[0.2em] text-[8px] mb-1 block">Tarifa Festiva / Noche</span>
-                            <span class="text-orange-300 font-medium">$${precios[hab.tipo].festivo}</span>
-                        </div>
-                    `;
+                    // Si estamos en festivo, eliminamos la tarjeta interna y mostramos solo el total de noches
+                    bloquePreciosBase = ``;
                 }
 
                 let markupPrecio = '';
@@ -879,7 +874,7 @@
                     `;
                 }
 
-                // CORRECCIÓN PRINCIPAL: Eliminado el 'disabled' del checkbox para que siempre sea seleccionable.
+                // CORRECCIÓN: Eliminado el 'disabled' y la clase 'opacity-80' para que siempre sean clickeables
                 const html = `
                     <label class="relative block group">
                         <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked}>
@@ -978,7 +973,7 @@
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
 
                 checkboxes.forEach(cb => {
-                    // Si el rango está incompleto, sumamos 0. Así el total de la barra inferior no se rompe
+                    // Si el rango está incompleto, sumamos 0 para no mostrar montos falsos en la barra inferior
                     let montoHabitacion = isRangoIncompleto ? 0 : parseFloat(cb.dataset.precio);
                     totalFinal += montoHabitacion;
                     listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);

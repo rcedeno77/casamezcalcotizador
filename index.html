@@ -27,7 +27,6 @@
         }
 
         body {
-            /* Tipografía limpia y profesional */
             font-family: 'Outfit', sans-serif;
             color: #f8fafc;
             min-height: 100vh;
@@ -45,7 +44,6 @@
             z-index: -1;
         }
 
-        /* Tipografía de lujo para títulos */
         .font-elegant { font-family: 'Cormorant Garamond', serif; }
 
         .ultra-glass {
@@ -653,7 +651,7 @@
         fechasAlojamientoStr = fpAlojamiento.input.value;
         fechaPasadiaStr = fpPasadia.input.value;
 
-        // Función central para obtener el precio total exacto por habitación
+        // Función central para obtener el precio total y la etiqueta de la tarjeta
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nochesFestivas = 1;
@@ -667,19 +665,20 @@
             } 
             else if (modoActual === 'regular') {
                 let dates = fpAlojamiento.selectedDates;
-                if(dates.length === 0) return { total: 0, etiqueta: '' };
+                if(dates.length === 0) {
+                    // Si por alguna razón no hay fechas, mostrar vista previa de precios
+                    return { total: 0, etiqueta: `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}` };
+                }
                 
-                // Si solo eligió 1 fecha (no rango completo), calcula 1 noche por defecto
+                // Si solo eligió 1 fecha (no rango completo), mostrar vista previa de ambos precios
                 if(dates.length === 1) {
-                    let d = dates[0].getDay();
-                    let isWeekend = (d === 5 || d === 6);
                     return {
-                        total: isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana,
-                        etiqueta: `Total por 1 noche`
+                        total: precios[tipoHabitacion].semana, // Precio referencial
+                        etiqueta: `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`
                     };
                 }
 
-                // Cálculo exacto del rango en modo regular
+                // Cálculo exacto del rango en modo regular (Sumando día por día)
                 let start = dates[0];
                 let end = dates[1];
                 let current = new Date(start);
@@ -688,7 +687,7 @@
                 
                 while (current < end) {
                     let d = current.getDay();
-                    let isWeekend = (d === 5 || d === 6); // 5=Vie, 6=Sab
+                    let isWeekend = (d === 5 || d === 6); // 5=Viernes, 6=Sábado
                     totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
                     current.setDate(current.getDate() + 1);
                     countNoches++;
@@ -717,12 +716,35 @@
                 const classWrapper = isMezcal ? 'room-mezcal' : 'room-sencilla';
                 const classBadge = isMezcal ? 'badge-mezcal' : 'badge-base text-teal-100 badge-sencilla';
                 const vipIcon = isMezcal ? `<span class="ml-1 text-xs">★</span>` : '';
+                
+                // Si estamos en Regular y no hay rango completo, ocultamos el total grande y mostramos la etiqueta referencial
+                const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
+                
+                let markupPrecio = '';
+                if(isRangoIncompleto) {
+                    markupPrecio = `
+                        <div class="flex flex-col items-start gap-1">
+                            <span class="text-sm font-light text-white/60">Selecciona check-out para ver total</span>
+                            <span class="text-[13px] text-teal-300 font-medium leading-tight">${infoPrecio.etiqueta}</span>
+                        </div>
+                    `;
+                } else {
+                    markupPrecio = `
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl font-elegant text-white/60">$</span>
+                            <span class="text-4xl font-semibold text-white tracking-tight">${infoPrecio.total}</span>
+                        </div>
+                        <span class="text-[11px] text-teal-300/80 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
+                            ${infoPrecio.etiqueta}
+                        </span>
+                    `;
+                }
 
                 const html = `
                     <label class="relative block group">
                         <!-- Guardamos en el dataset el TOTAL exacto de la habitacion para el rango elegido -->
-                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked}>
-                        <div class="room-card ${classWrapper} p-6 h-full flex flex-col justify-between">
+                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked} ${isRangoIncompleto ? 'disabled' : ''}>
+                        <div class="room-card ${classWrapper} p-6 h-full flex flex-col justify-between ${isRangoIncompleto ? 'opacity-80 cursor-not-allowed' : ''}">
                             
                             <div class="flex justify-between items-start mb-5 relative z-10">
                                 <div class="w-12 h-12 rounded-full bg-black/40 flex items-center justify-center font-elegant text-xl text-white shadow-inner border border-white/10 border-top border-white/20">
@@ -759,13 +781,7 @@
                             </div>
 
                             <div class="mt-auto flex items-end justify-between relative z-10 border-t border-white/5 pt-4">
-                                <div class="flex items-baseline gap-1">
-                                    <span class="text-xl font-elegant text-white/60">$</span>
-                                    <span class="text-4xl font-semibold text-white tracking-tight">${infoPrecio.total}</span>
-                                </div>
-                                <span class="text-[11px] text-teal-300/80 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
-                                    ${infoPrecio.etiqueta}
-                                </span>
+                                ${markupPrecio}
                             </div>
 
                         </div>
@@ -811,7 +827,7 @@
                 const checkboxes = document.querySelectorAll('.room-checkbox:checked');
                 let listaHabitaciones = [];
 
-                // Solo sumamos los data-precio porque ya tienen el cálculo de noches aplicado
+                // Solo sumamos los data-precio porque ya tienen el cálculo exacto del rango
                 checkboxes.forEach(cb => {
                     totalFinal += parseFloat(cb.dataset.precio);
                     listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);
@@ -832,7 +848,7 @@
                         }
                     } else {
                         textoModo = 'Tarifas Regulares';
-                        infoFechasWA = fechasAlojamientoStr.includes(' a ') ? fechasAlojamientoStr : `${fechasAlojamientoStr} (Solo 1 noche)`;
+                        infoFechasWA = fechasAlojamientoStr.includes(' a ') ? fechasAlojamientoStr : `${fechasAlojamientoStr} (Rango incompleto)`;
                         if(fpAlojamiento.selectedDates.length === 2){
                             nNoches = Math.round(Math.abs(fpAlojamiento.selectedDates[1] - fpAlojamiento.selectedDates[0]) / (1000 * 60 * 60 * 24));
                         }
@@ -854,10 +870,6 @@
             }
         }
 
-        // Listener para botones de Festivo
-        for (const radio of radiosNochesFestivas) {
-            radio.addEventListener('change', renderHabitaciones);
-        }
 
         function actualizarPestanas(activa) {
             const classActive = "segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-active";
@@ -916,11 +928,12 @@
             contenedorNochesFestivas.classList.add('hidden');
             
             controlesEstadia.classList.remove('md:grid-cols-1');
-            controlesEstadia.classList.add('md:grid-cols-2'); // Espacio reservado por si a futuro agregas otro filtro
+            controlesEstadia.classList.add('md:grid-cols-2'); 
             
             acordeonAnoNuevo.classList.add('hidden');
             acordeonAlojamientoDetalles.classList.remove('hidden');
             
+            // Forzar renderizado y bloquear checkboxes si el calendario no tiene rango
             renderHabitaciones();
         });
 

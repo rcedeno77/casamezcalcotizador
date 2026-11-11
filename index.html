@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-    <!-- Google Fonts: Cormorant Garamond (Elegancia) & Outfit (Modernidad) -->
+    <!-- Tipografía Elegante y Profesional (Cormorant Garamond y Outfit) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,6 @@
         :root {
             --brand-teal: #14b8a6;
             --brand-orange: #f97316;
-            --glass-bg: rgba(6, 20, 24, 0.6);
         }
 
         body {
@@ -238,35 +237,35 @@
                 </div>
 
                 <!-- CONTROLES ESTADÍA ALOJAMIENTO -->
-                <div id="controlesEstadia" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300 hidden">
+                <div id="controlesEstadia" class="w-full transition-all duration-300 hidden">
                     
-                    <!-- CALENDARIO DE RANGO (Para Tarifas Regulares) -->
-                    <div id="contenedorFechasRegular" class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors">
-                        <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <input type="text" id="fechaAlojamiento" placeholder="Selecciona: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
+                    <!-- CALENDARIO DE RANGO (Tarifas Regulares) -->
+                    <div id="contenedorFechasRegular" class="bg-black/40 rounded-2xl p-3 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors w-full md:max-w-md mx-auto">
+                        <svg class="w-6 h-6 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <input type="text" id="fechaAlojamiento" placeholder="Selecciona Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-base outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40 text-center" readonly>
                     </div>
 
-                    <!-- NOCHES FESTIVAS (Solo para Festivos/Carnavales) -->
-                    <div id="contenedorNochesFestivas" class="hidden bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full">
-                        <label class="cursor-pointer flex-1">
+                    <!-- NOCHES FESTIVAS (Con botones claros de "Noche") -->
+                    <div id="contenedorNochesFestivas" class="hidden bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex flex-wrap gap-2 w-full">
+                        <label class="cursor-pointer flex-1 min-w-[70px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
-                            <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">1 N</div>
+                            <div class="h-full min-h-[3.5rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-semibold text-xs sm:text-sm">1 Noche</div>
                         </label>
-                        <label class="cursor-pointer flex-1">
+                        <label class="cursor-pointer flex-1 min-w-[70px]">
                             <input type="radio" name="nochesFestivas" value="2" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">2 N</div>
+                            <div class="h-full min-h-[3.5rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-semibold text-xs sm:text-sm">2 Noches</div>
                         </label>
-                        <label class="cursor-pointer flex-1">
+                        <label class="cursor-pointer flex-1 min-w-[70px]">
                             <input type="radio" name="nochesFestivas" value="3" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">3 N</div>
+                            <div class="h-full min-h-[3.5rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-semibold text-xs sm:text-sm">3 Noches</div>
                         </label>
-                        <label class="cursor-pointer flex-1">
+                        <label class="cursor-pointer flex-1 min-w-[70px]">
                             <input type="radio" name="nochesFestivas" value="4" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">4 N</div>
+                            <div class="h-full min-h-[3.5rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-semibold text-xs sm:text-sm">4 Noches</div>
                         </label>
-                        <label class="cursor-pointer flex-1">
+                        <label class="cursor-pointer flex-1 min-w-[70px]">
                             <input type="radio" name="nochesFestivas" value="5" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">5 N</div>
+                            <div class="h-full min-h-[3.5rem] flex items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-semibold text-xs sm:text-sm">5 Noches</div>
                         </label>
                     </div>
                 </div>
@@ -281,7 +280,6 @@
                         <p class="text-sm text-teal-100/70 mt-3 font-light tracking-[0.2em] uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
                     </div>
                     
-                    <!-- CALENDARIO DE DÍA ÚNICO PARA PASADÍA -->
                     <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors w-full md:w-72 shrink-0">
                         <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         <input type="text" id="fechaPasadia" placeholder="Fecha de tu visita" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
@@ -369,8 +367,8 @@
                 <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 w-full">
                     <div class="text-center md:text-left space-y-1">
                         <p class="text-sm text-teal-300 font-medium tracking-wide" id="mensajeTotal">Selecciona una opción</p>
-                        <p class="text-[10px] text-white/40 uppercase tracking-[0.3em]">Inversión Total Estimada</p>
-                        <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-2" id="montoTotal">$0.00</span>
+                        <p class="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1">Inversión Total Estimada</p>
+                        <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-1" id="montoTotal">$0.00</span>
                     </div>
                     
                     <a id="btnReservar" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1 hidden">
@@ -381,7 +379,7 @@
 
                 <!-- AVISO DE PRECIO ESTIMADO OBLIGATORIO -->
                 <div class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center">
-                    <p class="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest font-light">
+                    <p class="text-[10.5px] sm:text-xs text-white/50 uppercase tracking-widest font-light">
                         * Precio estimado sujeto a verificación por el departamento de reservas.
                     </p>
                 </div>
@@ -592,7 +590,7 @@
         let modoActual = 'pasadia'; 
         let pasadiaAdultos = 1;
         let pasadiaNinos = 0;
-        const numeroWhatsApp = "50768064250"; // NÚMERO CORREGIDO
+        const numeroWhatsApp = "50768064250";
 
         // Fechas
         let fechasAlojamientoStr = "";
@@ -627,11 +625,42 @@
             minDate: "today",
             locale: "es",
             dateFormat: "d M Y",
-            defaultDate: [new Date(), new Date(new Date().getTime() + 24 * 60 * 60 * 1000)], // Hoy a mañana
             onChange: function(selectedDates, dateStr, instance) {
                 fechasAlojamientoStr = dateStr;
+                
+                // DETECCIÓN AUTOMÁTICA DE DÍAS FESTIVOS Y CARNAVALES
                 if(selectedDates.length === 2) {
-                    renderHabitaciones(); // Actualiza los precios dinámicos de las tarjetas
+                    let start = selectedDates[0];
+                    let end = selectedDates[1];
+                    let isHoliday = false;
+                    
+                    let current = new Date(start);
+                    while (current <= end) {
+                        let month = current.getMonth(); 
+                        let date = current.getDate(); 
+                        
+                        // 24-25 Dic
+                        if (month === 11 && (date === 24 || date === 25)) isHoliday = true;
+                        // 31 Dic - 1 Ene
+                        if ((month === 11 && date === 31) || (month === 0 && date === 1)) isHoliday = true;
+                        // 6 - 9 Feb (Carnavales)
+                        if (month === 1 && (date >= 6 && date <= 9)) isHoliday = true;
+                        
+                        if(isHoliday) break;
+                        current.setDate(current.getDate() + 1);
+                    }
+                    
+                    if(isHoliday) {
+                        alert("Las fechas seleccionadas coinciden con días Festivos o de Temporada Alta. Serás redirigido al módulo correspondiente para ver las tarifas aplicables.");
+                        fpAlojamiento.clear();
+                        fechasAlojamientoStr = "";
+                        btnModoFestivo.click(); // Redirección automática
+                        return;
+                    }
+                    
+                    renderHabitaciones();
+                } else {
+                    renderHabitaciones();
                 }
             }
         });
@@ -648,10 +677,9 @@
             }
         });
         
-        fechasAlojamientoStr = fpAlojamiento.input.value;
         fechaPasadiaStr = fpPasadia.input.value;
 
-        // Función central para obtener el precio total y la etiqueta de la tarjeta
+        // CALCULO DE PRECIO PARA RENDERIZAR EN TARJETA
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nochesFestivas = 1;
@@ -660,22 +688,14 @@
                 }
                 return {
                     total: precios[tipoHabitacion].festivo * nochesFestivas,
-                    etiqueta: `Total por ${nochesFestivas} noche(s)`
+                    etiqueta: `Total por ${nochesFestivas} noche(s) festivas`
                 };
             } 
             else if (modoActual === 'regular') {
                 let dates = fpAlojamiento.selectedDates;
-                if(dates.length === 0) {
-                    // Si por alguna razón no hay fechas, mostrar vista previa de precios
-                    return { total: 0, etiqueta: `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}` };
-                }
-                
-                // Si solo eligió 1 fecha (no rango completo), mostrar vista previa de ambos precios
-                if(dates.length === 1) {
-                    return {
-                        total: precios[tipoHabitacion].semana, // Precio referencial
-                        etiqueta: `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`
-                    };
+                if(dates.length === 0 || dates.length === 1) {
+                    // Si no hay rango válido, devuelve 0 en total (se bloquea checkbox)
+                    return { total: 0, etiqueta: '' };
                 }
 
                 // Cálculo exacto del rango en modo regular (Sumando día por día)
@@ -702,7 +722,6 @@
         }
 
         function renderHabitaciones() {
-            // Solo renderiza si no estamos en pasadia
             if(modoActual === 'pasadia') return;
 
             const seleccionadas = Array.from(document.querySelectorAll('.room-checkbox:checked')).map(cb => cb.value);
@@ -717,32 +736,58 @@
                 const classBadge = isMezcal ? 'badge-mezcal' : 'badge-base text-teal-100 badge-sencilla';
                 const vipIcon = isMezcal ? `<span class="ml-1 text-xs">★</span>` : '';
                 
-                // Si estamos en Regular y no hay rango completo, ocultamos el total grande y mostramos la etiqueta referencial
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
                 
-                let markupPrecio = '';
-                if(isRangoIncompleto) {
-                    markupPrecio = `
-                        <div class="flex flex-col items-start gap-1">
-                            <span class="text-sm font-light text-white/60">Selecciona check-out para ver total</span>
-                            <span class="text-[13px] text-teal-300 font-medium leading-tight">${infoPrecio.etiqueta}</span>
+                let bloquePrecioHtml = '';
+                if (modoActual === 'regular') {
+                    // EN MODO REGULAR: Siempre se muestran los dos precios referenciales base
+                    bloquePrecioHtml = `
+                        <div class="mt-auto pt-5 border-t border-white/5">
+                            <div class="flex justify-between items-end mb-3">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-teal-100/60 uppercase tracking-widest mb-0.5">Dom a Jue</span>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-sm font-elegant text-white/60">$</span>
+                                        <span class="text-2xl font-semibold text-white tracking-tight">${precios[hab.tipo].semana}</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col text-right">
+                                    <span class="text-[10px] text-orange-200/60 uppercase tracking-widest mb-0.5">Vie y Sáb</span>
+                                    <div class="flex items-baseline gap-1 justify-end">
+                                        <span class="text-sm font-elegant text-orange-400/60">$</span>
+                                        <span class="text-2xl font-semibold text-orange-400 tracking-tight">${precios[hab.tipo].finde}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            ${!isRangoIncompleto ? `
+                                <div class="bg-teal-900/40 rounded-lg p-2.5 text-center border border-teal-500/20 mt-1">
+                                    <span class="text-[11px] text-teal-200 font-medium uppercase tracking-widest">Total estadía: $${infoPrecio.total}</span>
+                                </div>
+                            ` : `
+                                <div class="text-[10px] text-white/40 text-center mt-4 uppercase tracking-widest bg-white/5 py-2 rounded-lg">Selecciona fechas para ver total</div>
+                            `}
                         </div>
                     `;
-                } else {
-                    markupPrecio = `
-                        <div class="flex items-baseline gap-1">
-                            <span class="text-xl font-elegant text-white/60">$</span>
-                            <span class="text-4xl font-semibold text-white tracking-tight">${infoPrecio.total}</span>
+                } else if (modoActual === 'festivo') {
+                    // EN MODO FESTIVO: Muestra el precio base festivo y el total por las noches elegidas
+                    bloquePrecioHtml = `
+                        <div class="mt-auto pt-5 border-t border-white/5">
+                            <div class="flex items-end justify-between mb-3">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-xl font-elegant text-white/60">$</span>
+                                    <span class="text-4xl font-semibold text-white tracking-tight">${precios[hab.tipo].festivo}</span>
+                                </div>
+                                <span class="text-[11px] text-white/30 uppercase tracking-[0.2em] font-medium text-right leading-tight max-w-[80px]">/ Noche Festiva</span>
+                            </div>
+                            <div class="bg-orange-900/40 rounded-lg p-2.5 text-center border border-orange-500/20 mt-1">
+                                <span class="text-[11px] text-orange-200 font-medium uppercase tracking-widest">Total estadía: $${infoPrecio.total}</span>
+                            </div>
                         </div>
-                        <span class="text-[11px] text-teal-300/80 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
-                            ${infoPrecio.etiqueta}
-                        </span>
                     `;
                 }
 
                 const html = `
                     <label class="relative block group">
-                        <!-- Guardamos en el dataset el TOTAL exacto de la habitacion para el rango elegido -->
                         <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked} ${isRangoIncompleto ? 'disabled' : ''}>
                         <div class="room-card ${classWrapper} p-6 h-full flex flex-col justify-between ${isRangoIncompleto ? 'opacity-80 cursor-not-allowed' : ''}">
                             
@@ -779,11 +824,10 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <div class="mt-auto flex items-end justify-between relative z-10 border-t border-white/5 pt-4">
-                                ${markupPrecio}
-                            </div>
-
+                            
+                            <!-- BLOQUE DE PRECIO INYECTADO AQUÍ -->
+                            ${bloquePrecioHtml}
+                            
                         </div>
                     </label>
                 `;
@@ -796,7 +840,6 @@
             calcularTotal();
         }
 
-        // Lógica Exclusiva para Contadores de Pasadía
         function actualizarPasadia(tipo, cantidad) {
             if(tipo === 'adultos') {
                 pasadiaAdultos += cantidad;
@@ -818,7 +861,7 @@
                 totalFinal = (pasadiaAdultos * 10) + (pasadiaNinos * 5);
                 
                 displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
-                mensajeTotal.innerHTML = `<span class="text-white">${pasadiaAdultos}</span> Adulto(s) y <span class="text-white">${pasadiaNinos}</span> Niño(s)`;
+                mensajeTotal.innerHTML = `<span class="text-white font-semibold">${pasadiaAdultos}</span> Adulto(s) y <span class="text-white font-semibold">${pasadiaNinos}</span> Niño(s)`;
                 btnReservar.classList.remove('hidden');
 
                 mensajeWA = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para un *PASADÍA*:%0A%0A*Fecha:* ${fechaPasadiaStr}%0A*Adultos:* ${pasadiaAdultos}%0A*Niños (6-12):* ${pasadiaNinos}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad para asistir?`;
@@ -827,7 +870,6 @@
                 const checkboxes = document.querySelectorAll('.room-checkbox:checked');
                 let listaHabitaciones = [];
 
-                // Solo sumamos los data-precio porque ya tienen el cálculo exacto del rango
                 checkboxes.forEach(cb => {
                     totalFinal += parseFloat(cb.dataset.precio);
                     listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);
@@ -848,19 +890,21 @@
                         }
                     } else {
                         textoModo = 'Tarifas Regulares';
-                        infoFechasWA = fechasAlojamientoStr.includes(' a ') ? fechasAlojamientoStr : `${fechasAlojamientoStr} (Rango incompleto)`;
+                        infoFechasWA = fechasAlojamientoStr;
                         if(fpAlojamiento.selectedDates.length === 2){
                             nNoches = Math.round(Math.abs(fpAlojamiento.selectedDates[1] - fpAlojamiento.selectedDates[0]) / (1000 * 60 * 60 * 24));
                         }
                     }
 
-                    mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s) × <span class="text-white">${nNoches}</span> noche(s)`;
+                    mensajeTotal.innerHTML = `<span class="text-white font-semibold">${checkboxes.length}</span> hab(s) seleccionada(s) × <span class="text-white font-semibold">${nNoches}</span> noche(s)`;
                     btnReservar.classList.remove('hidden');
                     
                     mensajeWA = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para ALOJAMIENTO:%0A%0A*Tipo de Estadía:* ${textoModo}%0A*Fechas:* ${infoFechasWA}%0A*Noches:* ${nNoches}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
                 } else {
                     displayMonto.textContent = `$0.00`;
-                    mensajeTotal.textContent = `Selecciona al menos una habitación`;
+                    mensajeTotal.innerHTML = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2) 
+                                                ? `Selecciona fechas válidas para continuar` 
+                                                : `Selecciona al menos una habitación`;
                     btnReservar.classList.add('hidden');
                 }
             }
@@ -906,9 +950,6 @@
             contenedorFechasRegular.classList.add('hidden');
             contenedorNochesFestivas.classList.remove('hidden');
             
-            controlesEstadia.classList.remove('md:grid-cols-2');
-            controlesEstadia.classList.add('md:grid-cols-1');
-            
             acordeonAnoNuevo.classList.remove('hidden');
             acordeonAnoNuevo.open = true;
             acordeonAlojamientoDetalles.classList.remove('hidden');
@@ -926,9 +967,6 @@
             
             contenedorFechasRegular.classList.remove('hidden');
             contenedorNochesFestivas.classList.add('hidden');
-            
-            controlesEstadia.classList.remove('md:grid-cols-1');
-            controlesEstadia.classList.add('md:grid-cols-2'); 
             
             acordeonAnoNuevo.classList.add('hidden');
             acordeonAlojamientoDetalles.classList.remove('hidden');

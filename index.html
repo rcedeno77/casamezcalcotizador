@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-    <!-- Google Fonts: Cormorant Garamond (Elegancia) & Outfit (Modernidad) -->
+    <!-- Google Fonts: Cormorant Garamond & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -55,7 +55,7 @@
             box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* --- TARJETAS DE HABITACIÓN --- */
+        /* Tarjetas de Habitación */
         .room-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
             backdrop-filter: blur(10px);
@@ -74,7 +74,6 @@
             box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
         }
 
-        /* Indicador Check Verde */
         .check-indicator {
             position: absolute;
             top: 1rem;
@@ -197,7 +196,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* CUSTOMIZACIÓN PREMIUM FLATPICKR */
+        /* FLATPICKR PREMIUM */
         .flatpickr-calendar {
             background: rgba(10, 25, 30, 0.95) !important;
             backdrop-filter: blur(15px) !important;
@@ -215,23 +214,24 @@
             border-color: transparent !important;
         }
         
-        /* Ocultar scrollbar modal */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Deshabilitar días visualmente de forma elegante */
+        .flatpickr-day.flatpickr-disabled {
+            color: rgba(255, 255, 255, 0.15) !important;
+        }
     </style>
 </head>
 <body class="py-8 px-4 md:px-6 lg:px-8 flex flex-col items-center relative">
 
     <div class="bg-overlay"></div>
 
-    <!-- MODAL DE DATOS DEL CLIENTE -->
+    <!-- MODAL DE DATOS DEL CLIENTE (WHATSAPP) -->
     <div id="reservaModal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modalBackdrop"></div>
         <div class="relative bg-gradient-to-br from-[#0c2328] to-[#041014] border border-white/20 p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300" id="modalContent">
             
             <div class="text-center mb-6">
                 <h3 class="font-elegant text-3xl md:text-4xl text-white mb-2">Tus Datos de Reserva</h3>
-                <p class="text-teal-100/70 text-sm font-light">Para brindarte una atención personalizada y agilizar tu proceso, indícanos tu nombre completo.</p>
+                <p class="text-teal-100/70 text-sm font-light">Para brindarte una atención personalizada, indícanos tu nombre completo.</p>
             </div>
             
             <div class="space-y-5">
@@ -251,7 +251,6 @@
         </div>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
     <div class="w-full max-w-5xl relative z-10 space-y-8 lg:space-y-12">
         
         <!-- HEADER -->
@@ -260,7 +259,6 @@
                 <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 to-teal-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
                 <img src="logo.jpeg" alt="Logo Casa Mezcal" class="relative w-36 h-36 rounded-full object-cover border-4 border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-10 transition-transform duration-500 group-hover:scale-105">
             </div>
-            
             <div class="space-y-2">
                 <h1 class="font-elegant text-5xl md:text-7xl text-white tracking-tight drop-shadow-xl">
                     Casa Mezcal <span class="text-gradient-gold italic pr-2">Malibú</span>
@@ -276,32 +274,35 @@
             
             <div class="absolute -top-32 -right-32 w-64 h-64 bg-teal-500/20 blur-[100px] rounded-full pointer-events-none"></div>
 
+            <!-- NAVEGACIÓN PRINCIPAL (4 PESTAÑAS) -->
             <div class="flex flex-col gap-6 mb-12">
-                
-                <!-- PESTAÑAS PRINCIPALES -->
-                <div class="bg-black/30 rounded-2xl p-2 border border-white/5 shadow-inner flex flex-col md:flex-row gap-2">
-                    <button id="btnModoPasadia" class="segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-active">
-                        Pasadía (10am - 7pm)
+                <div class="bg-black/30 rounded-2xl p-2 border border-white/5 shadow-inner grid grid-cols-2 md:grid-cols-4 gap-2">
+                    <button id="btnModoPasadia" class="segmented-btn flex-1 py-3 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-active">
+                        Pasadía Regular
                     </button>
-                    <button id="btnModoRegular" class="segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-inactive">
-                        Tarifas Regulares
+                    <button id="btnModoWelcome2027" class="segmented-btn flex-1 py-3 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 animate-pulse"></div>
+                        <span class="relative z-10 text-orange-300">Welcome 2027</span>
                     </button>
-                    <button id="btnModoFestivo" class="segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-inactive">
-                        Año Nuevo / Festivos
+                    <button id="btnModoRegular" class="segmented-btn flex-1 py-3 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
+                        Alojamiento Regular
+                    </button>
+                    <button id="btnModoFestivo" class="segmented-btn flex-1 py-3 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
+                        Alojamiento Festivo
                     </button>
                 </div>
 
-                <!-- CONTROLES ESTADÍA ALOJAMIENTO -->
-                <div id="controlesEstadia" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-300 hidden">
-                    
-                    <!-- CALENDARIO DE RANGO (Para Tarifas Regulares) -->
-                    <div id="contenedorFechasRegular" class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors">
+                <!-- CONTROLES ESTADÍA ALOJAMIENTO REGULAR -->
+                <div id="controlesRegular" class="transition-all duration-300 hidden">
+                    <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors max-w-lg mx-auto">
                         <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <input type="text" id="fechaAlojamiento" placeholder="Selecciona: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
+                        <input type="text" id="fechaAlojamiento" placeholder="Selecciona fecha: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
                     </div>
+                </div>
 
-                    <!-- NOCHES FESTIVAS (Con palabra completa Noches) -->
-                    <div id="contenedorNochesFestivas" class="hidden bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
+                <!-- CONTROLES NOCHES FESTIVAS (Carnavales, etc.) -->
+                <div id="controlesFestivo" class="transition-all duration-300 hidden">
+                    <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
                             <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
@@ -341,7 +342,7 @@
                 </div>
             </div>
 
-            <!-- ================= SECCIÓN PASADÍA ================= -->
+            <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
             <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
                 <div class="mb-10 border-b border-white/10 pb-8 text-center sm:text-left flex flex-col md:flex-row md:justify-between md:items-end gap-6">
@@ -349,8 +350,7 @@
                         <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
                         <p class="text-sm text-teal-100/70 mt-3 font-light tracking-[0.2em] uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
                     </div>
-                    
-                    <!-- CALENDARIO DE DÍA ÚNICO PARA PASADÍA -->
+                    <!-- CALENDARIO DÍA ÚNICO PASADÍA -->
                     <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors w-full md:w-72 shrink-0">
                         <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         <input type="text" id="fechaPasadia" placeholder="Fecha de tu visita" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
@@ -358,6 +358,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <!-- Contadores -->
                     <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex justify-between items-center">
                         <div>
                             <p class="text-2xl font-elegant text-white mb-1">Adultos</p>
@@ -369,7 +370,6 @@
                             <button onclick="actualizarPasadia('adultos', 1)" class="w-12 h-12 rounded-full bg-teal-500 hover:bg-teal-400 text-white flex items-center justify-center text-2xl shadow-lg transition-colors">+</button>
                         </div>
                     </div>
-                    
                     <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex justify-between items-center">
                         <div>
                             <p class="text-2xl font-elegant text-white mb-1">Niños <span class="text-xs font-sans font-light text-white/50">(6-12 años)</span></p>
@@ -383,87 +383,91 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm">
-                    <div class="bg-black/30 p-8 rounded-2xl border border-white/10 shadow-inner h-full">
-                        <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-5 border-b border-white/5 pb-4">🌊 Tu Pasadía Incluye:</h3>
-                        <ul class="space-y-4 font-light text-white/80">
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Piscina y acceso directo a la playa.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Mobiliario de playa (sujeto a disponibilidad).</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños y duchas.</li>
-                            <li class="flex items-start gap-3">
-                                <span class="text-teal-400 text-lg mt-0.5">✅</span> 
-                                <span>Estacionamiento, Wi-Fi, Restaurante y bar.</span>
-                            </li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
-                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
-                            
-                            <!-- Nota de comidas y bebidas (Ícono discreto) -->
-                            <li class="flex items-start gap-3 mt-1 pl-1">
-                                <span class="text-white/40 text-lg mt-0.5">ℹ️</span> 
-                                <span class="text-white/70 italic text-xs pt-1">Comidas y bebidas no incluidas.</span>
-                            </li>
-                            
-                            <li class="flex items-start gap-3 pt-2">
-                                <span class="text-teal-400 text-lg mt-0.5">🧊</span> 
-                                <span>Ingreso de cooler permitido desde $20 (según tamaño y contenido).</span>
-                            </li>
-                        </ul>
-                    </div>
+            <!-- ================= SECCIÓN WELCOME 2027 ================= -->
+            <!--[cite: 19] -->
+            <div id="welcome2027Container" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+                
+                <div class="text-center mb-8">
+                    <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md mb-2">Welcome 2027 <span class="text-orange-400 italic">Pasadía Festivo</span></h2>
+                    <p class="text-lg text-teal-100/90 font-light tracking-wide">1, 2 y 3 de Enero | 10:00 A.M. a 8:00 P.M.</p>
+                </div>
 
-                    <div class="space-y-6">
-                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-8 rounded-2xl border border-teal-500/20 shadow-inner">
-                            <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-3">🏝️ Ranchos Frente al Mar</h3>
-                            <p class="text-white/70 font-light leading-relaxed">
-                                Disfruta de mayor comodidad y privacidad con nuestros ranchos disponibles para alquiler por <strong class="text-orange-300 font-medium">$15 en días de semana y $30 en fines de semana</strong> (sujeto a disponibilidad).
-                            </p>
+                <div class="max-w-3xl mx-auto bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-10">
+                    <img src="anonuevo.jpg" alt="Welcome 2027 Casa Mezcal" class="w-full h-auto object-cover border-b border-white/10">
+                    
+                    <div class="p-6 md:p-10 space-y-6 text-white/90 font-light">
+                        <p class="text-lg md:text-xl text-center font-elegant text-orange-200">
+                            🎆🌴 ¡RECIBE EL 2027 EN CASA MEZCAL HOTEL! 🥂✨
+                        </p>
+                        <p class="text-center text-sm md:text-base">
+                            ¡Comienza el año nuevo con una experiencia inolvidable frente al mar! 🌊☀️<br><br>
+                            Disfruta de un espectacular Pasadía Festivo rodeado de un ambiente tropical, buena música y momentos especiales para compartir con familiares y amigos. 🎉🏝️
+                        </p>
+
+                        <div class="bg-white/5 rounded-2xl p-6 border border-white/10 mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                            <div>
+                                <span class="block text-2xl mb-1">💛</span>
+                                <span class="block font-semibold text-white">Adultos</span>
+                                <span class="block text-orange-400">$10 p/p</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl mb-1">🧒</span>
+                                <span class="block font-semibold text-white">Niños (6-12)</span>
+                                <span class="block text-orange-400">$5 p/p</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl mb-1">👶</span>
+                                <span class="block font-semibold text-white">Niños (0-5)</span>
+                                <span class="block text-emerald-400 font-bold">¡GRATIS!</span>
+                            </div>
                         </div>
-                        <div class="bg-orange-900/20 p-8 rounded-2xl border border-orange-500/30">
-                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
-                                ⚠️ Cupos Limitados
-                            </h3>
-                            <p class="text-orange-100/70 font-light text-sm leading-relaxed">
-                                Los cupos son limitados para garantizar una mejor experiencia. Te recomendamos reservar anticipadamente para asegurar tu espacio y disfrutar de un día perfecto.
-                            </p>
+
+                        <div class="pt-4 text-sm space-y-3">
+                            <h4 class="font-semibold text-orange-300 uppercase tracking-widest text-center mb-4">🌟 ¿Qué podrás disfrutar?</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
+                                <p class="flex items-center gap-2"><span class="text-teal-400">🏊</span> Piscina relajante</p>
+                                <p class="flex items-center gap-2"><span class="text-teal-400">🏖️</span> Playa frente al mar</p>
+                                <p class="flex items-center gap-2"><span class="text-teal-400">🍹</span> Restaurante y bar</p>
+                                <p class="flex items-center gap-2"><span class="text-teal-400">🎶</span> Música y ambiente festivo</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ================= FIN SECCIÓN PASADÍA ================= -->
 
-            <!-- SECCIÓN HABITACIONES -->
+            <!-- ================= SECCIÓN HABITACIONES ================= -->
             <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out] hidden">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-white/10 pb-6">
                     <div>
                         <h2 class="font-elegant text-4xl text-white">Habitaciones</h2>
-                        <p class="text-sm text-teal-100/50 mt-2 font-light tracking-wide">Selecciona tus espacios. Los precios se calculan automáticamente según las fechas.</p>
                     </div>
                 </div>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
                     <!-- Inyección vía JS -->
                 </div>
             </div>
 
-            <!-- FOOTER TOTALES -->
+            <!-- FOOTER TOTALES Y BOTÓN CTA MÁSTER -->
             <div class="mt-12 bg-black/40 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/10 border-top border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col">
                 <div class="absolute inset-0 bg-gradient-to-r from-teal-900/20 via-transparent to-orange-900/20"></div>
                 
                 <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 w-full">
-                    <div class="text-center md:text-left space-y-1">
+                    
+                    <div class="text-center md:text-left space-y-1 w-full md:w-auto" id="bloqueTotal">
                         <p class="text-sm text-teal-300 font-medium tracking-wide" id="mensajeTotal">Selecciona una opción</p>
-                        <p class="text-[10px] text-white/40 uppercase tracking-[0.3em]">Inversión Total Estimada</p>
+                        <p class="text-[10px] text-white/40 uppercase tracking-[0.3em]" id="labelInversion">Inversión Estimada</p>
                         <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-2" id="montoTotal">$0.00</span>
                     </div>
                     
-                    <button id="btnAbrirModal" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1 hidden">
-                        <span>Solicitar Reserva</span>
+                    <a id="btnMasterAction" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1">
+                        <span id="textoMasterAction">Solicitar Reserva</span>
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </button>
+                    </a>
                 </div>
 
-                <!-- AVISO DE PRECIO ESTIMADO OBLIGATORIO -->
-                <div class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center">
+                <div id="avisoEstimado" class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center">
                     <p class="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest font-light">
                         * Precio estimado sujeto a verificación por el departamento de reservas.
                     </p>
@@ -471,63 +475,14 @@
             </div>
         </main>
 
-        <!-- ACORDEONES ILUSTRADOS Y POLÍTICAS -->
+        <!-- ACORDEÓN DE POLÍTICAS Y MENÚ -->
         <section class="grid grid-cols-1 gap-5">
             
-            <details id="acordeonAnoNuevo" class="ultra-glass rounded-3xl group hidden">
-                <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
-                    <span class="flex items-center gap-4">
-                        <span class="text-3xl drop-shadow-lg">🥂</span>
-                        <span class="font-elegant tracking-wide text-2xl">Experiencia Fin de Año</span>
-                    </span>
-                    <span class="text-orange-400 group-open:rotate-180 transition-transform duration-500">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </span>
-                </summary>
-                <div class="px-6 md:px-8 pb-8 pt-2 text-sm text-teal-50">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
-                                <span class="text-orange-400 text-lg mt-0.5">✧</span>
-                                <div>
-                                    <p class="font-semibold text-white text-base">Cena Especial</p>
-                                    <p class="text-white/70">Fin de Año desde <strong class="text-orange-400">$15</strong> por persona.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
-                                <span class="text-orange-400 text-lg mt-0.5">✧</span>
-                                <div>
-                                    <p class="font-semibold text-white text-base">Show Pirotécnico</p>
-                                    <p class="text-white/70">Fuegos artificiales para recibir el 2027.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
-                                <span class="text-orange-400 text-lg mt-0.5">✧</span>
-                                <div>
-                                    <p class="font-semibold text-white text-base">Ambiente Festivo</p>
-                                    <p class="text-white/70">Música y celebración hasta las 3:00 a. m.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <div class="h-full p-6 md:p-8 rounded-2xl border border-orange-500/40 text-center flex flex-col justify-center relative overflow-hidden shadow-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=2070&auto=format&fit=crop');">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-orange-900/40 backdrop-blur-[1px]"></div>
-                            <div class="relative z-10">
-                                <p class="font-elegant text-3xl md:text-4xl text-orange-300 mb-3 drop-shadow-lg">La fiesta continúa</p>
-                                <p class="text-sm md:text-base text-white/90 leading-relaxed drop-shadow-md max-w-sm mx-auto font-light">
-                                    El 1 de enero, desde las 10:00 a. m., seguimos celebrando con más música, piscina, playa y las mejores vibras tropicales.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </details>
-
             <details class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
-                        <span class="text-3xl drop-shadow-lg">💳</span>
-                        <span class="font-elegant tracking-wide text-2xl">Reservas y Formas de Pago</span>
+                        <span class="text-3xl drop-shadow-lg">📜</span>
+                        <span class="font-elegant tracking-wide text-2xl">Políticas y Privilegios</span>
                     </span>
                     <span class="text-teal-400 group-open:rotate-180 transition-transform duration-500">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -537,120 +492,54 @@
                 <div class="px-6 md:px-8 pb-8 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm text-white/80">
                     
                     <div class="space-y-6">
-                        <div class="bg-black/30 p-8 rounded-2xl border border-white/10 shadow-inner h-full">
-                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-5 border-b border-white/5 pb-3">🏡 Reservas de Alojamiento</h3>
+                        <div class="bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10 shadow-inner h-full">
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 border-b border-white/5 pb-3">🏡 Reservas de Alojamiento</h3>
                             <ul class="space-y-3 font-light text-white/70">
                                 <li><span class="text-teal-400">✅</span> <strong>Abono inicial:</strong> 50% del valor total.</li>
                                 <li><span class="text-teal-400">✅</span> <strong>Pago restante:</strong> 50% a más tardar 5 días antes del check-in.</li>
-                                <li><span class="text-orange-400">📌</span> <em>Última hora:</em> Reservas con 5 días o menos de anticipación deben cancelar el 100%.</li>
+                                <li><span class="text-orange-400">📌</span> <em>Última hora:</em> 5 días o menos de anticipación deben cancelar el 100%.</li>
                             </ul>
 
-                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-5 mt-10 border-b border-white/5 pb-3">☀️ Reservas de Pasadías</h3>
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 mt-8 border-b border-white/5 pb-3">☀️ Reservas de Pasadías</h3>
                             <ul class="space-y-3 font-light text-white/70">
-                                <li><span class="text-teal-400">✅</span> <strong>Online:</strong> 100% del valor anticipado.</li>
-                                <li><span class="text-teal-400">✅</span> <strong>En el hotel:</strong> Sujeto a disponibilidad (¡Cupos limitados!).</li>
-                                <li><span class="text-teal-400">✅</span> <strong>Ranchos:</strong> Disponibles para alquiler para mayor privacidad.</li>
+                                <li><span class="text-teal-400">✅</span> <strong>Online:</strong> Pago del 100% anticipado vía Tickea.</li>
+                                <li><span class="text-teal-400">✅</span> <strong>En hotel:</strong> Sujeto a disponibilidad (Cupos limitados).</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="space-y-6">
-                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-8 rounded-2xl border border-teal-500/20 shadow-inner h-full flex flex-col justify-between">
+                        <!-- COMIDA Y MENÚ -->
+                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-6 md:p-8 rounded-2xl border border-teal-500/20 shadow-inner h-full flex flex-col justify-between">
                             <div>
-                                <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-5 border-b border-white/10 pb-3">💳 Métodos de Pago Online</h3>
-                                <ul class="space-y-4 font-light text-teal-50 text-base">
-                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-xl">▪</span> Yappy</li>
-                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-xl">▪</span> Transferencia Bancaria ACH</li>
-                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-xl">▪</span> Enlace de pago (Tarjetas)</li>
-                                </ul>
-                                <div class="mt-8 p-5 bg-black/40 rounded-xl text-[13px] text-white/60 border border-white/5 leading-relaxed">
-                                    Los pagos se gestionan a través de <strong class="text-white/80 font-medium">Hospédate Panamá S.A.</strong>, empresa encargada de las reservas y cobros de Casa Mezcal.
-                                </div>
-                            </div>
-                            <div class="mt-8 text-[11px] uppercase tracking-widest text-orange-200/50 border-t border-white/10 pt-5 leading-relaxed">
-                                * Confirma siempre la disponibilidad antes de realizar cualquier pago. Tu reserva quedará confirmada una vez recibido y verificado el abono.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </details>
-
-            <details id="acordeonAlojamientoDetalles" class="ultra-glass rounded-3xl group hidden">
-                <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
-                    <span class="flex items-center gap-4">
-                        <span class="text-3xl drop-shadow-lg">🛏️</span>
-                        <span class="font-elegant tracking-wide text-2xl">Detalles de Alojamiento</span>
-                    </span>
-                    <span class="text-teal-400 group-open:rotate-180 transition-transform duration-500">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </span>
-                </summary>
-                
-                <div class="px-6 md:px-8 pb-8 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-10 text-sm">
-                    
-                    <div class="space-y-8">
-                        <div>
-                            <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Horarios de Estadía</p>
-                            <div class="bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10 space-y-5 shadow-inner">
-                                <div class="flex justify-between items-center border-b border-white/5 pb-4">
-                                    <span class="text-white/80 tracking-wide text-base">Check-in</span>
-                                    <span class="text-white font-semibold bg-black/40 px-4 py-2 rounded-lg border border-white/5 shadow-inner">3:00 p.m.</span>
-                                </div>
-                                <div class="flex justify-between items-center border-b border-white/5 pb-4">
-                                    <span class="text-white/80 tracking-wide text-base">Check-out</span>
-                                    <span class="text-white font-semibold bg-black/40 px-4 py-2 rounded-lg border border-white/5 shadow-inner">1:00 p.m.</span>
-                                </div>
-                                <div class="pt-3 text-[11px] text-teal-200/50 font-light flex items-start gap-2">
-                                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    Entrada anticipada o salida extendida: $10/hora (Sujeto a disp).
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-xs text-teal-300/60 font-semibold uppercase tracking-[0.2em] mb-4">Privilegios Exclusivos</p>
-                        <div class="p-6 md:p-8 rounded-2xl border border-white/20 shadow-2xl h-full relative overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop');">
-                            <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px]"></div>
-                            
-                            <div class="relative z-10">
-                                <ul class="space-y-4 text-sm text-white/90 font-light drop-shadow-md">
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Acceso áreas comunes desde 12:00 p.m. (llegada) y hasta 4:00 p.m. (salida).</span>
+                                <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-4 border-b border-white/10 pb-3 flex justify-between items-center">
+                                    <span>🍔 Alimentos y Bebidas</span>
+                                    
+                                    <!-- AQUI VA EL LINK DE TU MENÚ -->
+                                    <a href="PON_AQUI_TU_LINK_DEL_MENU.pdf" target="_blank" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors">
+                                        📄 Ver Menú
+                                    </a>
+                                </h3>
+                                
+                                <ul class="space-y-4 font-light text-teal-50 text-sm">
+                                    <li class="flex items-start gap-3 text-red-300">
+                                        <span class="text-red-400 text-lg">🚫</span> 
+                                        <span><strong>Importante:</strong> No se permite el ingreso de comida, solo snacks.</span>
                                     </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Piscina, mobiliario de playa (sujeto a disponibilidad) y acceso directo al mar.</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Restaurante, bar y Wi-Fi.</span>
-                                    </li>
-                                    <!-- Nota de comidas y bebidas en alojamiento -->
-                                    <li class="flex items-start gap-3 mt-1 pl-1">
-                                        <span class="text-white/40 text-lg mt-0.5 drop-shadow-md">ℹ️</span> 
-                                        <span class="text-white/70 italic text-xs pt-1">Comidas y bebidas no incluidas.</span>
-                                    </li>
-                                    <li class="flex items-start gap-3 pt-2">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Ambiente <strong class="text-white font-medium">Pet Friendly</strong> 🐾 ($5 por mascota).</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Alquiler de ranchos frente al mar: $15 días de semana, $30 fines de semana (sujeto a disp).</span>
-                                    </li>
-                                    <li class="flex items-start gap-3">
-                                        <span class="text-teal-400 mt-0.5 text-lg drop-shadow-md">✦</span> 
-                                        <span>Entrada de coolers permitida con cargo adicional desde $20 (según tamaño y contenido).</span>
+                                    <li class="flex items-start gap-3 text-white/80">
+                                        <span class="text-teal-400 text-lg">🧊</span> 
+                                        <span>Ingreso de coolers (bebidas) permitido con cargo adicional desde $20 (según tamaño y contenido).</span>
                                     </li>
                                 </ul>
+                            </div>
+                            <div class="mt-6 text-[11px] uppercase tracking-widest text-orange-200/50 border-t border-white/10 pt-4 leading-relaxed">
+                                Contamos con restaurante y bar a tu disposición.
                             </div>
                         </div>
                     </div>
                 </div>
             </details>
+
         </section>
 
         <footer class="text-center pb-10 pt-4">
@@ -675,15 +564,18 @@
             { id: 10, tipo: 'Sencilla', max: 2, camas: '1 queen' }
         ];
 
-        // PRECIOS ACTUALIZADOS
         const precios = {
             Sencilla: { semana: 55, finde: 75, festivo: 145 },
             Mezcal: { semana: 65, finde: 90, festivo: 175 }
         };
 
-        const fechasFestivas = ["12-24", "12-25", "12-31", "01-01", "02-06", "02-07", "02-08", "02-09"];
+        // FECHAS BLOQUEADAS (24-25 Dic, 31 Dic-1 Ene)
+        const fechasBloqueadasStr = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-12-24", "2027-12-25", "2027-12-31", "2028-01-01"];
+        
+        // FECHAS QUE DISPARAN ALERTA A FESTIVO (Ej: Carnavales Feb 6-9)
+        const fechasCarnavalesMMDD = ["02-06", "02-07", "02-08", "02-09"]; 
 
-        function checkEsFestivo(datesArr) {
+        function chequearFestivo(datesArr) {
             if(datesArr.length === 0) return false;
             let start = datesArr[0];
             let end = datesArr.length === 2 ? datesArr[1] : datesArr[0];
@@ -692,16 +584,19 @@
             while(curr <= end) {
                 let mm = String(curr.getMonth() + 1).padStart(2, '0');
                 let dd = String(curr.getDate()).padStart(2, '0');
-                if(fechasFestivas.includes(`${mm}-${dd}`)) return true;
+                if(fechasCarnavalesMMDD.includes(`${mm}-${dd}`)) return true;
                 curr.setDate(curr.getDate() + 1);
             }
             return false;
         }
 
-        let modoActual = 'pasadia'; 
+        let modoActual = 'pasadia'; // pasadia, anonuevo, regular, festivo
         let pasadiaAdultos = 1;
         let pasadiaNinos = 0;
         const numeroWhatsApp = "50768064250"; 
+
+        const linkTickeaPasadia = "https://www.tickea.com/pa/casa-mezcal-hotel-844-tickets";
+        const linkTickeaNewYear = "https://www.tickea.com/pa/welcome-2027-841-tickets/1614";
 
         let fechasAlojamientoStr = "";
         let fechaPasadiaStr = "";
@@ -710,23 +605,25 @@
         const container = document.getElementById('habitacionesContainer');
         const displayMonto = document.getElementById('montoTotal');
         const mensajeTotal = document.getElementById('mensajeTotal');
-        const btnAbrirModal = document.getElementById('btnAbrirModal');
         
+        // Boton Master
+        const btnMaster = document.getElementById('btnMasterAction');
+        const txtMaster = document.getElementById('textoMasterAction');
+        const avisoEstimado = document.getElementById('avisoEstimado');
+        const bloqueTotal = document.getElementById('bloqueTotal');
+
         const btnModoPasadia = document.getElementById('btnModoPasadia');
+        const btnModoWelcome2027 = document.getElementById('btnModoWelcome2027');
         const btnModoRegular = document.getElementById('btnModoRegular');
         const btnModoFestivo = document.getElementById('btnModoFestivo');
         
-        const controlesEstadia = document.getElementById('controlesEstadia');
-        const contenedorFechasRegular = document.getElementById('contenedorFechasRegular');
-        const contenedorNochesFestivas = document.getElementById('contenedorNochesFestivas');
-        const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
-        
+        const controlesRegular = document.getElementById('controlesRegular');
+        const controlesFestivo = document.getElementById('controlesFestivo');
         const pasadiaContainer = document.getElementById('pasadiaContainer');
+        const welcome2027Container = document.getElementById('welcome2027Container');
         const habitacionesSection = document.getElementById('habitacionesSection');
 
-        const acordeonAnoNuevo = document.getElementById('acordeonAnoNuevo');
-        const acordeonAlojamientoDetalles = document.getElementById('acordeonAlojamientoDetalles');
-        
+        const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
         const displayAdultos = document.getElementById('contadorAdultos');
         const displayNinos = document.getElementById('contadorNinos');
 
@@ -738,23 +635,32 @@
         const inputNombre = document.getElementById('nombreCliente');
         const errorNombre = document.getElementById('errorNombre');
 
-        // INICIALIZACIÓN DE CALENDARIOS FLATPICKR
+        // FLATPICKR ALOJAMIENTO (Bloqueo Miércoles y Fechas específicas)
         const fpAlojamiento = flatpickr("#fechaAlojamiento", {
             mode: "range",
             minDate: "today",
             locale: "es",
             dateFormat: "d M Y",
+            disable: [
+                function(date) {
+                    return (date.getDay() === 3); // 3 = Miércoles (0 es Domingo)
+                },
+                function(date) {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return fechasBloqueadasStr.includes(`${year}-${month}-${day}`);
+                }
+            ],
             onChange: function(selectedDates, dateStr, instance) {
                 fechasAlojamientoStr = dateStr;
                 
-                if(checkEsFestivo(selectedDates)) {
+                if(chequearFestivo(selectedDates)) {
                     instance.clear();
-                    alert("Has seleccionado fechas festivas o de carnaval. Te redirigiremos al módulo de Tarifas Festivas.");
+                    alert("Has seleccionado fechas de Carnaval/Festivos. Te redirigiremos a las tarifas especiales.");
                     btnModoFestivo.click();
                     return;
                 }
-                
-                // Renderizar siempre para actualizar los totales visuales y desbloquear si corresponde
                 renderHabitaciones(); 
             }
         });
@@ -765,6 +671,9 @@
             locale: "es",
             dateFormat: "d M Y",
             defaultDate: new Date(),
+            disable: [
+                function(date) { return (date.getDay() === 3); } // Miércoles cerrados
+            ],
             onChange: function(selectedDates, dateStr, instance) {
                 fechaPasadiaStr = dateStr;
                 calcularTotal();
@@ -773,23 +682,24 @@
         
         fechaPasadiaStr = fpPasadia.input.value;
 
-        // Función central para obtener el precio total y la etiqueta de la tarjeta
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
-                let nochesFestivas = 1;
+                let nNoches = 1;
                 for (const radio of radiosNochesFestivas) {
-                    if (radio.checked) nochesFestivas = parseInt(radio.value);
+                    if (radio.checked) nNoches = parseInt(radio.value);
                 }
                 return {
-                    total: precios[tipoHabitacion].festivo * nochesFestivas,
-                    etiquetaTotal: `Total por ${nochesFestivas} noche(s)`
+                    total: precios[tipoHabitacion].festivo * nNoches,
+                    etiquetaBase: '',
+                    etiquetaTotal: `Total por ${nNoches} noche(s)`
                 };
             } 
             else if (modoActual === 'regular') {
+                let etiquetaClara = `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`;
                 let dates = fpAlojamiento.selectedDates;
                 
                 if(dates.length < 2) {
-                    return { total: 0, etiquetaTotal: '' }; // Sin total real si no hay rango completo
+                    return { total: 0, etiquetaBase: etiquetaClara, etiquetaTotal: '' };
                 }
                 
                 let start = dates[0];
@@ -800,22 +710,22 @@
                 
                 while (current < end) {
                     let d = current.getDay();
-                    let isWeekend = (d === 5 || d === 6); // 5=Viernes, 6=Sábado
+                    let isWeekend = (d === 5 || d === 6); // Vie o Sab
                     totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
                     current.setDate(current.getDate() + 1);
                     countNoches++;
                 }
-                
                 return {
                     total: totalSuma,
+                    etiquetaBase: etiquetaClara,
                     etiquetaTotal: `Total por ${countNoches} noche(s)`
                 };
             }
-            return { total: 0, etiquetaTotal: '' };
+            return { total: 0, etiquetaBase: '', etiquetaTotal: '' };
         }
 
         function renderHabitaciones() {
-            if(modoActual === 'pasadia') return;
+            if(modoActual === 'pasadia' || modoActual === 'anonuevo') return;
 
             const seleccionadas = Array.from(document.querySelectorAll('.room-checkbox:checked')).map(cb => cb.value);
             container.innerHTML = ''; 
@@ -831,31 +741,27 @@
                 
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
                 
-                // --- BLOQUE DE PRECIOS BASE PERMANENTE (SIEMPRE VISIBLE EN REGULARES) ---
                 let bloquePreciosBase = '';
                 if (modoActual === 'regular') {
                     bloquePreciosBase = `
-                        <div class="mt-4 bg-black/30 rounded-xl p-2.5 flex justify-between items-center text-[12px] border border-white/5 shadow-inner">
+                        <div class="mt-4 bg-black/30 rounded-xl p-2 flex justify-between items-center text-[11px] border border-white/5 shadow-inner">
                             <div class="flex flex-col text-center w-1/2 border-r border-white/10">
-                                <span class="text-white/40 uppercase tracking-[0.2em] text-[8px] mb-1">Dom - Jue</span>
+                                <span class="text-white/40 uppercase tracking-[0.2em] text-[7px] mb-1">Dom - Jue</span>
                                 <span class="text-white font-medium">$${precios[hab.tipo].semana}</span>
                             </div>
                             <div class="flex flex-col text-center w-1/2">
-                                <span class="text-orange-200/50 uppercase tracking-[0.2em] text-[8px] mb-1">Vie - Sáb</span>
+                                <span class="text-orange-200/50 uppercase tracking-[0.2em] text-[7px] mb-1">Vie - Sáb</span>
                                 <span class="text-orange-300 font-medium">$${precios[hab.tipo].finde}</span>
                             </div>
                         </div>
                     `;
-                } else if (modoActual === 'festivo') {
-                    // Si estamos en festivo, eliminamos la tarjeta interna y mostramos solo el total de noches
-                    bloquePreciosBase = ``;
                 }
 
                 let markupPrecio = '';
                 if(isRangoIncompleto) {
                     markupPrecio = `
                         <div class="flex flex-col items-center justify-center w-full border-t border-white/5 pt-4 mt-4">
-                            <span class="text-[11px] font-light text-white/50 text-center tracking-wide">Selecciona check-out para calcular total</span>
+                            <span class="text-[10px] font-light text-white/50 text-center tracking-wide">Selecciona check-out para calcular total</span>
                         </div>
                     `;
                 } else {
@@ -866,7 +772,7 @@
                                     <span class="text-xl font-elegant text-white/60">$</span>
                                     <span class="text-4xl font-semibold text-white tracking-tight">${infoPrecio.total}</span>
                                 </div>
-                                <span class="text-[11px] text-white/50 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
+                                <span class="text-[10px] text-white/50 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
                                     ${infoPrecio.etiquetaTotal}
                                 </span>
                             </div>
@@ -874,58 +780,38 @@
                     `;
                 }
 
-                // CORRECCIÓN: Eliminado el 'disabled' y la clase 'opacity-80' para que siempre sean clickeables
                 const html = `
                     <label class="relative block group">
                         <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked}>
                         
-                        <div class="room-card ${classWrapper} p-5 sm:p-6 h-full flex flex-col justify-between">
-                            
-                            <!-- GANCHITO VERDE DE LUJO -->
+                        <div class="room-card ${classWrapper} p-5 h-full flex flex-col justify-between">
                             <div class="check-indicator">
                                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                             </div>
-
                             <div class="flex justify-between items-start mb-4 relative z-10">
-                                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/40 flex items-center justify-center font-elegant text-lg sm:text-xl text-white shadow-inner border border-white/10 border-top border-white/20">
+                                <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center font-elegant text-lg text-white shadow-inner border border-white/10 border-top border-white/20">
                                     ${hab.id}
                                 </div>
                                 <div class="flex items-center mt-1">
-                                    <span class="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full font-semibold ${classBadge} mr-1 md:mr-0">
+                                    <span class="text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full font-semibold ${classBadge} mr-2">
                                         ${hab.tipo} ${vipIcon}
                                     </span>
                                 </div>
                             </div>
-
                             <div class="space-y-1.5 mb-2 relative z-10">
-                                <p class="text-xs sm:text-[13px] text-white/90 font-medium flex items-center gap-2">
-                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                <p class="text-xs text-white/90 font-medium flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                     Máx ${hab.max} huéspedes
                                 </p>
-                                <p class="text-[11px] sm:text-xs text-white/70 font-light flex items-center gap-2">
-                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h18m-9-4v4m-8 4h16v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4z"></path></svg>
+                                <p class="text-[11px] text-white/70 font-light flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h18m-9-4v4m-8 4h16v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4z"></path></svg>
                                     ${hab.camas}
                                 </p>
-                                
-                                <div class="flex items-center gap-3 mt-3 pt-2 text-[9px] sm:text-[10px] text-teal-100/60 uppercase tracking-widest font-medium">
-                                    <span class="flex items-center gap-1.5" title="Aire Acondicionado">
-                                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 12l-3-3m3 3l3-3M3 12h18m-18 0l3-3m-3 3l3 3m12-3l-3-3m3 3l-3 3"></path></svg>
-                                        A/C
-                                    </span>
-                                    <span class="w-1 h-1 rounded-full bg-white/20"></span>
-                                    <span class="flex items-center gap-1.5" title="Baño Privado">
-                                        <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21.5c-3 0-6-2.5-6-6.5 0-3.5 3-7 6-12 3 5 6 8.5 6 12 0 4-3 6.5-6 6.5z"></path></svg>
-                                        Baño Priv.
-                                    </span>
-                                </div>
                             </div>
-
                             ${bloquePreciosBase}
-
-                            <div class="mt-auto relative z-10 w-full flex-grow flex flex-col justify-end">
+                            <div class="mt-auto relative z-10 w-full">
                                 ${markupPrecio}
                             </div>
-
                         </div>
                     </label>
                 `;
@@ -938,7 +824,6 @@
             calcularTotal();
         }
 
-        // Lógica Exclusiva para Contadores de Pasadía
         function actualizarPasadia(tipo, cantidad) {
             if(tipo === 'adultos') {
                 pasadiaAdultos += cantidad;
@@ -952,90 +837,114 @@
             calcularTotal();
         }
 
+        function setBotonTickea(link) {
+            btnMaster.classList.remove('hidden');
+            btnMaster.classList.add('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
+            btnMaster.classList.remove('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
+            txtMaster.textContent = "Adquiere tus entradas aquí";
+            
+            // Remueve el onclick de modal y pone el href directo
+            btnMaster.onclick = null;
+            btnMaster.href = link;
+        }
+
+        function setBotonWhatsApp() {
+            btnMaster.classList.add('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
+            btnMaster.classList.remove('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
+            txtMaster.textContent = "Solicitar Reserva";
+            
+            // Abre Modal
+            btnMaster.href = "#";
+            btnMaster.onclick = function(e) {
+                e.preventDefault();
+                abrirModal();
+            };
+        }
+
         function calcularTotal() {
             let totalFinal = 0;
             mensajeWhatsAppFinal = "";
 
-            if (modoActual === 'pasadia') {
+            if (modoActual === 'anonuevo') {
+                bloqueTotal.classList.add('hidden');
+                avisoEstimado.classList.add('hidden');
+                setBotonTickea(linkTickeaNewYear);
+            } 
+            else if (modoActual === 'pasadia') {
+                bloqueTotal.classList.remove('hidden');
+                avisoEstimado.classList.add('hidden');
                 totalFinal = (pasadiaAdultos * 10) + (pasadiaNinos * 5);
-                
                 displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
                 mensajeTotal.innerHTML = `<span class="text-white">${pasadiaAdultos}</span> Adulto(s) y <span class="text-white">${pasadiaNinos}</span> Niño(s)`;
-                btnAbrirModal.classList.remove('hidden');
+                setBotonTickea(linkTickeaPasadia);
+            } 
+            else {
+                // Modos Alojamiento (Regular o Festivo)
+                bloqueTotal.classList.remove('hidden');
+                avisoEstimado.classList.remove('hidden');
 
-                mensajeWhatsAppFinal = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para un *PASADÍA*:%0A%0A*Fecha:* ${fechaPasadiaStr}%0A*Adultos:* ${pasadiaAdultos}%0A*Niños (6-12):* ${pasadiaNinos}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad para asistir?`;
-
-            } else {
                 const checkboxes = document.querySelectorAll('.room-checkbox:checked');
                 let listaHabitaciones = [];
-                
-                // Verificamos si en modo regular falta la segunda fecha
                 const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
 
                 checkboxes.forEach(cb => {
-                    // Si el rango está incompleto, sumamos 0 para no mostrar montos falsos en la barra inferior
-                    let montoHabitacion = isRangoIncompleto ? 0 : parseFloat(cb.dataset.precio);
-                    totalFinal += montoHabitacion;
+                    totalFinal += isRangoIncompleto ? 0 : parseFloat(cb.dataset.precio);
                     listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);
                 });
 
                 if (checkboxes.length > 0) {
-                    
                     if(isRangoIncompleto) {
                          displayMonto.textContent = "$0.00";
-                         mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s). <span class="text-orange-400">Falta indicar fecha de salida.</span>`;
-                         btnAbrirModal.classList.add('hidden'); // Ocultar boton WA si no hay total
-                         return; // Detener cálculo
+                         mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s). <span class="text-orange-400">Falta fecha de salida.</span>`;
+                         btnMaster.classList.add('hidden');
+                         return; 
                     }
                     
                     displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
                     
-                    let textoModo = '';
-                    let infoFechasWA = '';
                     let nNoches = 1;
+                    let infoFechasWA = '';
                     
                     if(modoActual === 'festivo') {
-                        textoModo = 'Año Nuevo / Festivos';
-                        infoFechasWA = 'Fechas Festivas';
+                        infoFechasWA = 'Tarifa Festiva/Carnavales';
                         for (const radio of radiosNochesFestivas) {
                             if (radio.checked) nNoches = parseInt(radio.value);
                         }
                     } else {
-                        textoModo = 'Tarifas Regulares';
-                        infoFechasWA = fechasAlojamientoStr.includes(' a ') ? fechasAlojamientoStr : `${fechasAlojamientoStr} (Rango incompleto)`;
+                        infoFechasWA = fechasAlojamientoStr;
                         if(fpAlojamiento.selectedDates.length === 2){
                             nNoches = Math.round(Math.abs(fpAlojamiento.selectedDates[1] - fpAlojamiento.selectedDates[0]) / (1000 * 60 * 60 * 24));
                         }
                     }
 
                     mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s) × <span class="text-white">${nNoches}</span> noche(s)`;
-                    btnAbrirModal.classList.remove('hidden');
                     
-                    mensajeWhatsAppFinal = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para ALOJAMIENTO:%0A%0A*Tipo de Estadía:* ${textoModo}%0A*Fechas:* ${infoFechasWA}%0A*Noches:* ${nNoches}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
+                    btnMaster.classList.remove('hidden');
+                    setBotonWhatsApp();
+                    
+                    mensajeWhatsAppFinal = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para ALOJAMIENTO:%0A%0A*Fechas:* ${infoFechasWA}%0A*Noches:* ${nNoches}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
                 } else {
                     displayMonto.textContent = `$0.00`;
                     mensajeTotal.textContent = `Selecciona al menos una habitación`;
-                    btnAbrirModal.classList.add('hidden');
+                    btnMaster.classList.add('hidden');
                 }
             }
         }
 
-        // --- Lógica del Modal (Captura de Nombre) ---
-        btnAbrirModal.addEventListener('click', () => {
+        // LÓGICA MODAL
+        function abrirModal() {
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 document.getElementById('modalContent').classList.remove('scale-95');
                 inputNombre.focus();
             }, 10);
-        });
+        }
 
         function cerrarModal() {
             modal.classList.add('opacity-0');
             document.getElementById('modalContent').classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
         btnCerrarModal.addEventListener('click', cerrarModal);
@@ -1047,73 +956,68 @@
                 inputNombre.classList.add('border-red-500');
                 return;
             }
-            
             errorNombre.classList.add('hidden');
             inputNombre.classList.remove('border-red-500');
             
-            const nombreStr = encodeURIComponent(`*Nombre del cliente:* ${inputNombre.value}\n`);
-            const urlFinal = `https://wa.me/${numeroWhatsApp}?text=${nombreStr}${mensajeWhatsAppFinal}`;
-            
-            window.open(urlFinal, '_blank');
+            const nombreStr = encodeURIComponent(`*Nombre:* ${inputNombre.value}\n`);
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${nombreStr}${mensajeWhatsAppFinal}`, '_blank');
             cerrarModal();
         });
 
-        // --- CAMBIO DE PESTAÑAS ---
-        function actualizarPestanas(activa) {
-            const classActive = "segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-active";
-            const classInactive = "segmented-btn flex-1 py-4 px-4 rounded-xl text-[13px] sm:text-sm font-semibold tracking-wider segmented-inactive";
+        // CAMBIO DE PESTAÑAS
+        function resetPestanas() {
+            const btns = [btnModoPasadia, btnModoWelcome2027, btnModoRegular, btnModoFestivo];
+            btns.forEach(btn => {
+                btn.classList.remove('segmented-active');
+                btn.classList.add('segmented-inactive');
+            });
             
-            btnModoPasadia.className = activa === 'pasadia' ? classActive : classInactive;
-            btnModoRegular.className = activa === 'regular' ? classActive : classInactive;
-            btnModoFestivo.className = activa === 'festivo' ? classActive : classInactive;
+            pasadiaContainer.classList.add('hidden');
+            welcome2027Container.classList.add('hidden');
+            controlesRegular.classList.add('hidden');
+            controlesFestivo.classList.add('hidden');
+            habitacionesSection.classList.add('hidden');
         }
 
         btnModoPasadia.addEventListener('click', () => {
             modoActual = 'pasadia';
-            actualizarPestanas('pasadia');
-            
-            controlesEstadia.classList.add('hidden'); 
-            habitacionesSection.classList.add('hidden'); 
-            pasadiaContainer.classList.remove('hidden'); 
-            
-            acordeonAnoNuevo.classList.add('hidden');
-            acordeonAlojamientoDetalles.classList.add('hidden'); 
-            
+            resetPestanas();
+            btnModoPasadia.classList.add('segmented-active');
+            btnModoPasadia.classList.remove('segmented-inactive');
+            pasadiaContainer.classList.remove('hidden');
             calcularTotal();
         });
 
-        btnModoFestivo.addEventListener('click', () => {
-            modoActual = 'festivo';
-            actualizarPestanas('festivo');
-            
-            pasadiaContainer.classList.add('hidden');
-            controlesEstadia.classList.remove('hidden');
-            habitacionesSection.classList.remove('hidden');
-            
-            contenedorFechasRegular.classList.add('hidden');
-            contenedorNochesFestivas.classList.remove('hidden');
-            
-            acordeonAnoNuevo.classList.remove('hidden');
-            acordeonAnoNuevo.open = true;
-            acordeonAlojamientoDetalles.classList.remove('hidden');
-            
-            renderHabitaciones();
+        btnModoWelcome2027.addEventListener('click', () => {
+            modoActual = 'anonuevo';
+            resetPestanas();
+            btnModoWelcome2027.classList.add('segmented-active');
+            btnModoWelcome2027.classList.remove('segmented-inactive');
+            welcome2027Container.classList.remove('hidden');
+            calcularTotal();
         });
 
         btnModoRegular.addEventListener('click', () => {
             modoActual = 'regular';
-            actualizarPestanas('regular');
-            
-            pasadiaContainer.classList.add('hidden');
-            controlesEstadia.classList.remove('hidden');
+            resetPestanas();
+            btnModoRegular.classList.add('segmented-active');
+            btnModoRegular.classList.remove('segmented-inactive');
+            controlesRegular.classList.remove('hidden');
             habitacionesSection.classList.remove('hidden');
             
-            contenedorFechasRegular.classList.remove('hidden');
-            contenedorNochesFestivas.classList.add('hidden');
-            
-            acordeonAnoNuevo.classList.add('hidden');
-            acordeonAlojamientoDetalles.classList.remove('hidden');
-            
+            if(fpAlojamiento.selectedDates.length === 0) {
+                // No forzar fecha por defecto
+            }
+            renderHabitaciones();
+        });
+
+        btnModoFestivo.addEventListener('click', () => {
+            modoActual = 'festivo';
+            resetPestanas();
+            btnModoFestivo.classList.add('segmented-active');
+            btnModoFestivo.classList.remove('segmented-inactive');
+            controlesFestivo.classList.remove('hidden');
+            habitacionesSection.classList.remove('hidden');
             renderHabitaciones();
         });
 
@@ -1121,7 +1025,7 @@
             radio.addEventListener('change', renderHabitaciones);
         }
 
-        // INIT por defecto en pasadia
+        // Init
         btnModoPasadia.click();
 
     </script>

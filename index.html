@@ -3,404 +3,1127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Mezcal Malibú - Tarifas y Reservas</title>
+    <title>Reserva Casa Mezcal Malibú</title>
+    
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Flatpickr (Calendario Premium) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+    <!-- Google Fonts: Cormorant Garamond & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --accent-gold: #d4af37;
-            --accent-hover: #b5952f;
-            --border-color: #333333;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            --brand-teal: #14b8a6;
+            --brand-orange: #f97316;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 80px;
+            font-family: 'Outfit', sans-serif;
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(4, 20, 24, 0.55) 0%, rgba(2, 10, 12, 0.95) 100%);
+            z-index: -1;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        .font-elegant { font-family: 'Cormorant Garamond', serif; }
+
+        .ultra-glass {
+            background: linear-gradient(135deg, rgba(16, 35, 40, 0.6), rgba(6, 15, 18, 0.8));
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--accent-gold);
-            line-height: 1.2;
-        }
-
-        .section-card {
-            background-color: var(--surface-color);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 600px) {
-            .price-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .price-item {
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .price-item h3 {
-            color: var(--accent-gold);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        ul li::before {
-            content: "•";
-            color: var(--accent-gold);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .highlight-text {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        /* Enlace del Menú sin sacar al usuario de la página */
-        .menu-link {
-            color: var(--accent-gold);
-            text-decoration: none;
-            font-weight: 700;
-            border-bottom: 1px dashed var(--accent-gold);
-            transition: all 0.3s ease;
+        /* Tarjetas de Habitación */
+        .room-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 1.25rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            margin-left: 5px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .menu-link:hover {
-            color: var(--accent-hover);
-            border-bottom-style: solid;
+        .room-card:hover {
+            background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.5);
         }
 
-        .floating-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--surface-color);
-            padding: 15px 20px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            z-index: 100;
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #20b858;
-        }
-
-        .policy-text {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Estilos del Modal (Menú Flotante) */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+        .check-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            background: #10b981; 
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 20;
         }
 
-        .modal-overlay.active {
+        .room-checkbox:checked + .room-card {
+            border-color: rgba(16, 185, 129, 0.5); 
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+
+        .room-checkbox:checked + .room-card .check-indicator {
             opacity: 1;
-            visibility: visible;
+            transform: scale(1);
         }
 
-        .modal-content {
-            background-color: var(--surface-color);
-            border: 1px solid var(--accent-gold);
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .close-btn {
+        .room-mezcal::before {
+            content: '';
             position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.2s;
-            line-height: 1;
+            inset: 0;
+            border-radius: 1.25rem;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.6), rgba(249, 115, 22, 0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .room-checkbox:checked + .room-mezcal {
+            background: linear-gradient(145deg, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.02) 100%);
+            border-color: transparent; 
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.3), inset 0 0 20px rgba(249, 115, 22, 0.15);
         }
 
-        .close-btn:hover {
+        .badge-base {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
+        }
+        
+        .room-checkbox:checked + .room-sencilla .badge-sencilla {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            border-color: #14b8a6;
             color: #fff;
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
         }
 
-        .menu-title {
-            color: var(--accent-gold);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .menu-category {
-            margin-bottom: 15px;
-        }
-        .menu-category h4 {
+        .badge-mezcal {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            border: 1px solid #fcd34d;
             color: #fff;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+            position: relative;
+            overflow: hidden;
         }
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        
+        .badge-mezcal::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s infinite;
         }
-        .menu-item span.price {
-            color: var(--accent-gold);
-            font-weight: 600;
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
         }
+
+        .segmented-btn {
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+        .segmented-active {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .segmented-inactive {
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid transparent;
+        }
+        .segmented-inactive:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        details > summary { list-style: none; outline: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: slideDownFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        
+        @keyframes slideDownFade {
+            from { opacity: 0; transform: translateY(-15px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(to right, #fcd34d, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* FLATPICKR PREMIUM */
+        .flatpickr-calendar {
+            background: rgba(10, 25, 30, 0.95) !important;
+            backdrop-filter: blur(15px) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8) !important;
+            font-family: 'Outfit', sans-serif !important;
+        }
+        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+            background: #f97316 !important;
+            border-color: #f97316 !important;
+            color: #fff !important;
+        }
+        .flatpickr-day.inRange {
+            background: rgba(249, 115, 22, 0.2) !important;
+            border-color: transparent !important;
+        }
+        .flatpickr-day.flatpickr-disabled {
+            color: rgba(255, 255, 255, 0.15) !important;
+            background: transparent !important;
+            border-color: transparent !important;
+            cursor: not-allowed !important;
+        }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="py-8 px-4 md:px-6 lg:px-8 flex flex-col items-center relative">
 
-    <div class="container">
-        <header>
-            <h1>Casa Mezcal Malibú: Diversión frente al mar para toda la familia.</h1>
+    <div class="bg-overlay"></div>
+
+    <!-- MODAL MENÚ (Flotante) -->
+    <div id="menuModal" class="fixed inset-0 z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="cerrarMenuModal()"></div>
+        <div class="relative w-full max-w-2xl mx-4 max-h-[90vh] flex flex-col transform scale-95 transition-transform duration-300" id="menuModalContent">
+            <!-- Botón de Cerrar Modal -->
+            <button onclick="cerrarMenuModal()" class="absolute -top-12 right-0 text-white hover:text-orange-400 transition-colors bg-black/50 rounded-full p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="overflow-y-auto no-scrollbar rounded-3xl border border-white/20 shadow-2xl bg-black">
+                <img src="menu.jpg" alt="Menú Casa Mezcal" class="w-full h-auto">
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE DATOS DEL CLIENTE (WHATSAPP) -->
+    <div id="reservaModal" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modalBackdrop"></div>
+        <div class="relative bg-gradient-to-br from-[#0c2328] to-[#041014] border border-white/20 p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300" id="modalContent">
+            
+            <div class="text-center mb-6">
+                <h3 class="font-elegant text-3xl md:text-4xl text-white mb-2">Tus Datos de Reserva</h3>
+                <p class="text-teal-100/70 text-sm font-light">Para brindarte una atención personalizada, indícanos tu nombre completo.</p>
+            </div>
+            
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-xs text-white/50 uppercase tracking-widest mb-2 font-medium">Nombre y Apellido</label>
+                    <input type="text" id="nombreCliente" placeholder="Ej. Juan Pérez" class="w-full bg-black/40 border border-white/20 rounded-xl px-5 py-4 text-white placeholder-white/30 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all font-light" autocomplete="off">
+                    <p id="errorNombre" class="text-red-400 text-xs mt-2 hidden">Por favor ingresa tu nombre para continuar.</p>
+                </div>
+                
+                <button id="btnConfirmarWA" class="w-full py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(16,185,129,0.3)] transition-all flex items-center justify-center gap-3 mt-4">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span>Enviar Reserva a WhatsApp</span>
+                </button>
+                
+                <button id="btnCerrarModal" class="w-full py-3 text-white/40 text-sm font-medium hover:text-white transition-colors">Volver al cotizador</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="w-full max-w-5xl relative z-10 space-y-8 lg:space-y-12">
+        
+        <!-- HEADER -->
+        <header class="text-center space-y-5 pt-6">
+            <div class="relative inline-block group">
+                <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 to-teal-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                <img src="logo.jpeg" alt="Logo Casa Mezcal" class="relative w-36 h-36 rounded-full object-cover border-4 border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-10 transition-transform duration-500 group-hover:scale-105">
+            </div>
+            <div class="space-y-2">
+                <h1 class="font-elegant text-5xl md:text-7xl text-white tracking-tight drop-shadow-xl">
+                    Casa Mezcal <span class="text-gradient-gold italic pr-2">Malibú</span>
+                </h1>
+                <p class="text-sm md:text-base text-teal-100/70 font-light tracking-[0.15em] uppercase">
+                    Diversión frente al mar para toda la familia
+                </p>
+            </div>
         </header>
 
-        <!-- PASADÍAS -->
-        <div class="section-card">
-            <h2>☀️ Pasadías (10:00 AM - 7:00 PM)</h2>
-            <div class="price-grid">
-                <div class="price-item">
-                    <h3>Tarifas Regulares</h3>
-                    <ul>
-                        <li>Adultos: <span class="highlight-text">$10.00</span></li>
-                        <li>Niños (6 a 12 años): <span class="highlight-text">$5.00</span></li>
-                        <li>Niños (0 a 5 años): <span class="highlight-text">Gratis</span></li>
-                    </ul>
-                </div>
-                <div class="price-item">
-                    <h3>Promoción Días de Semana</h3>
-                    <ul>
-                        <li>Lunes, Martes, Jueves y Viernes: <span class="highlight-text">$5.00 general</span></li>
-                        <li><small>(Miércoles cerrado, excepto 2 de enero)</small></li>
-                    </ul>
-                </div>
-            </div>
-            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
-                <h3 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 1.1rem;">¿Qué incluye?</h3>
-                <ul>
-                    <li>Acceso a la playa y piscina</li>
-                    <li>Uso de duchas y baños</li>
-                    <li>Restaurante y Bar <a class="menu-link" id="openMenuBtn">ver menú</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- ALOJAMIENTO -->
-        <div class="section-card">
-            <h2>🛏️ Hospedaje (10 Habitaciones)</h2>
-            <div class="price-grid">
-                <div class="price-item">
-                    <h3>Habitación Sencilla</h3>
-                    <ul>
-                        <li>Domingo a Jueves: <span class="highlight-text">$55.00</span></li>
-                        <li>Viernes y Sábado: <span class="highlight-text">$75.00</span></li>
-                        <li>Días Festivos/Año Nuevo: <span class="highlight-text">$145.00</span></li>
-                    </ul>
-                </div>
-                <div class="price-item">
-                    <h3>Habitación Mezcal</h3>
-                    <ul>
-                        <li>Domingo a Jueves: <span class="highlight-text">$65.00</span></li>
-                        <li>Viernes y Sábado: <span class="highlight-text">$90.00</span></li>
-                        <li>Días Festivos/Año Nuevo: <span class="highlight-text">$175.00</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- EXTRAS Y POLÍTICAS -->
-        <div class="section-card">
-            <h2>📌 Extras y Políticas</h2>
-            <ul>
-                <li><strong>Ranchos frente al mar:</strong> $15.00 (Días de semana) | $30.00 (Fines de semana)</li>
-                <li><strong>Pet Friendly:</strong> $5.00 por mascota.</li>
-                <li><strong>Coolers:</strong> Permitidos desde $20.00 (depende de tamaño y contenido).</li>
-                <li><strong>Alimentos:</strong> No se permite ingreso de comida preparada (solo snacks).</li>
-                <li><strong>Reservas:</strong> 50% abono inicial, cancelación del saldo 5 días antes. Reservas de último minuto (5 días o menos) requieren el 100%.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <div class="floating-cta">
-        <a href="https://wa.me/50768064250?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20para%20Casa%20Mezcal%20Malib%C3%BA" target="_blank" class="btn-whatsapp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-            </svg>
-            Reservar por WhatsApp
-        </a>
-    </div>
-
-    <!-- MODAL DEL MENÚ -->
-    <div class="modal-overlay" id="menuModal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeMenuBtn">&times;</span>
-            <h3 class="menu-title">Menú Casa Mezcal</h3>
+        <!-- PANEL PRINCIPAL -->
+        <main class="ultra-glass rounded-[2.5rem] p-6 sm:p-8 md:p-12 relative overflow-hidden">
             
-            <div class="menu-category">
-                <h4>Entradas y Snacks</h4>
-                <div class="menu-item"><span>Ceviche de Corvina</span><span class="price">$8.00</span></div>
-                <div class="menu-item"><span>Alitas (6 pzas) con papas</span><span class="price">$10.00</span></div>
-                <div class="menu-item"><span>Canastas de Patacones con Mariscos</span><span class="price">$12.00</span></div>
+            <div class="absolute -top-32 -right-32 w-64 h-64 bg-teal-500/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+            <!-- NAVEGACIÓN PRINCIPAL (5 PESTAÑAS) -->
+            <div class="flex flex-col gap-6 mb-12 relative z-10">
+                <div class="bg-black/30 rounded-2xl p-2 border border-white/5 shadow-inner flex flex-wrap lg:grid lg:grid-cols-5 gap-2">
+                    <button id="btnModoPasadia" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-active">
+                        Pasadía
+                    </button>
+                    <button id="btnModoWelcome2027" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 animate-pulse"></div>
+                        <span class="relative z-10 text-orange-300">Welcome 2027</span>
+                    </button>
+                    <button id="btnModoRegular" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
+                        Alojamiento Regular
+                    </button>
+                    <button id="btnModoFestivo" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
+                        Alojamiento Festivo
+                    </button>
+                    <button id="btnModoMenu" class="segmented-btn flex-1 basis-full lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive border border-teal-500/30 bg-teal-900/20 text-teal-100 hover:bg-teal-800/40">
+                        Restaurante & Menú
+                    </button>
+                </div>
+
+                <!-- CONTROLES ESTADÍA ALOJAMIENTO REGULAR -->
+                <div id="controlesRegular" class="transition-all duration-300 hidden">
+                    <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors max-w-lg mx-auto">
+                        <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <input type="text" id="fechaAlojamiento" placeholder="Selecciona fecha: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
+                    </div>
+                </div>
+
+                <!-- CONTROLES NOCHES FESTIVAS (Carnavales, etc.) -->
+                <div id="controlesFestivo" class="transition-all duration-300 hidden">
+                    <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
+                        <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
+                                <span class="font-bold text-lg leading-none">1</span>
+                                <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noche</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="nochesFestivas" value="2" class="peer sr-only" onchange="renderHabitaciones()">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
+                                <span class="font-bold text-lg leading-none">2</span>
+                                <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="nochesFestivas" value="3" class="peer sr-only" onchange="renderHabitaciones()">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
+                                <span class="font-bold text-lg leading-none">3</span>
+                                <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="nochesFestivas" value="4" class="peer sr-only" onchange="renderHabitaciones()">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
+                                <span class="font-bold text-lg leading-none">4</span>
+                                <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer flex-1 min-w-[60px]">
+                            <input type="radio" name="nochesFestivas" value="5" class="peer sr-only" onchange="renderHabitaciones()">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
+                                <span class="font-bold text-lg leading-none">5</span>
+                                <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="menu-category">
-                <h4>Platos Fuertes</h4>
-                <div class="menu-item"><span>Pescado Frito entero con patacones</span><span class="price">$15.00</span></div>
-                <div class="menu-item"><span>Filete de Pescado al Ajillo</span><span class="price">$14.00</span></div>
-                <div class="menu-item"><span>Hamburguesa Casa Mezcal</span><span class="price">$11.00</span></div>
-                <div class="menu-item"><span>Deditos de Pollo (Kids)</span><span class="price">$7.00</span></div>
+            <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
+            <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+                
+                <div class="mb-10 border-b border-white/10 pb-8 text-center sm:text-left flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+                    <div>
+                        <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
+                        <p class="text-sm text-teal-100/70 mt-3 font-light tracking-[0.2em] uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg text-center flex flex-col justify-center">
+                        <p class="text-2xl font-elegant text-white mb-2">Adultos</p>
+                        <p class="text-orange-400 font-semibold text-2xl mb-1">$10 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
+                        <div class="mt-2">
+                            <p class="text-[11px] text-teal-300 font-medium bg-teal-900/40 inline-block px-3 py-1.5 rounded-full border border-teal-500/30">
+                                Promocional: $5 (Lun, Mar, Jue, Vie)
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg text-center flex flex-col justify-center">
+                        <p class="text-2xl font-elegant text-white mb-2">Niños <span class="text-sm font-sans font-light text-white/50">(6-12 años)</span></p>
+                        <p class="text-orange-400 font-semibold text-2xl mb-1">$5 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
+                        <div class="flex flex-col items-center gap-1 mt-2">
+                            <p class="text-[11px] text-teal-300 font-medium bg-teal-900/40 inline-block px-3 py-1.5 rounded-full border border-teal-500/30">
+                                Promocional: GRATIS (Lun, Mar, Jue, Vie)
+                            </p>
+                            <p class="text-[10px] text-white/70 uppercase tracking-widest mt-1">Niños hasta 5 años: GRATIS siempre</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm">
+                    <div class="bg-black/30 p-8 rounded-2xl border border-white/10 shadow-inner h-full flex flex-col justify-center">
+                        <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-5 border-b border-white/5 pb-4">🌊 Tu Pasadía Incluye:</h3>
+                        <ul class="space-y-4 font-light text-white/80">
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Piscina y acceso directo a la playa.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Mobiliario de playa (sujeto a disponibilidad).</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños y duchas.</li>
+                            <li class="flex items-center justify-between flex-wrap gap-2 border border-white/5 p-2 rounded-xl bg-white/5">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-teal-400 text-lg">✅</span> 
+                                    <span>Estacionamiento, Wi-Fi, Restaurante y bar.</span>
+                                </div>
+                                <button type="button" onclick="abrirMenuModal()" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors ml-8 sm:ml-0">
+                                    📄 Ver Menú
+                                </button>
+                            </li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
+                        </ul>
+                        
+                        <div class="mt-6 border-t border-white/10 pt-4 space-y-3">
+                            <p class="flex items-start gap-3 text-red-300">
+                                <span class="text-white/40 text-lg mt-0.5 font-sans">ℹ️</span> 
+                                <span class="text-white/70 italic text-xs pt-0.5">Importante: No se permite el ingreso de comida, solo snacks.</span>
+                            </p>
+                            <p class="flex items-start gap-3 text-white/80">
+                                <span class="text-teal-400 text-lg mt-0.5">🧊</span> 
+                                <span>Ingreso de coolers (bebidas) permitido con cargo adicional desde $20 (según tamaño y contenido).</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-8 rounded-2xl border border-teal-500/20 shadow-inner">
+                            <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-3">🏝️ Ranchos Frente al Mar</h3>
+                            <p class="text-white/70 font-light leading-relaxed mb-3">
+                                Disfruta de mayor comodidad y privacidad con nuestros ranchos disponibles para alquiler durante tu visita.
+                            </p>
+                            <ul class="space-y-2 font-light text-orange-200">
+                                <li class="flex items-center gap-2">▪ Días de semana: <strong class="text-orange-400">$15</strong></li>
+                                <li class="flex items-center gap-2">▪ Fines de Semana: <strong class="text-orange-400">$30</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-900/20 p-8 rounded-2xl border border-orange-500/30">
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                                ⚠️ Cupos Limitados
+                            </h3>
+                            <p class="text-orange-100/70 font-light text-sm leading-relaxed">
+                                Los cupos son limitados para garantizar una mejor experiencia. ¡Asegura tu espacio y disfruta de un día perfecto frente al mar! 🌴
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="menu-category">
-                <h4>Bebidas y Coctelería</h4>
-                <div class="menu-item"><span>Cervezas Nacionales</span><span class="price">$2.50</span></div>
-                <div class="menu-item"><span>Margarita / Mojito</span><span class="price">$6.50</span></div>
-                <div class="menu-item"><span>Piña Colada</span><span class="price">$7.00</span></div>
-                <div class="menu-item"><span>Sodas y Aguas</span><span class="price">$2.00</span></div>
+            <!-- ================= SECCIÓN WELCOME 2027 ================= -->
+            <div id="welcome2027Container" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+                
+                <div class="text-center mb-8">
+                    <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md mb-2">Welcome 2027 <span class="text-orange-400 italic">Pasadía Festivo</span></h2>
+                    <p class="text-lg text-teal-100/90 font-light tracking-wide">1, 2 y 3 de Enero | 10:00 A.M. a 8:00 P.M.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-10">
+                    <!-- IMAGEN AÑO NUEVO OFICIAL -->
+                    <img src="anonuevo.jpg" alt="Welcome 2027 Casa Mezcal" class="w-full h-auto object-cover border-b border-white/10">
+                    
+                    <div class="p-6 md:p-10 space-y-8 text-white/90 font-light">
+                        <div class="text-center space-y-4">
+                            <p class="text-2xl md:text-3xl font-elegant text-orange-300 drop-shadow-md">
+                                🎆🌴 ¡RECIBE EL 2027 EN CASA MEZCAL HOTEL! 🥂✨
+                            </p>
+                            <p class="text-base md:text-lg text-white/80 max-w-2xl mx-auto">
+                                ¡Comienza el año nuevo con una experiencia inolvidable frente al mar! 🌊☀️<br><br>
+                                Este 1, 2 y 3 de enero, disfruta de piscina, playa, buena comida, cócteles y el mejor ambiente tropical con DJs invitados. 🎶🏝️
+                            </p>
+                        </div>
+
+                        <!-- Precios 2027 -->
+                        <div class="bg-gradient-to-r from-orange-900/30 to-teal-900/30 rounded-2xl p-6 border border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                            <div>
+                                <span class="block text-2xl mb-1">👤</span>
+                                <span class="block font-semibold text-white">Adultos</span>
+                                <span class="block text-orange-400 text-lg">$10</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl mb-1">👧</span>
+                                <span class="block font-semibold text-white">Niños (6-12)</span>
+                                <span class="block text-orange-400 text-lg">$5</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl mb-1">👶</span>
+                                <span class="block font-semibold text-white">Niños (0-5)</span>
+                                <span class="block text-emerald-400 font-bold text-lg">¡GRATIS!</span>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-2 border border-white/10">
+                                <span class="block text-2xl mb-1">🛖</span>
+                                <span class="block font-semibold text-white">Ranchos VIP</span>
+                                <span class="block text-yellow-400 font-bold">$45</span>
+                                <span class="block text-[10px] text-white/60 mt-1">(Incluye botella espumante 🥂)</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                            <div class="bg-black/30 p-6 rounded-xl border border-white/5">
+                                <h4 class="font-semibold text-orange-300 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">🌴 Tu Pasadía Incluye:</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Piscina y acceso directo a la playa.</li>
+                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Mobiliario de playa (sujeto a disponibilidad).</li>
+                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños, duchas y estacionamiento.</li>
+                                    <li class="flex items-center justify-between flex-wrap gap-2">
+                                        <div class="flex items-center gap-3">
+                                            <span class="text-teal-400 text-lg">✅</span> Acceso a restaurante y bar.
+                                        </div>
+                                        <button type="button" onclick="abrirMenuModal()" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors ml-8 sm:ml-0">
+                                            📄 Ver Menú
+                                        </button>
+                                    </li>
+                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🎧</span> Música tropical y DJs invitados.</li>
+                                    <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>Pet Friendly:</strong> $5 por mascota.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-red-900/30 border border-red-500/40 p-5 rounded-xl text-center shadow-inner">
+                                    <span class="block text-3xl mb-2">🚫</span>
+                                    <p class="text-red-200 font-medium">
+                                        No se permite el ingreso de alimentos, bebidas ni coolers externos.
+                                    </p>
+                                </div>
+                                <div class="bg-white/5 border border-white/10 p-5 rounded-xl text-center">
+                                    <span class="block text-2xl mb-2">📍</span>
+                                    <p class="text-white/80 font-medium">Hotel Casa Mezcal</p>
+                                    <p class="text-white/60 text-xs mt-1">Playa Malibú, Nueva Gorgona 🇵🇦</p>
+                                    <p class="text-orange-300 font-semibold mt-3 text-sm">🎟️ ¡PASADÍAS LIMITADOS!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- ================= SECCIÓN HABITACIONES ================= -->
+            <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out] hidden">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-white/10 pb-6">
+                    <div>
+                        <h2 class="font-elegant text-4xl text-white">Habitaciones</h2>
+                        <p class="text-sm text-teal-100/50 mt-2 font-light tracking-wide">Selecciona tus espacios. <br class="sm:hidden">Elige las fechas para calcular el total.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
+                    <!-- Inyección vía JS -->
+                </div>
+            </div>
+
+            <!-- ================= SECCIÓN MENÚ A PANTALLA COMPLETA ================= -->
+            <div id="menuContainer" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+                <div class="text-center mb-8">
+                    <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md mb-2">Nuestro Menú</h2>
+                    <p class="text-sm md:text-lg text-teal-100/70 font-light tracking-[0.1em] uppercase">Restaurante y Bar Casa Mezcal</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl p-2 sm:p-4">
+                    <img src="menu.jpg" alt="Menú Casa Mezcal" class="w-full h-auto rounded-2xl">
+                </div>
+            </div>
+
+            <!-- FOOTER TOTALES Y BOTÓN CTA MÁSTER -->
+            <div id="footerReserva" class="mt-12 bg-black/40 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/10 border-top border-white/30 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-900/20 via-transparent to-orange-900/20"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 w-full">
+                    
+                    <div class="text-center md:text-left space-y-1 w-full md:w-auto hidden" id="bloqueTotal">
+                        <p class="text-sm text-teal-300 font-medium tracking-wide" id="mensajeTotal">Selecciona una opción</p>
+                        <p class="text-[10px] text-white/40 uppercase tracking-[0.3em]" id="labelInversion">Inversión Estimada</p>
+                        <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-2" id="montoTotal">$0.00</span>
+                    </div>
+                    
+                    <a id="btnMasterAction" href="#" target="_blank" class="w-full md:w-auto px-8 md:px-12 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white text-center font-bold text-lg md:text-xl rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(16,185,129,0.3)] border border-emerald-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1">
+                        <span id="textoMasterAction">Adquiere tus entradas aquí</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+
+                <div id="avisoEstimado" class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center hidden">
+                    <p class="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest font-light">
+                        * Precio estimado sujeto a verificación por el departamento de reservas.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- ACORDEÓN DE POLÍTICAS (SÓLO PARA ALOJAMIENTO) -->
+        <section class="grid grid-cols-1 gap-5" id="seccionPoliticasAlojamiento">
             
-            <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
-                *Precios de referencia, sujetos a cambios. No incluyen ITBMS.
+            <details class="ultra-glass rounded-3xl group" open>
+                <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
+                    <span class="flex items-center gap-4">
+                        <span class="text-3xl drop-shadow-lg">📜</span>
+                        <span class="font-elegant tracking-wide text-2xl">Políticas y Privilegios</span>
+                    </span>
+                    <span class="text-teal-400 group-open:rotate-180 transition-transform duration-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                </summary>
+                
+                <div class="px-6 md:px-8 pb-8 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm text-white/80">
+                    
+                    <div class="space-y-6">
+                        <div class="bg-black/30 p-6 md:p-8 rounded-2xl border border-white/10 shadow-inner h-full flex flex-col justify-center">
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 border-b border-white/5 pb-3">🏡 Reservas y Pagos</h3>
+                            <ul class="space-y-3 font-light text-white/70">
+                                <li><span class="text-teal-400">✅</span> <strong>Abono inicial:</strong> 50% del valor total.</li>
+                                <li><span class="text-teal-400">✅</span> <strong>Pago restante:</strong> 50% a más tardar 5 días antes del check-in.</li>
+                                <li><span class="text-orange-400">📌</span> <em>Última hora:</em> 5 días o menos de anticipación deben cancelar el 100%.</li>
+                            </ul>
+
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 mt-8 border-b border-white/5 pb-3">💳 Métodos de Pago</h3>
+                            <ul class="space-y-3 font-light text-teal-50">
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Yappy</li>
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Transferencia Bancaria ACH</li>
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Enlace de pago (Tarjetas)</li>
+                            </ul>
+                            <div class="mt-5 text-[10px] text-white/50 border-t border-white/5 pt-3 leading-relaxed">
+                                Pagos gestionados por Hospédate Panamá S.A.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- COMIDA Y MENÚ -->
+                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-6 md:p-8 rounded-2xl border border-teal-500/20 shadow-inner h-full flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-4 border-b border-white/10 pb-3 flex justify-between items-center">
+                                    <span>🍔 Alimentos y Bebidas</span>
+                                    
+                                    <button type="button" onclick="abrirMenuModal()" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors">
+                                        📄 Ver Menú
+                                    </button>
+                                </h3>
+                                
+                                <ul class="space-y-4 font-light text-teal-50 text-sm">
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-white/40 text-lg mt-0.5 font-sans">ℹ️</span> 
+                                        <span><strong>Importante:</strong> No se permite el ingreso de comida, solo snacks.</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="text-teal-400 text-lg mt-0.5">🧊</span> 
+                                        <span>Ingreso de coolers (bebidas) permitido con cargo adicional desde $20 (según tamaño y contenido).</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-6 text-[11px] uppercase tracking-widest text-orange-200/50 border-t border-white/10 pt-4 leading-relaxed text-center">
+                                Contamos con restaurante y bar a tu disposición.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+        </section>
+
+        <footer class="text-center pb-10 pt-4">
+            <p class="text-xs text-white/20 font-light tracking-widest uppercase">
+                © 2026 Casa Mezcal Malibú • Diseño Exclusivo
             </p>
-        </div>
+        </footer>
     </div>
 
+    <!-- SCRIPT DE LÓGICA Y CALENDARIOS -->
     <script>
-        // Lógica del Modal para experiencia sin fricción
-        const modal = document.getElementById('menuModal');
-        const openBtn = document.getElementById('openMenuBtn');
-        const closeBtn = document.getElementById('closeMenuBtn');
+        const habitaciones = [
+            { id: 1, tipo: 'Sencilla', max: 2, camas: '1 queen' },
+            { id: 2, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 3, tipo: 'Mezcal', max: 4, camas: '1 queen, 2 twin' },
+            { id: 4, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 5, tipo: 'Sencilla', max: 2, camas: '1 queen' },
+            { id: 6, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 7, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 8, tipo: 'Mezcal', max: 3, camas: '1 queen, 1 twin' },
+            { id: 9, tipo: 'Sencilla', max: 3, camas: '1 queen, sofá cama' },
+            { id: 10, tipo: 'Sencilla', max: 2, camas: '1 queen' }
+        ];
 
-        // Abrir modal
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Evita que el fondo haga scroll
-        });
+        const precios = {
+            Sencilla: { semana: 55, finde: 75, festivo: 145 },
+            Mezcal: { semana: 65, finde: 90, festivo: 175 }
+        };
 
-        // Cerrar modal en el botón X
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        // FECHAS BLOQUEADAS ALOJAMIENTO (24-25 Dic, 31 Dic-1 Ene)
+        const fechasBloqueadasStr = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-12-24", "2027-12-25", "2027-12-31", "2028-01-01"];
+        
+        let modoActual = 'pasadia'; // pasadia, anonuevo, regular, festivo, menu
+        const numeroWhatsApp = "50768064250"; 
 
-        // Cerrar modal al hacer clic fuera del contenido
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+        const linkTickeaPasadia = "https://www.tickea.com/pa/casa-mezcal-hotel-844-tickets";
+        const linkTickeaNewYear = "https://www.tickea.com/pa/welcome-2027-841-tickets/1614";
+
+        let fechasAlojamientoStr = "";
+        let mensajeWhatsAppFinal = "";
+
+        const container = document.getElementById('habitacionesContainer');
+        const displayMonto = document.getElementById('montoTotal');
+        const mensajeTotal = document.getElementById('mensajeTotal');
+        
+        // Elementos y Contenedores
+        const btnMaster = document.getElementById('btnMasterAction');
+        const txtMaster = document.getElementById('textoMasterAction');
+        const avisoEstimado = document.getElementById('avisoEstimado');
+        const bloqueTotal = document.getElementById('bloqueTotal');
+        const footerReserva = document.getElementById('footerReserva');
+
+        const btnModoPasadia = document.getElementById('btnModoPasadia');
+        const btnModoWelcome2027 = document.getElementById('btnModoWelcome2027');
+        const btnModoRegular = document.getElementById('btnModoRegular');
+        const btnModoFestivo = document.getElementById('btnModoFestivo');
+        const btnModoMenu = document.getElementById('btnModoMenu');
+        
+        const controlesRegular = document.getElementById('controlesRegular');
+        const controlesFestivo = document.getElementById('controlesFestivo');
+        const pasadiaContainer = document.getElementById('pasadiaContainer');
+        const welcome2027Container = document.getElementById('welcome2027Container');
+        const menuContainer = document.getElementById('menuContainer');
+        const habitacionesSection = document.getElementById('habitacionesSection');
+        const seccionPoliticasAlojamiento = document.getElementById('seccionPoliticasAlojamiento');
+
+        const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
+
+        // Modal Form Elements
+        const modal = document.getElementById('reservaModal');
+        const btnCerrarModal = document.getElementById('btnCerrarModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const btnConfirmarWA = document.getElementById('btnConfirmarWA');
+        const inputNombre = document.getElementById('nombreCliente');
+        const errorNombre = document.getElementById('errorNombre');
+
+        // Modal Menú Elements
+        const menuModal = document.getElementById('menuModal');
+        const menuModalContent = document.getElementById('menuModalContent');
+
+        // FLATPICKR ALOJAMIENTO REGULAR
+        const fpAlojamiento = flatpickr("#fechaAlojamiento", {
+            mode: "range",
+            minDate: "today",
+            locale: "es",
+            dateFormat: "d M Y",
+            disable: [
+                function(date) {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const dateStr = `${year}-${month}-${day}`;
+                    
+                    if(date.getDay() === 3) return true; // Bloquear todos los miércoles
+                    return fechasBloqueadasStr.includes(dateStr); 
+                }
+            ],
+            onChange: function(selectedDates, dateStr, instance) {
+                fechasAlojamientoStr = dateStr;
+                renderHabitaciones(); 
             }
         });
+
+        // FUNCIONES DE CÁLCULO ALOJAMIENTO
+        function obtenerInfoPrecio(tipoHabitacion) {
+            if (modoActual === 'festivo') {
+                let nNoches = 1;
+                for (const radio of radiosNochesFestivas) {
+                    if (radio.checked) nNoches = parseInt(radio.value);
+                }
+                return {
+                    total: precios[tipoHabitacion].festivo * nNoches,
+                    etiquetaBase: '',
+                    etiquetaTotal: `Total por ${nNoches} noche(s)`
+                };
+            } 
+            else if (modoActual === 'regular') {
+                let etiquetaClara = `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`;
+                let dates = fpAlojamiento.selectedDates;
+                
+                if(dates.length < 2) {
+                    return { total: 0, etiquetaBase: etiquetaClara, etiquetaTotal: '' };
+                }
+                
+                let start = dates[0];
+                let end = dates[1];
+                let current = new Date(start);
+                let totalSuma = 0;
+                let countNoches = 0;
+                
+                while (current < end) {
+                    let d = current.getDay();
+                    if(d !== 3) { // Si no es miércoles, se cobra
+                        let isWeekend = (d === 5 || d === 6); 
+                        totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
+                    }
+                    current.setDate(current.getDate() + 1);
+                    countNoches++; // Contamos la noche incluso si es miercoles para el display
+                }
+                return {
+                    total: totalSuma,
+                    etiquetaBase: etiquetaClara,
+                    etiquetaTotal: `Total por ${countNoches} noche(s)`
+                };
+            }
+            return { total: 0, etiquetaBase: '', etiquetaTotal: '' };
+        }
+
+        function renderHabitaciones() {
+            if(modoActual === 'pasadia' || modoActual === 'anonuevo' || modoActual === 'menu') return;
+
+            const seleccionadas = Array.from(document.querySelectorAll('.room-checkbox:checked')).map(cb => cb.value);
+            container.innerHTML = ''; 
+            
+            habitaciones.forEach(hab => {
+                const infoPrecio = obtenerInfoPrecio(hab.tipo);
+                const isChecked = seleccionadas.includes(hab.id.toString()) ? 'checked' : '';
+                const isMezcal = hab.tipo === 'Mezcal';
+                const classWrapper = isMezcal ? 'room-mezcal' : 'room-sencilla';
+                const classBadge = isMezcal ? 'badge-mezcal' : 'badge-base text-teal-100 badge-sencilla';
+                const vipIcon = isMezcal ? `<span class="ml-1 text-xs">★</span>` : '';
+                
+                const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
+                
+                let bloquePreciosBase = '';
+                if (modoActual === 'regular') {
+                    bloquePreciosBase = `
+                        <div class="mt-4 bg-black/30 rounded-xl p-2 flex justify-between items-center text-[11px] border border-white/5 shadow-inner">
+                            <div class="flex flex-col text-center w-1/2 border-r border-white/10">
+                                <span class="text-white/40 uppercase tracking-[0.2em] text-[7px] mb-1">Dom - Jue</span>
+                                <span class="text-white font-medium">$${precios[hab.tipo].semana}</span>
+                            </div>
+                            <div class="flex flex-col text-center w-1/2">
+                                <span class="text-orange-200/50 uppercase tracking-[0.2em] text-[7px] mb-1">Vie - Sáb</span>
+                                <span class="text-orange-300 font-medium">$${precios[hab.tipo].finde}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                let markupPrecio = '';
+                if(isRangoIncompleto) {
+                    markupPrecio = `
+                        <div class="flex flex-col items-center justify-center w-full border-t border-white/5 pt-4 mt-4">
+                            <span class="text-[10px] font-light text-white/50 text-center tracking-wide">Selecciona check-out para calcular total</span>
+                        </div>
+                    `;
+                } else {
+                    markupPrecio = `
+                        <div class="w-full border-t border-white/5 pt-4 mt-4">
+                            <div class="flex items-end justify-between w-full">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-xl font-elegant text-white/60">$</span>
+                                    <span class="text-4xl font-semibold text-white tracking-tight">${infoPrecio.total}</span>
+                                </div>
+                                <span class="text-[10px] text-white/50 uppercase tracking-widest font-medium text-right leading-tight max-w-[80px]">
+                                    ${infoPrecio.etiquetaTotal}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const html = `
+                    <label class="relative block group">
+                        <input type="checkbox" class="room-checkbox peer sr-only" value="${hab.id}" data-precio="${infoPrecio.total}" data-tipo="${hab.tipo}" ${isChecked}>
+                        
+                        <div class="room-card ${classWrapper} p-5 h-full flex flex-col justify-between">
+                            <div class="check-indicator">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div class="flex justify-between items-start mb-4 relative z-10">
+                                <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center font-elegant text-lg text-white shadow-inner border border-white/10 border-top border-white/20">
+                                    ${hab.id}
+                                </div>
+                                <div class="flex items-center mt-1">
+                                    <span class="text-[9px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full font-semibold ${classBadge} mr-2">
+                                        ${hab.tipo} ${vipIcon}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5 mb-2 relative z-10">
+                                <p class="text-xs text-white/90 font-medium flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                    Máx ${hab.max} huéspedes
+                                </p>
+                                <p class="text-[11px] text-white/70 font-light flex items-center gap-2">
+                                    <svg class="w-3.5 h-3.5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12h18m-9-4v4m-8 4h16v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4z"></path></svg>
+                                    ${hab.camas}
+                                </p>
+                            </div>
+                            ${bloquePreciosBase}
+                            <div class="mt-auto relative z-10 w-full">
+                                ${markupPrecio}
+                            </div>
+                        </div>
+                    </label>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            document.querySelectorAll('.room-checkbox').forEach(cb => {
+                cb.addEventListener('change', calcularTotal);
+            });
+            calcularTotal();
+        }
+
+        // CONFIGURACIÓN DE BOTÓN MASTER Y TOTALES
+        function setBotonTickea(link) {
+            btnMaster.classList.remove('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
+            btnMaster.classList.add('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
+            txtMaster.textContent = "Adquiere tus entradas aquí";
+            
+            btnMaster.onclick = null;
+            btnMaster.href = link;
+        }
+
+        function setBotonWhatsApp() {
+            btnMaster.classList.remove('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
+            btnMaster.classList.add('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
+            txtMaster.textContent = "Solicitar Reserva";
+            
+            btnMaster.href = "#";
+            btnMaster.onclick = function(e) {
+                e.preventDefault();
+                abrirModal();
+            };
+        }
+
+        function calcularTotal() {
+            let totalFinal = 0;
+            mensajeWhatsAppFinal = "";
+            footerReserva.classList.remove('hidden');
+
+            if (modoActual === 'anonuevo') {
+                bloqueTotal.classList.add('hidden');
+                avisoEstimado.classList.add('hidden');
+                setBotonTickea(linkTickeaNewYear);
+            } 
+            else if (modoActual === 'pasadia') {
+                bloqueTotal.classList.add('hidden'); 
+                avisoEstimado.classList.add('hidden');
+                setBotonTickea(linkTickeaPasadia);
+            } 
+            else if (modoActual === 'regular' || modoActual === 'festivo') {
+                bloqueTotal.classList.remove('hidden');
+                avisoEstimado.classList.remove('hidden');
+
+                const checkboxes = document.querySelectorAll('.room-checkbox:checked');
+                let listaHabitaciones = [];
+                const isRangoIncompleto = (modoActual === 'regular' && fpAlojamiento.selectedDates.length < 2);
+
+                checkboxes.forEach(cb => {
+                    totalFinal += isRangoIncompleto ? 0 : parseFloat(cb.dataset.precio);
+                    listaHabitaciones.push(`Hab. ${cb.value} (${cb.dataset.tipo})`);
+                });
+
+                if (checkboxes.length > 0) {
+                    if(isRangoIncompleto) {
+                         displayMonto.textContent = "$0.00";
+                         mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s). <span class="text-orange-400">Falta fecha de salida.</span>`;
+                         btnMaster.classList.add('hidden'); // Ocultar boton WA
+                         return; 
+                    }
+                    
+                    displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
+                    
+                    let nNoches = 1;
+                    let infoFechasWA = '';
+                    
+                    if(modoActual === 'festivo') {
+                        infoFechasWA = 'Tarifa Festiva/Carnavales';
+                        for (const radio of radiosNochesFestivas) {
+                            if (radio.checked) nNoches = parseInt(radio.value);
+                        }
+                    } else {
+                        infoFechasWA = fechasAlojamientoStr;
+                        if(fpAlojamiento.selectedDates.length === 2){
+                            nNoches = Math.round(Math.abs(fpAlojamiento.selectedDates[1] - fpAlojamiento.selectedDates[0]) / (1000 * 60 * 60 * 24));
+                        }
+                    }
+
+                    mensajeTotal.innerHTML = `<span class="text-white">${checkboxes.length}</span> hab(s) seleccionada(s) × <span class="text-white">${nNoches}</span> noche(s)`;
+                    
+                    btnMaster.classList.remove('hidden');
+                    setBotonWhatsApp();
+                    
+                    mensajeWhatsAppFinal = `¡Hola Casa Mezcal Malibú! 🌴%0A%0AQuisiera solicitar disponibilidad para ALOJAMIENTO:%0A%0A*Fechas:* ${infoFechasWA}%0A*Noches:* ${nNoches}%0A*Habitaciones:* ${listaHabitaciones.join(', ')}%0A*Total Estimado:* $${totalFinal.toFixed(2)}%0A%0A¿Me confirman disponibilidad?`;
+                } else {
+                    displayMonto.textContent = `$0.00`;
+                    mensajeTotal.textContent = `Selecciona al menos una habitación`;
+                    btnMaster.classList.add('hidden');
+                }
+            }
+            else if (modoActual === 'menu') {
+                footerReserva.classList.add('hidden');
+            }
+        }
+
+        // --- LÓGICA MODALES ---
+        function abrirModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('modalContent').classList.remove('scale-95');
+                inputNombre.focus();
+            }, 10);
+        }
+
+        function cerrarModal() {
+            modal.classList.add('opacity-0');
+            document.getElementById('modalContent').classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        btnCerrarModal.addEventListener('click', cerrarModal);
+        modalBackdrop.addEventListener('click', cerrarModal);
+
+        btnConfirmarWA.addEventListener('click', () => {
+            if(inputNombre.value.trim() === '') {
+                errorNombre.classList.remove('hidden');
+                inputNombre.classList.add('border-red-500');
+                return;
+            }
+            errorNombre.classList.add('hidden');
+            inputNombre.classList.remove('border-red-500');
+            
+            const nombreStr = encodeURIComponent(`*Nombre:* ${inputNombre.value}\n`);
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${nombreStr}${mensajeWhatsAppFinal}`, '_blank');
+            cerrarModal();
+        });
+
+        // Modal de Menú
+        function abrirMenuModal() {
+            menuModal.classList.remove('hidden');
+            setTimeout(() => {
+                menuModal.classList.remove('opacity-0');
+                menuModalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function cerrarMenuModal() {
+            menuModal.classList.add('opacity-0');
+            menuModalContent.classList.add('scale-95');
+            setTimeout(() => { menuModal.classList.add('hidden'); }, 300);
+        }
+
+        // --- CAMBIO DE PESTAÑAS ---
+        function resetPestanas() {
+            const btns = [btnModoPasadia, btnModoWelcome2027, btnModoRegular, btnModoFestivo, btnModoMenu];
+            btns.forEach(btn => {
+                btn.classList.remove('segmented-active');
+                btn.classList.add('segmented-inactive');
+                if(btn.id === 'btnModoMenu') {
+                    btn.classList.remove('bg-teal-700/80', 'text-white', 'border-teal-400');
+                    btn.classList.add('bg-teal-900/20', 'text-teal-100', 'border-teal-500/30');
+                }
+            });
+            
+            pasadiaContainer.classList.add('hidden');
+            welcome2027Container.classList.add('hidden');
+            controlesRegular.classList.add('hidden');
+            controlesFestivo.classList.add('hidden');
+            habitacionesSection.classList.add('hidden');
+            seccionPoliticasAlojamiento.classList.add('hidden');
+            menuContainer.classList.add('hidden');
+            footerReserva.classList.remove('hidden'); 
+        }
+
+        btnModoPasadia.addEventListener('click', () => {
+            modoActual = 'pasadia';
+            resetPestanas();
+            btnModoPasadia.classList.add('segmented-active');
+            btnModoPasadia.classList.remove('segmented-inactive');
+            pasadiaContainer.classList.remove('hidden');
+            calcularTotal();
+        });
+
+        btnModoWelcome2027.addEventListener('click', () => {
+            modoActual = 'anonuevo';
+            resetPestanas();
+            btnModoWelcome2027.classList.add('segmented-active');
+            btnModoWelcome2027.classList.remove('segmented-inactive');
+            welcome2027Container.classList.remove('hidden');
+            calcularTotal();
+        });
+
+        btnModoRegular.addEventListener('click', () => {
+            modoActual = 'regular';
+            resetPestanas();
+            btnModoRegular.classList.add('segmented-active');
+            btnModoRegular.classList.remove('segmented-inactive');
+            controlesRegular.classList.remove('hidden');
+            habitacionesSection.classList.remove('hidden');
+            seccionPoliticasAlojamiento.classList.remove('hidden');
+            renderHabitaciones();
+        });
+
+        btnModoFestivo.addEventListener('click', () => {
+            modoActual = 'festivo';
+            resetPestanas();
+            btnModoFestivo.classList.add('segmented-active');
+            btnModoFestivo.classList.remove('segmented-inactive');
+            controlesFestivo.classList.remove('hidden');
+            habitacionesSection.classList.remove('hidden');
+            seccionPoliticasAlojamiento.classList.remove('hidden');
+            renderHabitaciones();
+        });
+
+        btnModoMenu.addEventListener('click', () => {
+            modoActual = 'menu';
+            resetPestanas();
+            btnModoMenu.classList.remove('segmented-inactive', 'bg-teal-900/20', 'text-teal-100', 'border-teal-500/30');
+            btnModoMenu.classList.add('segmented-active', 'bg-teal-700/80', 'text-white', 'border-teal-400');
+            menuContainer.classList.remove('hidden');
+            footerReserva.classList.add('hidden'); 
+        });
+
+        for (const radio of radiosNochesFestivas) {
+            radio.addEventListener('change', renderHabitaciones);
+        }
+
+        // Init
+        btnModoPasadia.click();
+
     </script>
 </body>
 </html>

@@ -1,284 +1,406 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Mezcal Malibú</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            500: '#D4AF37', // Dorado Luxury
-                            600: '#B5952F',
-                            900: '#111827', // Fondo Dark Mode
-                        }
-                    }
-                }
+    <title>Casa Mezcal Malibú - Tarifas y Reservas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37;
+            --accent-hover: #b5952f;
+            --border-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            line-height: 1.2;
+        }
+
+        .section-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .price-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0f1115; color: #f3f4f6; }
-        .glass-card { background: rgba(31, 41, 55, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        
-        /* Animaciones para el modal */
-        #menuModal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .modal-content { transition: transform 0.3s ease; transform: scale(0.95); }
-        #menuModal:not(.hidden) .modal-content { transform: scale(1); }
-        
-        /* Ocultar scrollbar en el modal pero permitir scroll */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .price-item {
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-item h3 {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        ul li::before {
+            content: "•";
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Enlace del Menú sin sacar al usuario de la página */
+        .menu-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px dashed var(--accent-gold);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .menu-link:hover {
+            color: var(--accent-hover);
+            border-bottom-style: solid;
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--surface-color);
+            padding: 15px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20b858;
+        }
+
+        .policy-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Estilos del Modal (Menú Flotante) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--surface-color);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .menu-title {
+            color: var(--accent-gold);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .menu-category {
+            margin-bottom: 15px;
+        }
+        .menu-category h4 {
+            color: #fff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .menu-item span.price {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-500 selection:text-white pb-20">
+<body>
 
-    <!-- Hero Section -->
-    <header class="relative pt-16 pb-12 text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            Casa Mezcal <span class="text-brand-500">Malibú</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-300 font-light max-w-2xl mx-auto">
-            Diversión frente al mar para toda la familia.
-        </p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Casa Mezcal Malibú: Diversión frente al mar para toda la familia.</h1>
+        </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 space-y-8">
+        <!-- PASADÍAS -->
+        <div class="section-card">
+            <h2>☀️ Pasadías (10:00 AM - 7:00 PM)</h2>
+            <div class="price-grid">
+                <div class="price-item">
+                    <h3>Tarifas Regulares</h3>
+                    <ul>
+                        <li>Adultos: <span class="highlight-text">$10.00</span></li>
+                        <li>Niños (6 a 12 años): <span class="highlight-text">$5.00</span></li>
+                        <li>Niños (0 a 5 años): <span class="highlight-text">Gratis</span></li>
+                    </ul>
+                </div>
+                <div class="price-item">
+                    <h3>Promoción Días de Semana</h3>
+                    <ul>
+                        <li>Lunes, Martes, Jueves y Viernes: <span class="highlight-text">$5.00 general</span></li>
+                        <li><small>(Miércoles cerrado, excepto 2 de enero)</small></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                <h3 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 1.1rem;">¿Qué incluye?</h3>
+                <ul>
+                    <li>Acceso a la playa y piscina</li>
+                    <li>Uso de duchas y baños</li>
+                    <li>Restaurante y Bar <a class="menu-link" id="openMenuBtn">ver menú</a></li>
+                </ul>
+            </div>
+        </div>
 
-        <!-- Sección Pasadías -->
-        <section class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-                    <svg class="w-6 h-6 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    Pasadías (10:00 AM - 7:00 PM)
-                </h2>
-                <span class="bg-brand-500/20 text-brand-500 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Ventas</span>
+        <!-- ALOJAMIENTO -->
+        <div class="section-card">
+            <h2>🛏️ Hospedaje (10 Habitaciones)</h2>
+            <div class="price-grid">
+                <div class="price-item">
+                    <h3>Habitación Sencilla</h3>
+                    <ul>
+                        <li>Domingo a Jueves: <span class="highlight-text">$55.00</span></li>
+                        <li>Viernes y Sábado: <span class="highlight-text">$75.00</span></li>
+                        <li>Días Festivos/Año Nuevo: <span class="highlight-text">$145.00</span></li>
+                    </ul>
+                </div>
+                <div class="price-item">
+                    <h3>Habitación Mezcal</h3>
+                    <ul>
+                        <li>Domingo a Jueves: <span class="highlight-text">$65.00</span></li>
+                        <li>Viernes y Sábado: <span class="highlight-text">$90.00</span></li>
+                        <li>Días Festivos/Año Nuevo: <span class="highlight-text">$175.00</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXTRAS Y POLÍTICAS -->
+        <div class="section-card">
+            <h2>📌 Extras y Políticas</h2>
+            <ul>
+                <li><strong>Ranchos frente al mar:</strong> $15.00 (Días de semana) | $30.00 (Fines de semana)</li>
+                <li><strong>Pet Friendly:</strong> $5.00 por mascota.</li>
+                <li><strong>Coolers:</strong> Permitidos desde $20.00 (depende de tamaño y contenido).</li>
+                <li><strong>Alimentos:</strong> No se permite ingreso de comida preparada (solo snacks).</li>
+                <li><strong>Reservas:</strong> 50% abono inicial, cancelación del saldo 5 días antes. Reservas de último minuto (5 días o menos) requieren el 100%.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <div class="floating-cta">
+        <a href="https://wa.me/50768064250?text=Hola,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20para%20Casa%20Mezcal%20Malib%C3%BA" target="_blank" class="btn-whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Reservar por WhatsApp
+        </a>
+    </div>
+
+    <!-- MODAL DEL MENÚ -->
+    <div class="modal-overlay" id="menuModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeMenuBtn">&times;</span>
+            <h3 class="menu-title">Menú Casa Mezcal</h3>
+            
+            <div class="menu-category">
+                <h4>Entradas y Snacks</h4>
+                <div class="menu-item"><span>Ceviche de Corvina</span><span class="price">$8.00</span></div>
+                <div class="menu-item"><span>Alitas (6 pzas) con papas</span><span class="price">$10.00</span></div>
+                <div class="menu-item"><span>Canastas de Patacones con Mariscos</span><span class="price">$12.00</span></div>
+            </div>
+
+            <div class="menu-category">
+                <h4>Platos Fuertes</h4>
+                <div class="menu-item"><span>Pescado Frito entero con patacones</span><span class="price">$15.00</span></div>
+                <div class="menu-item"><span>Filete de Pescado al Ajillo</span><span class="price">$14.00</span></div>
+                <div class="menu-item"><span>Hamburguesa Casa Mezcal</span><span class="price">$11.00</span></div>
+                <div class="menu-item"><span>Deditos de Pollo (Kids)</span><span class="price">$7.00</span></div>
+            </div>
+
+            <div class="menu-category">
+                <h4>Bebidas y Coctelería</h4>
+                <div class="menu-item"><span>Cervezas Nacionales</span><span class="price">$2.50</span></div>
+                <div class="menu-item"><span>Margarita / Mojito</span><span class="price">$6.50</span></div>
+                <div class="menu-item"><span>Piña Colada</span><span class="price">$7.00</span></div>
+                <div class="menu-item"><span>Sodas y Aguas</span><span class="price">$2.00</span></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                    <h3 class="text-gray-400 text-sm uppercase tracking-wider mb-2">Tarifas Regulares (Sáb-Dom)</h3>
-                    <ul class="space-y-2">
-                        <li class="flex justify-between border-b border-gray-700 pb-1"><span>Adultos</span> <span class="font-semibold text-white">$10.00</span></li>
-                        <li class="flex justify-between border-b border-gray-700 pb-1"><span>Niños (6 a 12 años)</span> <span class="font-semibold text-white">$5.00</span></li>
-                        <li class="flex justify-between text-gray-400"><span>Menores de 5 años</span> <span>Gratis</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-brand-500 text-sm uppercase tracking-wider mb-2">Promo Días de Semana</h3>
-                    <div class="bg-gray-800/50 rounded-lg p-3 border border-brand-500/30">
-                        <p class="text-sm text-gray-300">Lunes, Martes, Jueves y Viernes (Miércoles cerrado)</p>
-                        <p class="text-xl font-bold text-brand-500 mt-1">$5.00 <span class="text-sm font-normal text-gray-400">por persona</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-gray-800/50 rounded-xl p-4 mt-4">
-                <h3 class="font-semibold text-white mb-2">El Pasadía Incluye:</h3>
-                <ul class="grid grid-cols-2 gap-2 text-sm text-gray-300 mb-4">
-                    <li class="flex items-center gap-2"><span>✓</span> Acceso a la Playa</li>
-                    <li class="flex items-center gap-2"><span>✓</span> Uso de Piscina</li>
-                    <li class="flex items-center gap-2"><span>✓</span> Duchas</li>
-                    <li class="flex items-center gap-2 font-semibold text-white"><span>✓</span> Restaurante y Bar</li>
-                </ul>
-                <button onclick="openMenu()" class="w-full md:w-auto px-6 py-2 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors border border-gray-600 flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                    Ver Menú Digital
-                </button>
-            </div>
-        </section>
-
-        <!-- Sección Habitaciones -->
-        <section class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl">
-            <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <svg class="w-6 h-6 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                Hospedaje (10 Habitaciones)
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Sencilla -->
-                <div class="bg-gray-800/80 rounded-xl p-5 border border-gray-700 hover:border-brand-500/50 transition">
-                    <h3 class="text-xl font-bold text-white mb-3">Habitación Sencilla</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
-                            <span class="text-gray-300">Dom a Jue:</span>
-                            <span class="font-bold text-brand-500">$55.00</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
-                            <span class="text-gray-300">Vie y Sáb:</span>
-                            <span class="font-bold text-brand-500">$75.00</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded border border-red-900/30">
-                            <span class="text-gray-300">Días Festivos:</span>
-                            <span class="font-bold text-white">$145.00</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mezcal -->
-                <div class="bg-gray-800/80 rounded-xl p-5 border border-gray-700 hover:border-brand-500/50 transition">
-                    <h3 class="text-xl font-bold text-white mb-3">Habitación Mezcal</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
-                            <span class="text-gray-300">Dom a Jue:</span>
-                            <span class="font-bold text-brand-500">$65.00</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded">
-                            <span class="text-gray-300">Vie y Sáb:</span>
-                            <span class="font-bold text-brand-500">$90.00</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900/50 p-2 rounded border border-red-900/30">
-                            <span class="text-gray-300">Días Festivos:</span>
-                            <span class="font-bold text-white">$175.00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Amenidades, Políticas y Restricciones -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="glass-card rounded-2xl p-6">
-                <h3 class="font-bold text-white mb-4">Adicionales</h3>
-                <ul class="space-y-3 text-sm text-gray-300">
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Ranchos frente al mar</span>
-                        <span class="text-right">$15 (Día de semana)<br>$30 (Fines de semana)</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Coolers (Según tamaño)</span>
-                        <span>Desde $20.00</span>
-                    </li>
-                    <li class="flex justify-between border-b border-gray-700 pb-2">
-                        <span>Pet Friendly</span>
-                        <span>$5.00 por mascota</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="glass-card rounded-2xl p-6">
-                <h3 class="font-bold text-white mb-4">Políticas del Hotel</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li class="flex gap-2"><span class="text-red-500">⚠</span> Prohibido el ingreso de alimentos (excepto snacks básicos).</li>
-                    <li class="flex gap-2"><span class="text-brand-500">✓</span> Reservas con 50% de abono. Cancelación total 5 días antes.</li>
-                    <li class="flex gap-2"><span class="text-brand-500">✓</span> Reservas de última hora (≤ 5 días) pago al 100%.</li>
-                    <li class="flex gap-2 text-xs mt-4 text-gray-400">Cerrado todos los miércoles (excepto 2 Ene 2027). Cerrado 24, 25, 31 Dic y 1 Ene. Gestión vía Hospédate Panamá S.A.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- CTA Action -->
-        <div class="text-center pt-4">
-            <button onclick="enviarReserva()" class="w-full md:w-auto bg-brand-500 hover:bg-brand-600 text-gray-900 font-bold text-lg py-4 px-10 rounded-xl shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all transform hover:scale-105 flex items-center justify-center gap-2 mx-auto">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                Reservar por WhatsApp
-            </button>
-            <p class="text-xs text-gray-500 mt-3">Atención inmediata • Hospédate Panamá S.A.</p>
-        </div>
-    </main>
-
-    <!-- Modal del Menú Flotante (Lightbox) -->
-    <div id="menuModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
-        <!-- Overlay para cerrar al hacer clic afuera -->
-        <div class="absolute inset-0 cursor-pointer" onclick="closeMenu()"></div>
-        
-        <div class="modal-content relative w-11/12 max-w-lg bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl max-h-[85vh] overflow-y-auto no-scrollbar z-10">
-            <!-- Botón Cerrar -->
-            <button onclick="closeMenu()" class="absolute top-4 right-4 bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full p-2 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <!-- Contenido del Menú -->
-            <div class="p-6 md:p-8">
-                <h3 class="text-2xl font-bold text-brand-500 text-center mb-1">Restaurante & Bar</h3>
-                <p class="text-gray-400 text-sm text-center mb-6">Casa Mezcal Malibú</p>
-
-                <!-- Categoría: Platos -->
-                <div class="mb-6">
-                    <h4 class="text-white font-semibold border-b border-gray-700 pb-2 mb-3 uppercase tracking-wider text-sm">Platos Fuertes</h4>
-                    <ul class="space-y-4">
-                        <li class="flex justify-between items-start">
-                            <div>
-                                <p class="text-gray-200 font-medium">Pescado Frito Entero</p>
-                                <p class="text-xs text-gray-400">Con patacones y ensalada fresca.</p>
-                            </div>
-                            <span class="text-brand-500 font-bold">$16.00</span>
-                        </li>
-                        <li class="flex justify-between items-start">
-                            <div>
-                                <p class="text-gray-200 font-medium">Ceviche Mezcal</p>
-                                <p class="text-xs text-gray-400">Corvina fresca con toque de la casa.</p>
-                            </div>
-                            <span class="text-brand-500 font-bold">$10.00</span>
-                        </li>
-                        <li class="flex justify-between items-start">
-                            <div>
-                                <p class="text-gray-200 font-medium">Hamburguesa Clásica</p>
-                                <p class="text-xs text-gray-400">Carne Angus, queso, papas fritas.</p>
-                            </div>
-                            <span class="text-brand-500 font-bold">$12.00</span>
-                        </li>
-                        <li class="flex justify-between items-start">
-                            <div>
-                                <p class="text-gray-200 font-medium">Deditos de Pollo</p>
-                                <p class="text-xs text-gray-400">Menú infantil con papas.</p>
-                            </div>
-                            <span class="text-brand-500 font-bold">$8.00</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Categoría: Bebidas -->
-                <div>
-                    <h4 class="text-white font-semibold border-b border-gray-700 pb-2 mb-3 uppercase tracking-wider text-sm">Bebidas y Cocteles</h4>
-                    <ul class="space-y-3">
-                        <li class="flex justify-between items-center">
-                            <p class="text-gray-200">Cervezas Nacionales</p>
-                            <span class="text-brand-500 font-bold">$2.50</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <p class="text-gray-200">Margarita / Piña Colada</p>
-                            <span class="text-brand-500 font-bold">$7.00</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <p class="text-gray-200">Sodas / Agua</p>
-                            <span class="text-brand-500 font-bold">$1.50</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <p class="text-center text-xs text-gray-500 mt-8 italic">* Menú sujeto a disponibilidad e impuestos aplicables.</p>
-            </div>
+            <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+                *Precios de referencia, sujetos a cambios. No incluyen ITBMS.
+            </p>
         </div>
     </div>
 
     <script>
-        // Funciones del Menú Modal
-        function openMenu() {
-            const modal = document.getElementById('menuModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // Previene el scroll del fondo
-        }
+        // Lógica del Modal para experiencia sin fricción
+        const modal = document.getElementById('menuModal');
+        const openBtn = document.getElementById('openMenuBtn');
+        const closeBtn = document.getElementById('closeMenuBtn');
 
-        function closeMenu() {
-            const modal = document.getElementById('menuModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // Restaura el scroll del fondo
-        }
+        // Abrir modal
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita que el fondo haga scroll
+        });
 
-        // Script de redirección a WhatsApp para reservas
-        function enviarReserva() {
-            const numeroWhatsApp = "50768064250";
-            let mensaje = `Hola Hospédate Panamá.%0A%0AQuiero información para reservar en *Casa Mezcal Malibú*.%0A%0AVengo desde la página web.`;
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
-        }
+        // Cerrar modal en el botón X
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Cerrar modal al hacer clic fuera del contenido
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
     </script>
 </body>
 </html>

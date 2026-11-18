@@ -8,13 +8,11 @@
     <link rel="icon" href="logo.jpeg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Flatpickr (Calendario Premium) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-    <!-- Google Fonts: Cormorant Garamond & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -30,7 +28,7 @@
             color: #f8fafc;
             min-height: 100vh;
             overflow-x: hidden;
-            background-color: #030a0d; /* Fondo base ultra oscuro */
+            background-color: #030a0d; 
             background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -47,7 +45,6 @@
 
         .font-elegant { font-family: 'Cormorant Garamond', serif; }
 
-        /* Paneles de Cristal (High-End) */
         .ultra-glass {
             background: linear-gradient(135deg, rgba(20, 40, 45, 0.4), rgba(5, 12, 15, 0.7));
             backdrop-filter: blur(30px);
@@ -58,7 +55,6 @@
             box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Tarjetas de Habitación */
         .room-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
             backdrop-filter: blur(12px);
@@ -188,7 +184,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* FLATPICKR PREMIUM */
         .flatpickr-calendar {
             background: rgba(10, 20, 25, 0.98) !important;
             backdrop-filter: blur(20px) !important;
@@ -214,7 +209,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* EFECTO HOVER GALERIA */
         .gallery-item::after {
             content: '';
             position: absolute;
@@ -230,24 +224,16 @@
 
     <div class="bg-overlay"></div>
 
-    <!-- MODAL MENÚ (LIGHTBOX PREMIUM SIN SCROLL INFINITO) -->
     <div id="menuModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-400 p-4 sm:p-8">
-        <!-- Fondo ultra desenfocado -->
         <div class="absolute inset-0 bg-black/95 backdrop-blur-2xl" onclick="cerrarMenuModal()"></div>
-        
-        <!-- Contenedor ajustado a la pantalla -->
         <div class="relative w-full max-w-5xl h-full max-h-[90vh] flex flex-col items-center justify-center transform scale-95 transition-transform duration-400" id="menuModalContent">
-            
             <button onclick="cerrarMenuModal()" class="absolute -top-2 right-0 md:-right-4 md:-top-4 text-white hover:text-orange-400 transition-colors bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-2.5 border border-white/20 z-10">
                 <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            
-            <!-- Imagen autocontenida que nunca se sale de la pantalla -->
             <img src="menu.jpg" alt="Menú Casa Mezcal" class="w-full h-full object-contain drop-shadow-2xl">
         </div>
     </div>
 
-    <!-- MODAL DE DATOS DEL CLIENTE (WHATSAPP) -->
     <div id="reservaModal" class="fixed inset-0 z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md" id="modalBackdrop"></div>
         <div class="relative bg-gradient-to-br from-[#0c2328] to-[#041014] border border-white/10 p-8 md:p-10 rounded-[2rem] shadow-2xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300" id="modalContent">
@@ -277,7 +263,6 @@
 
     <div class="w-full max-w-5xl relative z-10 space-y-8 lg:space-y-12">
         
-        <!-- HEADER -->
         <header class="text-center space-y-5 pt-8">
             <div class="relative inline-block group">
                 <div class="absolute inset-0 bg-gradient-to-tr from-orange-500 to-teal-500 rounded-full blur-[40px] opacity-40 animate-pulse"></div>
@@ -293,13 +278,10 @@
             </div>
         </header>
 
-        <!-- PANEL PRINCIPAL -->
         <main class="ultra-glass rounded-[2.5rem] p-5 sm:p-8 md:p-12 relative overflow-hidden">
             
-            <!-- Destello de fondo -->
             <div class="absolute -top-40 -right-40 w-96 h-96 bg-teal-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-            <!-- NAVEGACIÓN PRINCIPAL (4 PESTAÑAS - El Menú ahora es Modal) -->
             <div class="flex flex-col gap-6 mb-12 relative z-10">
                 <div class="bg-black/40 rounded-[1.25rem] p-2 border border-white/5 shadow-inner grid grid-cols-2 md:grid-cols-4 gap-2">
                     <button id="btnModoPasadia" class="segmented-btn py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-active">
@@ -317,7 +299,6 @@
                     </button>
                 </div>
 
-                <!-- CONTROLES ESTADÍA ALOJAMIENTO REGULAR -->
                 <div id="controlesRegular" class="transition-all duration-300 hidden">
                     <div class="bg-black/50 rounded-2xl p-2.5 border border-white/5 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors max-w-xl mx-auto">
                         <svg class="w-5 h-5 text-orange-400 absolute left-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -325,7 +306,6 @@
                     </div>
                 </div>
 
-                <!-- CONTROLES NOCHES FESTIVAS (Carnavales, etc.) -->
                 <div id="controlesFestivo" class="transition-all duration-300 hidden">
                     <div class="bg-black/50 rounded-2xl p-2.5 border border-white/5 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
@@ -370,8 +350,7 @@
             <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
             <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
-                <!-- Portada Pasadía -->
-                <div class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('portada-pasadia.jpg');">
+                <div class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_7676.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                         <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-lg leading-tight">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
@@ -408,7 +387,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm">
-                    <!-- Qué incluye (Rediseño Listado) -->
                     <div class="bg-gradient-to-br from-black/60 to-black/30 p-8 rounded-3xl border border-white/10 shadow-inner h-full flex flex-col justify-center">
                         <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-6 flex items-center gap-3">
                             <span class="text-2xl">🌊</span> Tu Pasadía Incluye:
@@ -435,7 +413,6 @@
                                 <span>Conexión Wi-Fi.</span>
                             </li>
                             
-                            <!-- BLoque de Restaurante con Botón -->
                             <li class="flex items-center justify-between flex-wrap gap-3 border border-white/10 p-3 rounded-xl bg-white/5 mt-2">
                                 <div class="flex items-center gap-3">
                                     <span class="text-teal-400 text-lg">🍹</span> 
@@ -456,7 +433,6 @@
                             </li>
                         </ul>
                         
-                        <!-- Restricciones de Comida -->
                         <div class="mt-8 border-t border-white/10 pt-6 space-y-4">
                             <div class="bg-red-900/20 border border-red-500/20 p-4 rounded-xl flex items-start gap-3">
                                 <span class="text-white/40 text-xl mt-0.5 font-sans">ℹ️</span> 
@@ -470,7 +446,6 @@
                     </div>
 
                     <div class="space-y-6">
-                        <!-- Ranchos -->
                         <div class="bg-gradient-to-br from-teal-900/30 to-black/40 p-8 rounded-3xl border border-teal-500/20 shadow-inner">
                             <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-4 flex items-center gap-2">
                                 <span class="text-2xl">🏝️</span> Ranchos Frente al Mar
@@ -490,7 +465,6 @@
                             </div>
                         </div>
                         
-                        <!-- Alerta Cupos -->
                         <div class="bg-orange-900/20 p-8 rounded-3xl border border-orange-500/30">
                             <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
                                 ⚠️ Cupos Limitados
@@ -504,7 +478,6 @@
             </div>
 
             <!-- ================= SECCIÓN WELCOME 2027 ================= -->
-            <!-- -->
             <div id="welcome2027Container" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
                 <div class="max-w-4xl mx-auto bg-gradient-to-b from-black/80 to-black/40 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] mb-10">
@@ -530,7 +503,6 @@
                             </p>
                         </div>
 
-                        <!-- Precios 2027 -->
                         <div class="bg-black/50 rounded-3xl p-8 border border-white/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center shadow-inner">
                             <div>
                                 <span class="block text-3xl mb-2">👤</span>
@@ -565,7 +537,6 @@
                                     <li class="flex items-start gap-3"><span class="text-teal-400 text-lg mt-0.5">✅</span> <span>Mobiliario de playa (sujeto a disponibilidad).</span></li>
                                     <li class="flex items-start gap-3"><span class="text-teal-400 text-lg mt-0.5">✅</span> <span>Baños, duchas y estacionamiento.</span></li>
                                     
-                                    <!-- Boton menu en Welcome 2027 -->
                                     <li class="flex items-center justify-between flex-wrap gap-2 border border-white/10 p-3 rounded-xl bg-black/40">
                                         <div class="flex items-center gap-3">
                                             <span class="text-teal-400 text-lg">✅</span> <span class="font-medium">Acceso a restaurante y bar.</span>
@@ -601,18 +572,15 @@
             <!-- ================= SECCIÓN HABITACIONES REGULARES ================= -->
             <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out] hidden">
                 
-                <!-- Portada Alojamiento -->
-                <div id="portadaAlojamiento" class="w-full h-40 md:h-56 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('portada-regular.jpg');">
+                <div id="portadaAlojamiento" class="w-full h-40 md:h-56 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_8232.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                         <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-lg" id="tituloAlojamiento">Nuestras <br/><span class="text-teal-300 italic">Habitaciones</span></h2>
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-4 border-b border-white/10 pb-4">
-                    <div>
-                        <p class="text-sm text-teal-100/50 font-light tracking-wide">Selecciona tus espacios. Los precios se calculan automáticamente.</p>
-                    </div>
+                <div class="flex flex-col justify-start items-start mb-6 gap-2 border-b border-white/10 pb-4">
+                    <p class="text-sm text-teal-100/50 font-light tracking-wide">Selecciona tus espacios. Los precios se calculan automáticamente.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
                     <!-- Inyección vía JS -->
@@ -720,36 +688,33 @@
                 <p class="text-teal-100/50 text-xs md:text-sm tracking-[0.2em] uppercase mt-3">Nuestras Instalaciones</p>
             </div>
             
-            <!-- Grid de Galería (Masonry simulado o Grid Estricto) -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                
-                <!-- EJEMPLO DE IMÁGENES (Repite este bloque para tus 62 fotos cambiando el src) -->
+                <!-- Se han utilizado los nombres de los archivos proporcionados -->
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/1.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 1">
+                    <img src="IMG_7678.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/2.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 2">
+                    <img src="IMG_7879.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/3.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 3">
+                    <img src="IMG_7444.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 4">
+                    <img src="IMG_8234.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/5.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 5">
+                    <img src="IMG_7802.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/6.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 6">
+                    <img src="IMG_8233.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/7.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 7">
+                    <img src="IMG_7446.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
-                    <img src="galeria/8.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones 8">
+                    <img src="IMG_7876.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
-                <!-- / Fin Ejemplo. Continúa copiando hasta la foto 62 -->
-                
+                <!-- Añade las demas fotos copiando el bloque div de arriba y cambiando el nombre -->
             </div>
         </section>
 
@@ -781,23 +746,38 @@
             Mezcal: { semana: 65, finde: 90, festivo: 175 }
         };
 
-        // FECHAS BLOQUEADAS ALOJAMIENTO (24-25 Dic, 31 Dic-1 Ene)
         const fechasBloqueadasStr = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-12-24", "2027-12-25", "2027-12-31", "2028-01-01"];
-        
-        let modoActual = 'pasadia'; // pasadia, anonuevo, regular, festivo
+        const fechasCarnavalesMMDD = ["02-06", "02-07", "02-08", "02-09"]; 
+
+        function chequearRedireccionFestivo(datesArr) {
+            if(datesArr.length === 0) return false;
+            let start = datesArr[0];
+            let end = datesArr.length === 2 ? datesArr[1] : datesArr[0];
+            
+            let curr = new Date(start);
+            while(curr <= end) {
+                let mm = String(curr.getMonth() + 1).padStart(2, '0');
+                let dd = String(curr.getDate()).padStart(2, '0');
+                if(fechasCarnavalesMMDD.includes(`${mm}-${dd}`)) return true;
+                curr.setDate(curr.getDate() + 1);
+            }
+            return false;
+        }
+
+        let modoActual = 'pasadia'; 
         const numeroWhatsApp = "50768064250"; 
 
         const linkTickeaPasadia = "https://www.tickea.com/pa/casa-mezcal-hotel-844-tickets";
         const linkTickeaNewYear = "https://www.tickea.com/pa/welcome-2027-841-tickets/1614";
 
         let fechasAlojamientoStr = "";
+        let fechaPasadiaStr = "";
         let mensajeWhatsAppFinal = "";
 
         const container = document.getElementById('habitacionesContainer');
         const displayMonto = document.getElementById('montoTotal');
         const mensajeTotal = document.getElementById('mensajeTotal');
         
-        // Elementos y Contenedores
         const btnMaster = document.getElementById('btnMasterAction');
         const txtMaster = document.getElementById('textoMasterAction');
         const avisoEstimado = document.getElementById('avisoEstimado');
@@ -816,13 +796,11 @@
         const habitacionesSection = document.getElementById('habitacionesSection');
         const seccionPoliticasAlojamiento = document.getElementById('seccionPoliticasAlojamiento');
         
-        // Elementos Portada
         const portadaAlojamiento = document.getElementById('portadaAlojamiento');
         const tituloAlojamiento = document.getElementById('tituloAlojamiento');
 
         const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
 
-        // Modal Form Elements
         const modal = document.getElementById('reservaModal');
         const btnCerrarModal = document.getElementById('btnCerrarModal');
         const modalBackdrop = document.getElementById('modalBackdrop');
@@ -830,11 +808,9 @@
         const inputNombre = document.getElementById('nombreCliente');
         const errorNombre = document.getElementById('errorNombre');
 
-        // Modal Menú Elements
         const menuModal = document.getElementById('menuModal');
         const menuModalContent = document.getElementById('menuModalContent');
 
-        // FLATPICKR ALOJAMIENTO REGULAR
         const fpAlojamiento = flatpickr("#fechaAlojamiento", {
             mode: "range",
             minDate: "today",
@@ -847,17 +823,24 @@
                     const day = String(date.getDate()).padStart(2, '0');
                     const dateStr = `${year}-${month}-${day}`;
                     
-                    if(date.getDay() === 3) return true; // Bloquear todos los miércoles
+                    if(dateStr === "2027-01-02") return false; 
+                    if(date.getDay() === 3) return true; 
                     return fechasBloqueadasStr.includes(dateStr); 
                 }
             ],
             onChange: function(selectedDates, dateStr, instance) {
                 fechasAlojamientoStr = dateStr;
+                
+                if(chequearRedireccionFestivo(selectedDates)) {
+                    instance.clear();
+                    alert("Has seleccionado fechas de Carnaval/Festivos. Te redirigiremos a las tarifas especiales.");
+                    btnModoFestivo.click();
+                    return;
+                }
                 renderHabitaciones(); 
             }
         });
 
-        // FLATPICKR PASADIA
         const fpPasadia = flatpickr("#fechaPasadia", {
             mode: "single",
             minDate: "today",
@@ -871,17 +854,19 @@
                     const day = String(date.getDate()).padStart(2, '0');
                     const dateStr = `${year}-${month}-${day}`;
                     
-                    if(dateStr === "2027-01-02") return false; // Excepción: 2 enero SI abren
-                    if(date.getDay() === 3) return true; // Miércoles general bloqueado
+                    if(dateStr === "2027-01-02") return false; 
+                    if(date.getDay() === 3) return true; 
                     return false;
                 }
             ],
             onChange: function(selectedDates, dateStr, instance) {
-                // Aqui el usuario solo marca fecha informativa para que se vaya a tickea tranquilo.
+                fechaPasadiaStr = dateStr;
+                calcularTotal(); // Llamado agregado para que el WA agarre la fecha si eligen otro dia
             }
         });
+        
+        fechaPasadiaStr = fpPasadia.input.value;
 
-        // FUNCIONES DE CÁLCULO ALOJAMIENTO
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nNoches = 1;
@@ -910,12 +895,12 @@
                 
                 while (current < end) {
                     let d = current.getDay();
-                    if(d !== 3) { // Si no es miércoles, se cobra
+                    if(d !== 3) { 
                         let isWeekend = (d === 5 || d === 6); 
                         totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
                     }
                     current.setDate(current.getDate() + 1);
-                    countNoches++; 
+                    countNoches++;
                 }
                 return {
                     total: totalSuma,
@@ -1025,8 +1010,6 @@
             calcularTotal();
         }
 
-
-        // CONFIGURACIÓN DE BOTÓN MASTER Y TOTALES
         function setBotonTickea(link) {
             btnMaster.classList.remove('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
             btnMaster.classList.add('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
@@ -1115,7 +1098,6 @@
             }
         }
 
-        // --- LÓGICA MODALES ---
         function abrirModal() {
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -1148,7 +1130,7 @@
             cerrarModal();
         });
 
-        // Modal de Menú
+        // Modal de Menú Ligthbox
         function abrirMenuModal() {
             menuModal.classList.remove('hidden');
             setTimeout(() => {
@@ -1160,10 +1142,9 @@
         function cerrarMenuModal() {
             menuModal.classList.add('opacity-0');
             menuModalContent.classList.add('scale-95');
-            setTimeout(() => { menuModal.classList.add('hidden'); }, 300);
+            setTimeout(() => { menuModal.classList.add('hidden'); }, 400);
         }
 
-        // --- CAMBIO DE PESTAÑAS ---
         function resetPestanas() {
             const btns = [btnModoPasadia, btnModoWelcome2027, btnModoRegular, btnModoFestivo];
             btns.forEach(btn => {
@@ -1207,8 +1188,7 @@
             habitacionesSection.classList.remove('hidden');
             seccionPoliticasAlojamiento.classList.remove('hidden');
             
-            // Portada Regular
-            portadaAlojamiento.style.backgroundImage = "url('portada-regular.jpg')";
+            portadaAlojamiento.style.backgroundImage = "url('IMG_8232.jpg')";
             tituloAlojamiento.innerHTML = `Nuestras <br/><span class="text-teal-300 italic">Habitaciones</span>`;
             
             renderHabitaciones();
@@ -1223,8 +1203,7 @@
             habitacionesSection.classList.remove('hidden');
             seccionPoliticasAlojamiento.classList.remove('hidden');
             
-            // Portada Festiva
-            portadaAlojamiento.style.backgroundImage = "url('portada-festivo.jpg')";
+            portadaAlojamiento.style.backgroundImage = "url('IMG_7875.jpg')";
             tituloAlojamiento.innerHTML = `Tarifas <br/><span class="text-orange-300 italic">Festivas</span>`;
             
             renderHabitaciones();

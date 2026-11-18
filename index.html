@@ -226,10 +226,13 @@
 
     <div id="menuModal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-400 p-4 sm:p-8">
         <div class="absolute inset-0 bg-black/95 backdrop-blur-2xl" onclick="cerrarMenuModal()"></div>
+        
         <div class="relative w-full max-w-5xl h-full max-h-[90vh] flex flex-col items-center justify-center transform scale-95 transition-transform duration-400" id="menuModalContent">
+            
             <button onclick="cerrarMenuModal()" class="absolute -top-2 right-0 md:-right-4 md:-top-4 text-white hover:text-orange-400 transition-colors bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full p-2.5 border border-white/20 z-10">
                 <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
+            
             <img src="menu.jpg" alt="Menú Casa Mezcal" class="w-full h-full object-contain drop-shadow-2xl">
         </div>
     </div>
@@ -350,7 +353,7 @@
             <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
             <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
-                <div class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_7676.jpg');">
+                <div id="portadaPasadia" class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_8232.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                         <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-lg leading-tight">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
@@ -562,6 +565,7 @@
                                     <span class="block text-3xl mb-2">📍</span>
                                     <p class="text-white/90 font-medium text-base">Hotel Casa Mezcal</p>
                                     <p class="text-white/50 text-xs mt-1 tracking-widest uppercase">Playa Malibú, Nueva Gorgona 🇵🇦</p>
+                                    <p class="text-orange-300 font-semibold mt-3 text-sm">🎟️ ¡PASADÍAS LIMITADOS!</p>
                                 </div>
                             </div>
                         </div>
@@ -572,15 +576,17 @@
             <!-- ================= SECCIÓN HABITACIONES REGULARES ================= -->
             <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out] hidden">
                 
-                <div id="portadaAlojamiento" class="w-full h-40 md:h-56 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_8232.jpg');">
+                <div id="portadaAlojamiento" class="w-full h-40 md:h-56 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_7875.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                         <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-lg" id="tituloAlojamiento">Nuestras <br/><span class="text-teal-300 italic">Habitaciones</span></h2>
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-start items-start mb-6 gap-2 border-b border-white/10 pb-4">
-                    <p class="text-sm text-teal-100/50 font-light tracking-wide">Selecciona tus espacios. Los precios se calculan automáticamente.</p>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-4 border-b border-white/10 pb-4">
+                    <div>
+                        <p class="text-sm text-teal-100/50 font-light tracking-wide">Selecciona tus espacios. Los precios se calculan automáticamente.</p>
+                    </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
                     <!-- Inyección vía JS -->
@@ -650,7 +656,6 @@
                     </div>
 
                     <div class="space-y-6">
-                        <!-- COMIDA Y MENÚ -->
                         <div class="bg-gradient-to-br from-teal-900/30 to-black/40 p-6 md:p-8 rounded-3xl border border-teal-500/20 shadow-inner h-full flex flex-col justify-between">
                             <div>
                                 <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-6 border-b border-white/10 pb-4 flex justify-between items-center flex-wrap gap-4">
@@ -689,7 +694,7 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                <!-- Se han utilizado los nombres de los archivos proporcionados -->
+                
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_7678.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
@@ -697,7 +702,13 @@
                     <img src="IMG_7879.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7676.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_7444.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8232.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_8234.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
@@ -708,13 +719,173 @@
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_8233.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
+                
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_7446.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
                 <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
                     <img src="IMG_7876.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
                 </div>
-                <!-- Añade las demas fotos copiando el bloque div de arriba y cambiando el nombre -->
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7909.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7917.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7919.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7907.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7908.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8238.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7875.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7887.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7885.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8227.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7886.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7729.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8228.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8236.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7640.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8237.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7680.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8229.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8235.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8215.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7881.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8214.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8222.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8209.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8231.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8224.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8216.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8217.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7877.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7883.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8226.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8212.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8213.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7882.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7576.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7617.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8221.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7636.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8225.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8210.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7730.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7616.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7635.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8220.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7884.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8219.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8223.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8218.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_8211.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7878.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden group cursor-pointer border border-white/10 relative gallery-item shadow-lg">
+                    <img src="IMG_7880.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones">
+                </div>
+                
             </div>
         </section>
 
@@ -861,7 +1032,7 @@
             ],
             onChange: function(selectedDates, dateStr, instance) {
                 fechaPasadiaStr = dateStr;
-                calcularTotal(); // Llamado agregado para que el WA agarre la fecha si eligen otro dia
+                calcularTotal();
             }
         });
         
@@ -900,7 +1071,7 @@
                         totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
                     }
                     current.setDate(current.getDate() + 1);
-                    countNoches++;
+                    countNoches++; 
                 }
                 return {
                     total: totalSuma,
@@ -1098,6 +1269,7 @@
             }
         }
 
+        // LÓGICA MODAL WHATSAPP
         function abrirModal() {
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -1130,21 +1302,22 @@
             cerrarModal();
         });
 
-        // Modal de Menú Ligthbox
+        // LÓGICA MODAL MENÚ LIGHTBOX
         function abrirMenuModal() {
             menuModal.classList.remove('hidden');
             setTimeout(() => {
                 menuModal.classList.remove('opacity-0');
-                menuModalContent.classList.remove('scale-95');
+                document.getElementById('menuModalContent').classList.remove('scale-95');
             }, 10);
         }
 
         function cerrarMenuModal() {
             menuModal.classList.add('opacity-0');
-            menuModalContent.classList.add('scale-95');
-            setTimeout(() => { menuModal.classList.add('hidden'); }, 400);
+            document.getElementById('menuModalContent').classList.add('scale-95');
+            setTimeout(() => { menuModal.classList.add('hidden'); }, 300);
         }
 
+        // CAMBIO DE PESTAÑAS
         function resetPestanas() {
             const btns = [btnModoPasadia, btnModoWelcome2027, btnModoRegular, btnModoFestivo];
             btns.forEach(btn => {

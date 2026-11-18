@@ -213,10 +213,11 @@
             background: rgba(249, 115, 22, 0.2) !important;
             border-color: transparent !important;
         }
-        
-        /* Deshabilitar días visualmente de forma elegante */
         .flatpickr-day.flatpickr-disabled {
             color: rgba(255, 255, 255, 0.15) !important;
+            background: transparent !important;
+            border-color: transparent !important;
+            cursor: not-allowed !important;
         }
     </style>
 </head>
@@ -305,35 +306,35 @@
                     <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
-                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
                                 <span class="font-bold text-lg leading-none">1</span>
                                 <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noche</span>
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="2" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
                                 <span class="font-bold text-lg leading-none">2</span>
                                 <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="3" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
                                 <span class="font-bold text-lg leading-none">3</span>
                                 <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="4" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
                                 <span class="font-bold text-lg leading-none">4</span>
                                 <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
                             </div>
                         </label>
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="5" class="peer sr-only" onchange="renderHabitaciones()">
-                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all">
+                            <div class="h-full min-h-[3rem] flex flex-col items-center justify-center rounded-xl border border-white/10 text-white/60 bg-white/5 peer-checked:bg-gradient-to-br peer-checked:from-orange-500 peer-checked:to-orange-600 peer-checked:border-orange-400 peer-checked:text-white peer-checked:shadow-lg transition-all font-medium">
                                 <span class="font-bold text-lg leading-none">5</span>
                                 <span class="text-[9px] uppercase tracking-widest leading-none mt-1">Noches</span>
                             </div>
@@ -345,48 +346,65 @@
             <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
             <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
-                <div class="mb-10 border-b border-white/10 pb-8 text-center sm:text-left flex flex-col md:flex-row md:justify-between md:items-end gap-6">
-                    <div>
-                        <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
-                        <p class="text-sm text-teal-100/70 mt-3 font-light tracking-[0.2em] uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
-                    </div>
-                    <!-- CALENDARIO DÍA ÚNICO PASADÍA -->
-                    <div class="bg-black/40 rounded-2xl p-2 border border-white/10 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors w-full md:w-72 shrink-0">
-                        <svg class="w-5 h-5 text-orange-400 absolute left-5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <input type="text" id="fechaPasadia" placeholder="Fecha de tu visita" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/40" readonly>
-                    </div>
+                <div class="mb-10 border-b border-white/10 pb-8 text-center">
+                    <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
+                    <p class="text-sm text-teal-100/70 mt-3 font-light tracking-[0.2em] uppercase">Horario: De 10:00 a. m. a 7:00 p. m.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                    <!-- Contadores -->
-                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex justify-between items-center">
-                        <div>
-                            <p class="text-2xl font-elegant text-white mb-1">Adultos</p>
-                            <p class="text-orange-400 font-semibold text-lg">$10 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
-                        </div>
-                        <div class="flex items-center gap-4 bg-black/40 rounded-full p-2 border border-white/10">
-                            <button onclick="actualizarPasadia('adultos', -1)" class="w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-2xl transition-colors">-</button>
-                            <span id="contadorAdultos" class="text-white font-medium w-8 text-center text-2xl">1</span>
-                            <button onclick="actualizarPasadia('adultos', 1)" class="w-12 h-12 rounded-full bg-teal-500 hover:bg-teal-400 text-white flex items-center justify-center text-2xl shadow-lg transition-colors">+</button>
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-lg text-center">
+                        <p class="text-2xl font-elegant text-white mb-2">Adultos</p>
+                        <p class="text-orange-400 font-semibold text-2xl mb-1">$10 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
+                        <p class="text-xs text-teal-300 font-medium bg-teal-900/40 inline-block px-3 py-1 rounded-full border border-teal-500/30">
+                            Promocional: $5 (Lun, Mar, Jue, Vie)
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-lg text-center">
+                        <p class="text-2xl font-elegant text-white mb-2">Niños <span class="text-sm font-sans font-light text-white/50">(6-12 años)</span></p>
+                        <p class="text-orange-400 font-semibold text-2xl mb-1">$5 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
+                        <div class="flex flex-col items-center gap-1">
+                            <p class="text-[11px] text-teal-300 font-medium bg-teal-900/40 inline-block px-3 py-1 rounded-full border border-teal-500/30">
+                                Promocional: GRATIS (Lun, Mar, Jue, Vie)
+                            </p>
+                            <p class="text-[10px] text-white/70 uppercase tracking-widest mt-1">Niños hasta 5 años: GRATIS siempre</p>
                         </div>
                     </div>
-                    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/10 shadow-lg flex justify-between items-center">
-                        <div>
-                            <p class="text-2xl font-elegant text-white mb-1">Niños <span class="text-xs font-sans font-light text-white/50">(6-12 años)</span></p>
-                            <p class="text-orange-400 font-semibold text-lg">$5 <span class="text-xs font-light text-white/50 uppercase tracking-widest">/ persona</span></p>
-                            <p class="text-[10px] text-teal-300/70 mt-1 uppercase tracking-widest">Niños hasta 5 años: GRATIS</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-sm">
+                    <div class="bg-black/30 p-8 rounded-2xl border border-white/10 shadow-inner h-full">
+                        <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-5 border-b border-white/5 pb-4">🌊 Tu Pasadía Incluye:</h3>
+                        <ul class="space-y-4 font-light text-white/80">
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Piscina y acceso directo a la playa.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Mobiliario de playa (sujeto a disponibilidad).</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Baños y duchas.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Estacionamiento, Wi-Fi, Restaurante y bar.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">✅</span> Música y ambiente tropical.</li>
+                            <li class="flex items-center gap-3"><span class="text-teal-400 text-lg">🐾</span> <strong>¡Pet friendly!</strong> $5 por mascota.</li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-teal-900/40 to-black/40 p-8 rounded-2xl border border-teal-500/20 shadow-inner">
+                            <h3 class="text-white font-semibold uppercase tracking-[0.15em] mb-3">🏝️ Ranchos Frente al Mar</h3>
+                            <p class="text-white/70 font-light leading-relaxed">
+                                Disfruta de mayor comodidad y privacidad con nuestros ranchos disponibles para alquiler por <strong class="text-orange-300 font-medium">$15 en días de semana y $30 en fines de semana</strong> (sujeto a disponibilidad).
+                            </p>
                         </div>
-                        <div class="flex items-center gap-4 bg-black/40 rounded-full p-2 border border-white/10">
-                            <button onclick="actualizarPasadia('ninos', -1)" class="w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-2xl transition-colors">-</button>
-                            <span id="contadorNinos" class="text-white font-medium w-8 text-center text-2xl">0</span>
-                            <button onclick="actualizarPasadia('ninos', 1)" class="w-12 h-12 rounded-full bg-teal-500 hover:bg-teal-400 text-white flex items-center justify-center text-2xl shadow-lg transition-colors">+</button>
+                        <div class="bg-orange-900/20 p-8 rounded-2xl border border-orange-500/30">
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                                ⚠️ Cupos Limitados
+                            </h3>
+                            <p class="text-orange-100/70 font-light text-sm leading-relaxed">
+                                Los cupos son limitados para garantizar una mejor experiencia. Te recomendamos reservar anticipadamente para asegurar tu espacio y disfrutar de un día perfecto.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- ================= SECCIÓN WELCOME 2027 ================= -->
-            <!--[cite: 19] -->
             <div id="welcome2027Container" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
                 <div class="text-center mb-8">
@@ -395,6 +413,7 @@
                 </div>
 
                 <div class="max-w-3xl mx-auto bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-10">
+                    <!-- IMAGEN AÑO NUEVO OFICIAL -->
                     <img src="anonuevo.jpg" alt="Welcome 2027 Casa Mezcal" class="w-full h-auto object-cover border-b border-white/10">
                     
                     <div class="p-6 md:p-10 space-y-6 text-white/90 font-light">
@@ -427,11 +446,17 @@
                         <div class="pt-4 text-sm space-y-3">
                             <h4 class="font-semibold text-orange-300 uppercase tracking-widest text-center mb-4">🌟 ¿Qué podrás disfrutar?</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto">
-                                <p class="flex items-center gap-2"><span class="text-teal-400">🏊</span> Piscina relajante</p>
+                                <p class="flex items-center gap-2"><span class="text-teal-400">🏊</span> Piscina para refrescarte y relajarte</p>
                                 <p class="flex items-center gap-2"><span class="text-teal-400">🏖️</span> Playa frente al mar</p>
                                 <p class="flex items-center gap-2"><span class="text-teal-400">🍹</span> Restaurante y bar</p>
                                 <p class="flex items-center gap-2"><span class="text-teal-400">🎶</span> Música y ambiente festivo</p>
                             </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-red-900/30 border border-red-500/30 p-4 rounded-xl text-center text-red-200">
+                            <p class="flex items-center justify-center gap-2 font-medium">
+                                <span>🚫</span> No se permite el ingreso de alimentos, bebidas ni coolers externos.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -442,6 +467,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4 border-b border-white/10 pb-6">
                     <div>
                         <h2 class="font-elegant text-4xl text-white">Habitaciones</h2>
+                        <p class="text-sm text-teal-100/50 mt-2 font-light tracking-wide">Selecciona tus espacios. <br class="sm:hidden">Elige las fechas para calcular el total.</p>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6" id="habitacionesContainer">
@@ -455,19 +481,19 @@
                 
                 <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 w-full">
                     
-                    <div class="text-center md:text-left space-y-1 w-full md:w-auto" id="bloqueTotal">
+                    <div class="text-center md:text-left space-y-1 w-full md:w-auto hidden" id="bloqueTotal">
                         <p class="text-sm text-teal-300 font-medium tracking-wide" id="mensajeTotal">Selecciona una opción</p>
                         <p class="text-[10px] text-white/40 uppercase tracking-[0.3em]" id="labelInversion">Inversión Estimada</p>
                         <span class="text-5xl md:text-6xl font-elegant text-white drop-shadow-lg block pt-2" id="montoTotal">$0.00</span>
                     </div>
                     
-                    <a id="btnMasterAction" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(249,115,22,0.4)] border border-orange-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1">
-                        <span id="textoMasterAction">Solicitar Reserva</span>
+                    <a id="btnMasterAction" href="#" target="_blank" class="w-full md:w-auto px-10 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white text-center font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(16,185,129,0.3)] border border-emerald-400/50 border-top border-white/40 transition-all transform hover:-translate-y-1">
+                        <span id="textoMasterAction">Adquiere tus entradas aquí</span>
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
 
-                <div id="avisoEstimado" class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center">
+                <div id="avisoEstimado" class="relative z-10 w-full mt-6 pt-4 border-t border-white/10 text-center hidden">
                     <p class="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest font-light">
                         * Precio estimado sujeto a verificación por el departamento de reservas.
                     </p>
@@ -475,8 +501,8 @@
             </div>
         </main>
 
-        <!-- ACORDEÓN DE POLÍTICAS Y MENÚ -->
-        <section class="grid grid-cols-1 gap-5">
+        <!-- ACORDEÓN DE POLÍTICAS Y MENÚ (SÓLO PARA ALOJAMIENTO) -->
+        <section class="grid grid-cols-1 gap-5" id="seccionPoliticasAlojamiento">
             
             <details class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
@@ -500,11 +526,15 @@
                                 <li><span class="text-orange-400">📌</span> <em>Última hora:</em> 5 días o menos de anticipación deben cancelar el 100%.</li>
                             </ul>
 
-                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 mt-8 border-b border-white/5 pb-3">☀️ Reservas de Pasadías</h3>
-                            <ul class="space-y-3 font-light text-white/70">
-                                <li><span class="text-teal-400">✅</span> <strong>Online:</strong> Pago del 100% anticipado vía Tickea.</li>
-                                <li><span class="text-teal-400">✅</span> <strong>En hotel:</strong> Sujeto a disponibilidad (Cupos limitados).</li>
+                            <h3 class="text-orange-400 font-semibold uppercase tracking-[0.15em] mb-4 mt-8 border-b border-white/5 pb-3">💳 Métodos de Pago Online</h3>
+                            <ul class="space-y-3 font-light text-teal-50">
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Yappy</li>
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Transferencia Bancaria ACH</li>
+                                <li class="flex items-center gap-2"><span class="text-teal-400 text-lg">▪</span> Enlace de pago (Tarjetas)</li>
                             </ul>
+                            <div class="mt-5 text-[10px] text-white/50 border-t border-white/5 pt-3">
+                                Pagos gestionados por Hospédate Panamá S.A.
+                            </div>
                         </div>
                     </div>
 
@@ -516,23 +546,23 @@
                                     <span>🍔 Alimentos y Bebidas</span>
                                     
                                     <!-- AQUI VA EL LINK DE TU MENÚ -->
-                                    <a href="PON_AQUI_TU_LINK_DEL_MENU.pdf" target="_blank" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors">
+                                    <a href="menu.jpg" target="_blank" class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 px-3 py-1.5 rounded-lg text-[10px] hover:bg-orange-500/30 transition-colors">
                                         📄 Ver Menú
                                     </a>
                                 </h3>
                                 
                                 <ul class="space-y-4 font-light text-teal-50 text-sm">
-                                    <li class="flex items-start gap-3 text-red-300">
+                                    <li class="flex items-start gap-3 text-red-300 bg-red-900/20 p-3 rounded-xl border border-red-500/20">
                                         <span class="text-red-400 text-lg">🚫</span> 
                                         <span><strong>Importante:</strong> No se permite el ingreso de comida, solo snacks.</span>
                                     </li>
-                                    <li class="flex items-start gap-3 text-white/80">
+                                    <li class="flex items-start gap-3 text-white/80 p-3">
                                         <span class="text-teal-400 text-lg">🧊</span> 
                                         <span>Ingreso de coolers (bebidas) permitido con cargo adicional desde $20 (según tamaño y contenido).</span>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="mt-6 text-[11px] uppercase tracking-widest text-orange-200/50 border-t border-white/10 pt-4 leading-relaxed">
+                            <div class="mt-6 text-[11px] uppercase tracking-widest text-orange-200/50 border-t border-white/10 pt-4 leading-relaxed text-center">
                                 Contamos con restaurante y bar a tu disposición.
                             </div>
                         </div>
@@ -572,10 +602,10 @@
         // FECHAS BLOQUEADAS (24-25 Dic, 31 Dic-1 Ene)
         const fechasBloqueadasStr = ["2026-12-24", "2026-12-25", "2026-12-31", "2027-01-01", "2027-12-24", "2027-12-25", "2027-12-31", "2028-01-01"];
         
-        // FECHAS QUE DISPARAN ALERTA A FESTIVO (Ej: Carnavales Feb 6-9)
-        const fechasCarnavalesMMDD = ["02-06", "02-07", "02-08", "02-09"]; 
+        const modoFestivoFechasClave = ["02-06", "02-07", "02-08", "02-09"]; // Ejemplo Carnavales
+        const exepcionMiercolesStr = "2027-01-02"; // Único miércoles abierto (por si acaso el 2 enero cae miércoles)
 
-        function chequearFestivo(datesArr) {
+        function chequearRedireccionFestivo(datesArr) {
             if(datesArr.length === 0) return false;
             let start = datesArr[0];
             let end = datesArr.length === 2 ? datesArr[1] : datesArr[0];
@@ -584,15 +614,13 @@
             while(curr <= end) {
                 let mm = String(curr.getMonth() + 1).padStart(2, '0');
                 let dd = String(curr.getDate()).padStart(2, '0');
-                if(fechasCarnavalesMMDD.includes(`${mm}-${dd}`)) return true;
+                if(modoFestivoFechasClave.includes(`${mm}-${dd}`)) return true;
                 curr.setDate(curr.getDate() + 1);
             }
             return false;
         }
 
         let modoActual = 'pasadia'; // pasadia, anonuevo, regular, festivo
-        let pasadiaAdultos = 1;
-        let pasadiaNinos = 0;
         const numeroWhatsApp = "50768064250"; 
 
         const linkTickeaPasadia = "https://www.tickea.com/pa/casa-mezcal-hotel-844-tickets";
@@ -622,10 +650,9 @@
         const pasadiaContainer = document.getElementById('pasadiaContainer');
         const welcome2027Container = document.getElementById('welcome2027Container');
         const habitacionesSection = document.getElementById('habitacionesSection');
+        const seccionPoliticasAlojamiento = document.getElementById('seccionPoliticasAlojamiento');
 
         const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
-        const displayAdultos = document.getElementById('contadorAdultos');
-        const displayNinos = document.getElementById('contadorNinos');
 
         // Modal Elements
         const modal = document.getElementById('reservaModal');
@@ -635,7 +662,7 @@
         const inputNombre = document.getElementById('nombreCliente');
         const errorNombre = document.getElementById('errorNombre');
 
-        // FLATPICKR ALOJAMIENTO (Bloqueo Miércoles y Fechas específicas)
+        // FLATPICKR ALOJAMIENTO
         const fpAlojamiento = flatpickr("#fechaAlojamiento", {
             mode: "range",
             minDate: "today",
@@ -643,19 +670,19 @@
             dateFormat: "d M Y",
             disable: [
                 function(date) {
-                    return (date.getDay() === 3); // 3 = Miércoles (0 es Domingo)
-                },
-                function(date) {
                     const year = date.getFullYear();
                     const month = String(date.getMonth() + 1).padStart(2, '0');
                     const day = String(date.getDate()).padStart(2, '0');
-                    return fechasBloqueadasStr.includes(`${year}-${month}-${day}`);
+                    const dateStr = `${year}-${month}-${day}`;
+                    
+                    if(dateStr === exepcionMiercolesStr) return false; // Excepción 2 enero
+                    if(date.getDay() === 3) return true; // Miércoles general
+                    return fechasBloqueadasStr.includes(dateStr); // Bloqueo 24-25 dic, 31-1 ene
                 }
             ],
             onChange: function(selectedDates, dateStr, instance) {
                 fechasAlojamientoStr = dateStr;
-                
-                if(chequearFestivo(selectedDates)) {
+                if(chequearRedireccionFestivo(selectedDates)) {
                     instance.clear();
                     alert("Has seleccionado fechas de Carnaval/Festivos. Te redirigiremos a las tarifas especiales.");
                     btnModoFestivo.click();
@@ -665,23 +692,7 @@
             }
         });
 
-        const fpPasadia = flatpickr("#fechaPasadia", {
-            mode: "single",
-            minDate: "today",
-            locale: "es",
-            dateFormat: "d M Y",
-            defaultDate: new Date(),
-            disable: [
-                function(date) { return (date.getDay() === 3); } // Miércoles cerrados
-            ],
-            onChange: function(selectedDates, dateStr, instance) {
-                fechaPasadiaStr = dateStr;
-                calcularTotal();
-            }
-        });
-        
-        fechaPasadiaStr = fpPasadia.input.value;
-
+        // FUNCIONES DE CÁLCULO
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nNoches = 1;
@@ -710,8 +721,10 @@
                 
                 while (current < end) {
                     let d = current.getDay();
-                    let isWeekend = (d === 5 || d === 6); // Vie o Sab
-                    totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
+                    if(d !== 3) { // Si no es miércoles suma
+                        let isWeekend = (d === 5 || d === 6); 
+                        totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
+                    }
                     current.setDate(current.getDate() + 1);
                     countNoches++;
                 }
@@ -733,7 +746,6 @@
             habitaciones.forEach(hab => {
                 const infoPrecio = obtenerInfoPrecio(hab.tipo);
                 const isChecked = seleccionadas.includes(hab.id.toString()) ? 'checked' : '';
-                
                 const isMezcal = hab.tipo === 'Mezcal';
                 const classWrapper = isMezcal ? 'room-mezcal' : 'room-sencilla';
                 const classBadge = isMezcal ? 'badge-mezcal' : 'badge-base text-teal-100 badge-sencilla';
@@ -824,26 +836,13 @@
             calcularTotal();
         }
 
-        function actualizarPasadia(tipo, cantidad) {
-            if(tipo === 'adultos') {
-                pasadiaAdultos += cantidad;
-                if(pasadiaAdultos < 1) pasadiaAdultos = 1; 
-                displayAdultos.textContent = pasadiaAdultos;
-            } else if(tipo === 'ninos') {
-                pasadiaNinos += cantidad;
-                if(pasadiaNinos < 0) pasadiaNinos = 0; 
-                displayNinos.textContent = pasadiaNinos;
-            }
-            calcularTotal();
-        }
-
+        // CONFIGURACIÓN DE BOTÓN MASTER
         function setBotonTickea(link) {
             btnMaster.classList.remove('hidden');
             btnMaster.classList.add('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
             btnMaster.classList.remove('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
             txtMaster.textContent = "Adquiere tus entradas aquí";
             
-            // Remueve el onclick de modal y pone el href directo
             btnMaster.onclick = null;
             btnMaster.href = link;
         }
@@ -853,7 +852,6 @@
             btnMaster.classList.remove('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
             txtMaster.textContent = "Solicitar Reserva";
             
-            // Abre Modal
             btnMaster.href = "#";
             btnMaster.onclick = function(e) {
                 e.preventDefault();
@@ -871,15 +869,12 @@
                 setBotonTickea(linkTickeaNewYear);
             } 
             else if (modoActual === 'pasadia') {
-                bloqueTotal.classList.remove('hidden');
+                bloqueTotal.classList.add('hidden'); // Ocultar bloque total para solo mostrar el botón
                 avisoEstimado.classList.add('hidden');
-                totalFinal = (pasadiaAdultos * 10) + (pasadiaNinos * 5);
-                displayMonto.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalFinal);
-                mensajeTotal.innerHTML = `<span class="text-white">${pasadiaAdultos}</span> Adulto(s) y <span class="text-white">${pasadiaNinos}</span> Niño(s)`;
                 setBotonTickea(linkTickeaPasadia);
             } 
             else {
-                // Modos Alojamiento (Regular o Festivo)
+                // ALOJAMIENTO
                 bloqueTotal.classList.remove('hidden');
                 avisoEstimado.classList.remove('hidden');
 
@@ -977,6 +972,7 @@
             controlesRegular.classList.add('hidden');
             controlesFestivo.classList.add('hidden');
             habitacionesSection.classList.add('hidden');
+            seccionPoliticasAlojamiento.classList.add('hidden');
         }
 
         btnModoPasadia.addEventListener('click', () => {
@@ -1004,10 +1000,8 @@
             btnModoRegular.classList.remove('segmented-inactive');
             controlesRegular.classList.remove('hidden');
             habitacionesSection.classList.remove('hidden');
+            seccionPoliticasAlojamiento.classList.remove('hidden');
             
-            if(fpAlojamiento.selectedDates.length === 0) {
-                // No forzar fecha por defecto
-            }
             renderHabitaciones();
         });
 
@@ -1018,6 +1012,8 @@
             btnModoFestivo.classList.remove('segmented-inactive');
             controlesFestivo.classList.remove('hidden');
             habitacionesSection.classList.remove('hidden');
+            seccionPoliticasAlojamiento.classList.remove('hidden');
+            
             renderHabitaciones();
         });
 

@@ -8,13 +8,13 @@
     <link rel="icon" href="logo.jpeg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Flatpickr (Calendario Premium) -->
+    <!-- Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-    <!-- Google Fonts: Cormorant Garamond & Outfit -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +57,6 @@
             box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Tarjetas de Habitación */
         .room-card {
             background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
             backdrop-filter: blur(12px);
@@ -235,6 +234,10 @@
             transition: opacity 0.3s ease;
         }
         .gallery-item:hover::after { opacity: 1; }
+        
+        /* Clases utilitarias para manejo de módulos */
+        .modulo-oculto { display: none !important; }
+        .modulo-activo { display: block; }
     </style>
 </head>
 <body class="py-8 px-4 md:px-6 lg:px-8 flex flex-col items-center relative">
@@ -306,26 +309,29 @@
             
             <div class="absolute -top-40 -right-40 w-96 h-96 bg-teal-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-            <!-- NAVEGACIÓN PRINCIPAL (4 PESTAÑAS) -->
+            <!-- NAVEGACIÓN PRINCIPAL (5 PESTAÑAS) -->
             <div class="flex flex-col gap-6 mb-12 relative z-10">
-                <div class="bg-black/40 rounded-[1.25rem] p-2 border border-white/5 shadow-inner grid grid-cols-2 md:grid-cols-4 gap-2">
-                    <button id="btnModoPasadia" class="segmented-btn py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-active">
-                        Pasadía Regular
+                <div class="bg-black/40 rounded-[1.25rem] p-2 border border-white/5 shadow-inner flex flex-wrap lg:grid lg:grid-cols-5 gap-2">
+                    <button id="btnModoPasadia" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-active" onclick="cambiarModo('pasadia')">
+                        Pasadía
                     </button>
-                    <button id="btnModoWelcome2027" class="segmented-btn py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive relative overflow-hidden group">
+                    <button id="btnModoWelcome2027" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive relative overflow-hidden group" onclick="cambiarModo('welcome2027')">
                         <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20 animate-pulse"></div>
                         <span class="relative z-10 text-orange-300 group-hover:text-white transition-colors">Welcome 2027</span>
                     </button>
-                    <button id="btnModoRegular" class="segmented-btn py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
+                    <button id="btnModoRegular" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive" onclick="cambiarModo('regular')">
                         Alojamiento Regular
                     </button>
-                    <button id="btnModoFestivo" class="segmented-btn py-3.5 px-2 rounded-xl text-[12px] sm:text-[13px] font-semibold tracking-wider segmented-inactive">
-                        Alojamiento Festivo
+                    <button id="btnModoFestivo" class="segmented-btn flex-1 basis-[calc(50%-0.5rem)] lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive" onclick="cambiarModo('festivo')">
+                        Tarifas Festivas
+                    </button>
+                    <button id="btnModoMenu" class="segmented-btn flex-1 basis-full lg:basis-0 py-3.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-[13px] font-semibold tracking-wider segmented-inactive border border-teal-500/30 bg-teal-900/20 text-teal-100 hover:bg-teal-800/40" onclick="cambiarModo('menu')">
+                        Restaurante & Menú
                     </button>
                 </div>
 
                 <!-- CONTROLES ESTADÍA ALOJAMIENTO REGULAR -->
-                <div id="controlesRegular" class="transition-all duration-300 hidden">
+                <div id="controlesRegular" class="modulo-oculto transition-all duration-300">
                     <div class="bg-black/50 rounded-2xl p-2.5 border border-white/5 shadow-inner flex items-center relative cursor-pointer hover:bg-white/5 transition-colors max-w-xl mx-auto">
                         <svg class="w-5 h-5 text-orange-400 absolute left-6 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         <input type="text" id="fechaAlojamiento" placeholder="Selecciona fechas: Check-in a Check-out" class="w-full bg-transparent text-white/90 font-medium text-[15px] outline-none cursor-pointer pl-14 pr-4 h-full min-h-[3rem] placeholder-white/30" readonly>
@@ -333,7 +339,7 @@
                 </div>
 
                 <!-- CONTROLES NOCHES FESTIVAS -->
-                <div id="controlesFestivo" class="transition-all duration-300 hidden">
+                <div id="controlesFestivo" class="modulo-oculto transition-all duration-300">
                     <div class="bg-black/50 rounded-2xl p-2.5 border border-white/5 shadow-inner flex gap-2 w-full flex-wrap sm:flex-nowrap">
                         <label class="cursor-pointer flex-1 min-w-[60px]">
                             <input type="radio" name="nochesFestivas" value="1" class="peer sr-only" onchange="renderHabitaciones()" checked>
@@ -375,9 +381,9 @@
             </div>
 
             <!-- ================= SECCIÓN PASADÍA REGULAR ================= -->
-            <div id="pasadiaContainer" class="relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+            <div id="seccionPasadia" class="modulo-activo relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
-                <div id="portadaPasadia" class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_8232.jpg');">
+                <div class="w-full h-48 md:h-64 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_8232.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                     <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                         <h2 class="font-elegant text-3xl md:text-5xl text-white drop-shadow-lg leading-tight">Vive un auténtico <br/><span class="text-orange-400 italic">ambiente playero</span> frente al mar</h2>
@@ -505,7 +511,7 @@
             </div>
 
             <!-- ================= SECCIÓN WELCOME 2027 ================= -->
-            <div id="welcome2027Container" class="hidden relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+            <div id="seccionWelcome2027" class="modulo-oculto relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
                 <div class="max-w-4xl mx-auto bg-gradient-to-b from-black/80 to-black/40 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] mb-10">
                     <div class="relative w-full h-[300px] sm:h-[400px]">
@@ -589,7 +595,6 @@
                                     <span class="block text-3xl mb-2">📍</span>
                                     <p class="text-white/90 font-medium text-base">Hotel Casa Mezcal</p>
                                     <p class="text-white/50 text-xs mt-1 tracking-widest uppercase">Playa Malibú, Nueva Gorgona 🇵🇦</p>
-                                    <p class="text-orange-300 font-semibold mt-3 text-sm">🎟️ ¡PASADÍAS LIMITADOS!</p>
                                 </div>
                             </div>
                         </div>
@@ -597,8 +602,8 @@
                 </div>
             </div>
 
-            <!-- ================= SECCIÓN HABITACIONES REGULARES ================= -->
-            <div id="habitacionesSection" class="relative z-10 animate-[slideDownFade_0.4s_ease-out] hidden">
+            <!-- ================= SECCIÓN HABITACIONES ================= -->
+            <div id="seccionHabitaciones" class="modulo-oculto relative z-10 animate-[slideDownFade_0.4s_ease-out]">
                 
                 <div id="portadaAlojamiento" class="w-full h-40 md:h-56 rounded-3xl mb-10 bg-cover bg-center border border-white/10 shadow-2xl relative overflow-hidden" style="background-image: url('IMG_7875.jpg');">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
@@ -617,8 +622,19 @@
                 </div>
             </div>
 
+            <!-- ================= SECCIÓN MENÚ A PANTALLA COMPLETA ================= -->
+            <div id="seccionMenu" class="modulo-oculto relative z-10 animate-[slideDownFade_0.4s_ease-out]">
+                <div class="text-center mb-8">
+                    <h2 class="font-elegant text-4xl md:text-5xl text-white drop-shadow-md mb-2">Nuestro Menú</h2>
+                    <p class="text-sm md:text-lg text-teal-100/70 font-light tracking-[0.1em] uppercase">Restaurante y Bar Casa Mezcal</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-black/40 rounded-3xl overflow-hidden border border-white/10 shadow-2xl p-2 sm:p-4">
+                    <img src="menu.jpg" alt="Menú Casa Mezcal" class="w-full h-auto rounded-2xl">
+                </div>
+            </div>
+
             <!-- FOOTER TOTALES Y BOTÓN CTA MÁSTER -->
-            <div id="footerReserva" class="mt-12 bg-black/50 backdrop-blur-3xl rounded-[2rem] p-6 md:p-10 border border-white/10 border-top border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden flex flex-col hidden">
+            <div id="footerReserva" class="mt-12 bg-black/50 backdrop-blur-3xl rounded-[2rem] p-6 md:p-10 border border-white/10 border-top border-white/20 shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative overflow-hidden flex flex-col">
                 <div class="absolute inset-0 bg-gradient-to-r from-teal-900/10 via-transparent to-orange-900/10"></div>
                 
                 <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8 w-full">
@@ -644,7 +660,7 @@
         </main>
 
         <!-- ACORDEÓN DE POLÍTICAS (SÓLO PARA ALOJAMIENTO) -->
-        <section class="grid grid-cols-1 gap-5 relative z-10" id="seccionPoliticasAlojamiento">
+        <section class="grid grid-cols-1 gap-5 relative z-10 modulo-oculto" id="seccionPoliticasAlojamiento">
             <details class="ultra-glass rounded-3xl group" open>
                 <summary class="flex justify-between items-center cursor-pointer p-6 md:p-8 text-white font-medium text-xl border-b border-transparent group-open:border-white/10 transition-colors">
                     <span class="flex items-center gap-4">
@@ -718,7 +734,7 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="galeriaCompleta">
-                <!-- Se inyectarán las 61 imágenes aquí vía Javascript para que el HTML no sea inmensamente largo, asegurando el rendimiento -->
+                <!-- Se inyectarán las 61 imágenes aquí vía Javascript -->
             </div>
         </section>
 
@@ -777,7 +793,6 @@
         const linkTickeaNewYear = "https://www.tickea.com/pa/welcome-2027-841-tickets/1614";
 
         let fechasAlojamientoStr = "";
-        let fechaPasadiaStr = "";
         let mensajeWhatsAppFinal = "";
 
         const container = document.getElementById('habitacionesContainer');
@@ -790,16 +805,13 @@
         const bloqueTotal = document.getElementById('bloqueTotal');
         const footerReserva = document.getElementById('footerReserva');
 
-        const btnModoPasadia = document.getElementById('btnModoPasadia');
-        const btnModoWelcome2027 = document.getElementById('btnModoWelcome2027');
-        const btnModoRegular = document.getElementById('btnModoRegular');
-        const btnModoFestivo = document.getElementById('btnModoFestivo');
-        
         const controlesRegular = document.getElementById('controlesRegular');
         const controlesFestivo = document.getElementById('controlesFestivo');
-        const pasadiaContainer = document.getElementById('pasadiaContainer');
-        const welcome2027Container = document.getElementById('welcome2027Container');
-        const habitacionesSection = document.getElementById('habitacionesSection');
+        
+        const seccionPasadia = document.getElementById('seccionPasadia');
+        const seccionWelcome2027 = document.getElementById('welcome2027Container');
+        const seccionHabitaciones = document.getElementById('habitacionesSection');
+        const seccionMenu = document.getElementById('seccionMenu');
         const seccionPoliticasAlojamiento = document.getElementById('seccionPoliticasAlojamiento');
         
         const portadaAlojamiento = document.getElementById('portadaAlojamiento');
@@ -807,6 +819,7 @@
 
         const radiosNochesFestivas = document.getElementsByName('nochesFestivas');
 
+        // Modal Form Elements
         const modal = document.getElementById('reservaModal');
         const btnCerrarModal = document.getElementById('btnCerrarModal');
         const modalBackdrop = document.getElementById('modalBackdrop');
@@ -814,9 +827,11 @@
         const inputNombre = document.getElementById('nombreCliente');
         const errorNombre = document.getElementById('errorNombre');
 
+        // Modal Menú Elements
         const menuModal = document.getElementById('menuModal');
         const menuModalContent = document.getElementById('menuModalContent');
 
+        // FLATPICKR ALOJAMIENTO REGULAR
         const fpAlojamiento = flatpickr("#fechaAlojamiento", {
             mode: "range",
             minDate: "today",
@@ -839,39 +854,14 @@
                 if(chequearRedireccionFestivo(selectedDates)) {
                     instance.clear();
                     alert("Has seleccionado fechas de Carnaval/Festivos. Te redirigiremos a las tarifas especiales.");
-                    btnModoFestivo.click();
+                    cambiarModo('festivo');
                     return;
                 }
                 renderHabitaciones(); 
             }
         });
 
-        const fpPasadia = flatpickr("#fechaPasadia", {
-            mode: "single",
-            minDate: "today",
-            locale: "es",
-            dateFormat: "d M Y",
-            defaultDate: new Date(),
-            disable: [
-                function(date) {
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const dateStr = `${year}-${month}-${day}`;
-                    
-                    if(dateStr === "2027-01-02") return false; 
-                    if(date.getDay() === 3) return true; 
-                    return false;
-                }
-            ],
-            onChange: function(selectedDates, dateStr, instance) {
-                fechaPasadiaStr = dateStr;
-                calcularTotal();
-            }
-        });
-        
-        fechaPasadiaStr = fpPasadia.input.value;
-
+        // FUNCIONES DE CÁLCULO ALOJAMIENTO
         function obtenerInfoPrecio(tipoHabitacion) {
             if (modoActual === 'festivo') {
                 let nNoches = 1;
@@ -880,14 +870,16 @@
                 }
                 return {
                     total: precios[tipoHabitacion].festivo * nNoches,
+                    etiquetaBase: '',
                     etiquetaTotal: `Total por ${nNoches} noche(s)`
                 };
             } 
             else if (modoActual === 'regular') {
+                let etiquetaClara = `Dom-Jue: $${precios[tipoHabitacion].semana} | Vie-Sáb: $${precios[tipoHabitacion].finde}`;
                 let dates = fpAlojamiento.selectedDates;
                 
                 if(dates.length < 2) {
-                    return { total: 0, etiquetaTotal: '' }; 
+                    return { total: 0, etiquetaBase: etiquetaClara, etiquetaTotal: '' };
                 }
                 
                 let start = dates[0];
@@ -898,7 +890,7 @@
                 
                 while (current < end) {
                     let d = current.getDay();
-                    if(d !== 3) { 
+                    if(d !== 3) { // Si no es miércoles, se cobra
                         let isWeekend = (d === 5 || d === 6); 
                         totalSuma += isWeekend ? precios[tipoHabitacion].finde : precios[tipoHabitacion].semana;
                     }
@@ -907,14 +899,15 @@
                 }
                 return {
                     total: totalSuma,
+                    etiquetaBase: etiquetaClara,
                     etiquetaTotal: `Total por ${countNoches} noche(s)`
                 };
             }
-            return { total: 0, etiquetaTotal: '' };
+            return { total: 0, etiquetaBase: '', etiquetaTotal: '' };
         }
 
         function renderHabitaciones() {
-            if(modoActual === 'pasadia' || modoActual === 'anonuevo') return;
+            if(modoActual === 'pasadia' || modoActual === 'anonuevo' || modoActual === 'menu') return;
 
             const seleccionadas = Array.from(document.querySelectorAll('.room-checkbox:checked')).map(cb => cb.value);
             container.innerHTML = ''; 
@@ -1012,19 +1005,7 @@
             calcularTotal();
         }
 
-        function actualizarPasadia(tipo, cantidad) {
-            if(tipo === 'adultos') {
-                pasadiaAdultos += cantidad;
-                if(pasadiaAdultos < 1) pasadiaAdultos = 1; 
-                displayAdultos.textContent = pasadiaAdultos;
-            } else if(tipo === 'ninos') {
-                pasadiaNinos += cantidad;
-                if(pasadiaNinos < 0) pasadiaNinos = 0; 
-                displayNinos.textContent = pasadiaNinos;
-            }
-            calcularTotal();
-        }
-
+        // CONFIGURACIÓN DE BOTÓN MASTER Y TOTALES
         function setBotonTickea(link) {
             btnMaster.classList.remove('from-orange-500', 'to-orange-600', 'hover:from-orange-400', 'hover:to-orange-500', 'shadow-[0_15px_30px_rgba(249,115,22,0.4)]');
             btnMaster.classList.add('from-emerald-500', 'to-emerald-600', 'hover:from-emerald-400', 'hover:to-emerald-500', 'shadow-[0_15px_30px_rgba(16,185,129,0.3)]');
@@ -1111,8 +1092,12 @@
                     btnMaster.classList.add('hidden');
                 }
             }
+            else if (modoActual === 'menu') {
+                footerReserva.classList.add('hidden');
+            }
         }
 
+        // LÓGICA MODAL WHATSAPP
         function abrirModal() {
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -1160,69 +1145,84 @@
             setTimeout(() => { menuModal.classList.add('hidden'); }, 400);
         }
 
-        function resetPestanas() {
-            const btns = [btnModoPasadia, btnModoWelcome2027, btnModoRegular, btnModoFestivo];
-            btns.forEach(btn => {
-                btn.classList.remove('segmented-active');
-                btn.classList.add('segmented-inactive');
-            });
+        // CAMBIO DE PESTAÑAS (MÓDULOS)
+        function cambiarModo(modo) {
+            modoActual = modo;
             
-            pasadiaContainer.classList.add('hidden');
-            welcome2027Container.classList.add('hidden');
+            // 1. Resetear todos los botones visualmente
+            const btns = [
+                {id: 'btnModoPasadia'},
+                {id: 'btnModoWelcome2027'},
+                {id: 'btnModoRegular'},
+                {id: 'btnModoFestivo'},
+                {id: 'btnModoMenu'}
+            ];
+            
+            btns.forEach(b => {
+                const el = document.getElementById(b.id);
+                el.classList.remove('segmented-active');
+                el.classList.add('segmented-inactive');
+                if(b.id === 'btnModoMenu') {
+                    el.classList.remove('bg-teal-700/80', 'text-white', 'border-teal-400');
+                    el.classList.add('bg-teal-900/20', 'text-teal-100', 'border-teal-500/30');
+                }
+            });
+
+            // 2. Ocultar todos los contenedores de secciones
+            seccionPasadia.classList.add('modulo-oculto');
+            seccionWelcome2027.classList.add('modulo-oculto');
             controlesRegular.classList.add('hidden');
             controlesFestivo.classList.add('hidden');
-            habitacionesSection.classList.add('hidden');
-            seccionPoliticasAlojamiento.classList.add('hidden');
-            footerReserva.classList.remove('hidden'); 
+            seccionHabitaciones.classList.add('modulo-oculto');
+            seccionMenu.classList.add('modulo-oculto');
+            seccionPoliticasAlojamiento.classList.add('modulo-oculto');
+            footerReserva.classList.remove('hidden'); // Footer visible por defecto
+
+            // 3. Activar el modo seleccionado
+            if (modo === 'pasadia') {
+                document.getElementById('btnModoPasadia').classList.add('segmented-active');
+                document.getElementById('btnModoPasadia').classList.remove('segmented-inactive');
+                seccionPasadia.classList.remove('modulo-oculto');
+                calcularTotal();
+            } 
+            else if (modo === 'welcome2027') {
+                document.getElementById('btnModoWelcome2027').classList.add('segmented-active');
+                document.getElementById('btnModoWelcome2027').classList.remove('segmented-inactive');
+                seccionWelcome2027.classList.remove('modulo-oculto');
+                calcularTotal();
+            }
+            else if (modo === 'regular') {
+                document.getElementById('btnModoRegular').classList.add('segmented-active');
+                document.getElementById('btnModoRegular').classList.remove('segmented-inactive');
+                controlesRegular.classList.remove('hidden');
+                seccionHabitaciones.classList.remove('modulo-oculto');
+                seccionPoliticasAlojamiento.classList.remove('modulo-oculto');
+                
+                portadaAlojamiento.style.backgroundImage = "url('IMG_8232.jpg')";
+                tituloAlojamiento.innerHTML = `Nuestras <br/><span class="text-teal-300 italic">Habitaciones</span>`;
+                
+                renderHabitaciones();
+            }
+            else if (modo === 'festivo') {
+                document.getElementById('btnModoFestivo').classList.add('segmented-active');
+                document.getElementById('btnModoFestivo').classList.remove('segmented-inactive');
+                controlesFestivo.classList.remove('hidden');
+                seccionHabitaciones.classList.remove('modulo-oculto');
+                seccionPoliticasAlojamiento.classList.remove('modulo-oculto');
+                
+                portadaAlojamiento.style.backgroundImage = "url('IMG_7875.jpg')";
+                tituloAlojamiento.innerHTML = `Tarifas <br/><span class="text-orange-300 italic">Festivas</span>`;
+                
+                renderHabitaciones();
+            }
+            else if (modo === 'menu') {
+                const btnM = document.getElementById('btnModoMenu');
+                btnM.classList.remove('segmented-inactive', 'bg-teal-900/20', 'text-teal-100', 'border-teal-500/30');
+                btnM.classList.add('segmented-active', 'bg-teal-700/80', 'text-white', 'border-teal-400');
+                seccionMenu.classList.remove('modulo-oculto');
+                footerReserva.classList.add('hidden'); 
+            }
         }
-
-        btnModoPasadia.addEventListener('click', () => {
-            modoActual = 'pasadia';
-            resetPestanas();
-            btnModoPasadia.classList.add('segmented-active');
-            btnModoPasadia.classList.remove('segmented-inactive');
-            pasadiaContainer.classList.remove('hidden');
-            calcularTotal();
-        });
-
-        btnModoWelcome2027.addEventListener('click', () => {
-            modoActual = 'anonuevo';
-            resetPestanas();
-            btnModoWelcome2027.classList.add('segmented-active');
-            btnModoWelcome2027.classList.remove('segmented-inactive');
-            welcome2027Container.classList.remove('hidden');
-            calcularTotal();
-        });
-
-        btnModoRegular.addEventListener('click', () => {
-            modoActual = 'regular';
-            resetPestanas();
-            btnModoRegular.classList.add('segmented-active');
-            btnModoRegular.classList.remove('segmented-inactive');
-            controlesRegular.classList.remove('hidden');
-            habitacionesSection.classList.remove('hidden');
-            seccionPoliticasAlojamiento.classList.remove('hidden');
-            
-            portadaAlojamiento.style.backgroundImage = "url('IMG_7875.jpg')";
-            tituloAlojamiento.innerHTML = `Nuestras <br/><span class="text-teal-300 italic">Habitaciones</span>`;
-            
-            renderHabitaciones();
-        });
-
-        btnModoFestivo.addEventListener('click', () => {
-            modoActual = 'festivo';
-            resetPestanas();
-            btnModoFestivo.classList.add('segmented-active');
-            btnModoFestivo.classList.remove('segmented-inactive');
-            controlesFestivo.classList.remove('hidden');
-            habitacionesSection.classList.remove('hidden');
-            seccionPoliticasAlojamiento.classList.remove('hidden');
-            
-            portadaAlojamiento.style.backgroundImage = "url('IMG_7676.jpg')";
-            tituloAlojamiento.innerHTML = `Tarifas <br/><span class="text-orange-300 italic">Festivas</span>`;
-            
-            renderHabitaciones();
-        });
 
         for (const radio of radiosNochesFestivas) {
             radio.addEventListener('change', renderHabitaciones);
@@ -1243,19 +1243,18 @@
 
         const galeriaContainer = document.getElementById('galeriaCompleta');
         
-        // Inyectar galería en el DOM
         let htmlGaleria = '';
         fotosGaleria.forEach(foto => {
             htmlGaleria += `
                 <div class="aspect-square rounded-2xl overflow-hidden group border border-white/10 relative gallery-item shadow-lg bg-black/20">
-                    <img src="${foto}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Casa Mezcal" loading="lazy">
+                    <img src="${foto}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Instalaciones Casa Mezcal" loading="lazy">
                 </div>
             `;
         });
         galeriaContainer.innerHTML = htmlGaleria;
 
-        // Init
-        btnModoPasadia.click();
+        // Iniciar en Pasadía
+        cambiarModo('pasadia');
 
     </script>
 </body>
